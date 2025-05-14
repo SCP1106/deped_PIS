@@ -1,0 +1,174 @@
+body {
+  background-color: #e8f5e9;
+  overflow: hidden;
+  position: relative;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.7;
+  z-index: -1;
+}
+
+#blob1 {
+  width: 600px;
+  height: 600px;
+  left: -300px;
+  top: -300px;
+  background-color: #4caf50;
+  animation: move1 20s infinite alternate;
+}
+
+#blob2 {
+  width: 500px;
+  height: 500px;
+  right: -250px;
+  bottom: -250px;
+  background-color: #81c784;
+  animation: move2 15s infinite alternate;
+}
+
+#blob3 {
+  width: 400px;
+  height: 400px;
+  right: 20%;
+  top: 20%;
+  background-color: #a5d6a7;
+  animation: move3 18s infinite alternate;
+}
+
+@keyframes move1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+
+@keyframes move2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100px, -100px);
+  }
+}
+
+@keyframes move3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, -50px);
+  }
+}
+
+.loader-container {
+  min-height: 100vh;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.logo-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+}
+
+.logo-static {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.rotating-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-top-color: #1b5e20;
+  border-right-color: #1b5e20;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  z-index: 1;
+}
+
+.rotating-border-inner {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 3px solid transparent;
+  border-top-color: #4caf50;
+  border-left-color: #4caf50;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite reverse;
+  z-index: 1;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.offline-message {
+  display: none;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  z-index: 1051;
+}
+
+.content {
+  min-height: 100vh;
+  display: none;
+}
+
+.main-logo {
+  width: 200px;
+  height: 200px;
+}
+
+.titles {
+  font-size: 0.9rem;
+  color: #1b5e20;
+}
+
+@media (min-width: 576px) {
+  .titles {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .titles {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .logo-wrapper {
+    width: 180px;
+    height: 180px;
+  }
+
+  .logo-static {
+    width: 160px;
+    height: 160px;
+  }
+}
