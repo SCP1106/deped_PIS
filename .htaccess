@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Redirect all 404 errors to 404.html
+ErrorDocument 404 /404.html

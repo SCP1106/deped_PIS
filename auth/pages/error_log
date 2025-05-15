@@ -179,3 +179,9 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home3/rimsdone/public_html/pis.rimsdone.com/auth/pages/login.php on line 3
+[14-May-2025 08:21:37 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[14-May-2025 08:55:14 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[14-May-2025 08:57:10 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[14-May-2025 12:46:40 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[14-May-2025 12:47:03 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[14-May-2025 13:53:49 UTC] Access denied for user 'root'@'localhost' (using password: NO)

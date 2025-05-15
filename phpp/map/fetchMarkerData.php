@@ -1,28 +1,33 @@
 <?php
+ob_start();
 // Database connection
 include '../Connect/dataDB.php';
+header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitize and prepare input
-    $clickedCity = isset($_POST['data']) ? strtoupper(str_replace(' ', '', $_POST['data'])) : '';
+    $clickedCity = isset($_POST['data']) ? trim($_POST['data']) : '';
     $filterType = isset($_POST['filter']) ? strtolower(trim($_POST['filter'])) : '';
 
-    // Retrieve city_id if city name was provided
     $cityID = null;
+
+    // Retrieve city_id only if city name is provided
     if (!empty($clickedCity)) {
-        $cityQuery = $conn->prepare("SELECT city_id FROM muncity WHERE REPLACE(UPPER(city_name), ' ', '') = ?");
-        $cityQuery->bind_param("s", $clickedCity);
-        $cityQuery->execute();
-        $cityQuery->bind_result($cityID);
-        $cityQuery->fetch();
-        $cityQuery->close();
+        $cityQuery = $conn->prepare("SELECT city_id FROM muncity WHERE city_name = ?");
+        if ($cityQuery) {
+            $cityQuery->bind_param("s", $clickedCity);
+            $cityQuery->execute();
+            $cityQuery->bind_result($cityID);
+            $cityQuery->fetch();
+            $cityQuery->close();
+        }
     }
 
-    // Prepare base query
+    // Base SQL query
     $sql = "SELECT sc.SchoolID, si.SchoolName, sc.latitude, sc.longitude, b.barangay_name,
                    CASE
-                       WHEN si.CurricularOffer REGEXP 'Grade 1-6' THEN 'elementary'
-                       WHEN si.CurricularOffer REGEXP 'Grade 7-10|Grade 11-12' THEN 'secondary'
+                       WHEN si.CurricularOffer REGEXP 'Grade[[:space:]]*1-6' THEN 'elementary'
+                       WHEN si.CurricularOffer REGEXP 'Grade[[:space:]]*7-10|Grade[[:space:]]*11-12' THEN 'secondary'
                        ELSE 'secondary'
                    END AS CurricularOffer
             FROM schoolcoor sc
@@ -30,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             INNER JOIN schooladd sa ON si.address_id = sa.address_id
             INNER JOIN barangay b ON sa.barangay_code = b.barangay_code";
 
-    // Add condition only if cityID was found
+    // Add WHERE clause only if cityID is found
     $params = [];
     $paramTypes = '';
     if ($cityID !== null) {
@@ -39,13 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $paramTypes .= 'i';
     }
 
-    // Execute query
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         echo json_encode(["error" => "Query preparation failed: " . $conn->error]);
         exit;
     }
 
+    // Bind parameters if necessary
     if (!empty($params)) {
         $stmt->bind_param($paramTypes, ...$params);
     }
@@ -55,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $response = [];
     while ($row = $result->fetch_assoc()) {
-        // Normalize and apply filter if needed
+        // Normalize CurricularOffer for filtering
         $curricular = strtolower($row['CurricularOffer']);
         if ($filterType && $curricular !== $filterType) {
             continue;
@@ -70,5 +75,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $conn->close();
-
+ob_end_flush();
 ?>

@@ -7,15 +7,10 @@
  * and returns the connection object.
  */
 
-// $host = "localhost";
-// $dbname = "rimsdone_depedPIS";
-// $username = "rimsdone_SCP1106";
-// $password = "1j9#b#jfo)JS";
-
 $host = "localhost";
-$dbname = "jsonmapdata";
-$username = "root";
-$password = "";
+$dbname = "rimsdone_depedPIS";
+$username = "rimsdone_SCP1106";
+$password = "M$6-yK]u(#Q2";
 
 try {
     $mysqli = new mysqli(
