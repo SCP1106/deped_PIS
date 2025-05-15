@@ -1,5 +1,7 @@
 <?php
 // Database connection
+ob_start();
+
 include '../Connect/dataDB.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['data'])) {
@@ -52,4 +54,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['data'])) {
 
 // Close the connection
 $conn->close();
+ob_end_flush();
 ?>
