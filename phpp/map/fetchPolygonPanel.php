@@ -46,7 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['data'])) {
         $data[] = $row;
     }
 
+    
+    $data = mb_convert_encoding($data, 'UTF-8', 'auto');
     echo json_encode($data);
+   // print_r($data);
     $stmt->close();
 } else {
     echo json_encode(["error" => "Invalid or missing data"]);

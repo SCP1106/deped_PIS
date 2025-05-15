@@ -51,3 +51,23 @@ Stack trace:
 #0 /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php(70): mysqli->prepare()
 #1 {main}
   thrown in /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php on line 70
+[15-May-2025 00:19:09 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rimsdone_depedPIS.enrollment' doesn't exist in /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php:70
+Stack trace:
+#0 /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php(70): mysqli->prepare()
+#1 {main}
+  thrown in /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php on line 70
+[15-May-2025 00:39:05 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rimsdone_depedPIS.enrollment' doesn't exist in /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php:70
+Stack trace:
+#0 /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php(70): mysqli->prepare()
+#1 {main}
+  thrown in /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php on line 70
+[15-May-2025 00:40:57 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rimsdone_depedPIS.enrollment' doesn't exist in /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php:70
+Stack trace:
+#0 /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php(70): mysqli->prepare()
+#1 {main}
+  thrown in /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php on line 70
+[15-May-2025 00:41:29 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'rimsdone_depedPIS.enrollment' doesn't exist in /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php:70
+Stack trace:
+#0 /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php(70): mysqli->prepare()
+#1 {main}
+  thrown in /home3/rimsdone/public_html/pis.rimsdone.com/phpp/map/fetchPanelData.php on line 70
