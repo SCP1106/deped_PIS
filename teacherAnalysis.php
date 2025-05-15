@@ -463,7 +463,7 @@ if (!isset($_SESSION['user_id'])) {
         }
       }
     </style>
-    <script src="../js/side-topbar.js"></script>
+    <script src="js/side-topbar.js"></script>
   </head>
   <body>
     <div id="sidebar-container">

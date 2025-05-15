@@ -101,7 +101,6 @@ $empResult = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
 $conn->close();
-$schoolData = mb_convert_encoding($schoolData, 'UTF-8', 'auto');
 // Return JSON response
 echo json_encode([
     "school_info" => $schoolData,

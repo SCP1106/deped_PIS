@@ -67,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $response[] = $row;
     }
-     $response = mb_convert_encoding($response, 'UTF-8', 'auto');
     echo json_encode($response);
     $stmt->close();
 } else {

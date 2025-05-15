@@ -38,7 +38,7 @@ $stmt->close();
 // Fetch data for each municipality
 foreach ($municipalities as $municipality) {
     // Get employee count
-    $stmt = $conn->prepare("SELECT COUNT(*) AS employees FROM employee_records e JOIN cityDistrict c ON e.district = c.CDName 
+    $stmt = $conn->prepare("SELECT COUNT(*) AS employees FROM employee_records e JOIN citydistrict c ON e.district = c.CDName 
                                     WHERE c.LD_Num = ? AND c.CDName = ?");
     $stmt->bind_param("is", $districtNum, $municipality);
     $stmt->execute();
@@ -48,7 +48,7 @@ foreach ($municipalities as $municipality) {
     $stmt->close();
 
     // Get retirement count based on age between 55 and 65
-    $stmt = $conn->prepare("SELECT COUNT(*) AS retirement FROM employee_records e JOIN cityDistrict c ON e.district = c.CDName 
+    $stmt = $conn->prepare("SELECT COUNT(*) AS retirement FROM employee_records e JOIN citydistrict c ON e.district = c.CDName 
                                     WHERE c.LD_Num = ? AND c.CDName = ? 
                                     AND TIMESTAMPDIFF(YEAR, STR_TO_DATE(CONCAT(e.BIRTHDAY_YYYY, '-', e.BIRTHDAY_MM, '-', e.BIRTHDAY_DD), '%Y-%M-%d'), CURDATE()) 
                                     BETWEEN 55 AND 65");

@@ -47,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['data'])) {
     }
 
     
-    $data = mb_convert_encoding($data, 'UTF-8', 'auto');
     echo json_encode($data);
    // print_r($data);
     $stmt->close();
