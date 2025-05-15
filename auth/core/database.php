@@ -8,9 +8,15 @@
  */
 
 $host = "localhost";
-$dbname = "rimsdone_depedPIS";
-$username = "rimsdone_SCP1106";
-$password = "M$6-yK]u(#Q2";
+$dbname = "jsonmapdata";
+$username = "root";
+$password = "";
+
+//$host = "rimsdone.com";
+//$dbname = "rimsdone_depedPIS";
+//$username = "rimsdone_SCP1106";
+//$password = "M$6-yK]u(#Q2";
+
 
 try {
     $mysqli = new mysqli(
@@ -19,6 +25,8 @@ try {
         password: $password,
         database: $dbname
     );
+
+    $mysqli->set_charset("utf8mb4");
 
     if ($mysqli->connect_errno) {
         throw new Exception("Connection error: " . $mysqli->connect_error);
