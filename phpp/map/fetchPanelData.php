@@ -66,23 +66,31 @@ if (!$schoolData) {
 $schoolData['principal'] = $schoolData['principal'] ?? 'No principal found';
 $schoolData['principal_age'] = $schoolData['principal_age'] ?? 'N/A';
 
-// Get Enrollment Data
-$stmt = $conn->prepare(" SELECT 
-        SchoolID, 
-        enrollment_year, 
-        SUM(num_male) AS total_males, 
-        SUM(num_female) AS total_females, 
-        (SUM(num_male) + SUM(num_female)) AS total_enrollees
-    FROM enrollment
-    WHERE SchoolID = ? 
-        AND enrollment_year = 2024  -- Filters records for the current year
-    GROUP BY SchoolID, enrollment_year;");
-    
+
+$stmt = $conn->prepare("SELECT * FROM enrollment_data WHERE SchoolID = ? LIMIT 1");
 $stmt->bind_param("s", $schoolID);
 $stmt->execute();
-$result = $stmt->get_result();
-$enrollmentData = $result->fetch_assoc(); // ✅ changed from fetch_all() to fetch_assoc()
+$row = $stmt->get_result()->fetch_assoc();
 $stmt->close();
+
+$enrollmentData = [];
+if ($row) {
+    $male_fields = array_filter(array_keys($row), fn($key) => str_ends_with($key, '_M'));
+    $female_fields = array_filter(array_keys($row), fn($key) => str_ends_with($key, '_F'));
+
+    $total_males = array_sum(array_map(fn($key) => (int)$row[$key], $male_fields));
+    $total_females = array_sum(array_map(fn($key) => (int)$row[$key], $female_fields));
+    $total_enrollees = (int)($row['ALL_GRADE_TTL'] ?? ($total_males + $total_females));
+
+    $enrollmentData = [
+        'schoolID' => $row['schoolID'],
+        'total_males' => $total_males,
+        'total_females' => $total_females,
+        'total_enrollees' => $total_enrollees
+    ];
+} else {
+    $enrollmentData = ["message" => "No enrollment data found"];
+}
 
 // Get Employee Count
 $empQuery = "SELECT COUNT(*) AS total_employees FROM employee_records WHERE School_ID = ?";
@@ -93,11 +101,11 @@ $empResult = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
 $conn->close();
-
+$schoolData = mb_convert_encoding($schoolData, 'UTF-8', 'auto');
 // Return JSON response
 echo json_encode([
     "school_info" => $schoolData,
-    "enrollment_data" => !empty($enrollmentData) ? $enrollmentData : ["message" => "No enrollment data found"],
+    "enrollment_data" => $enrollmentData,
     "employee_count" => $empResult['total_employees']
 ], JSON_PRETTY_PRINT);
 
