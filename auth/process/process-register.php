@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Sanitize and validate input
     $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+    $roles = isset($_POST['role']) ? trim($_POST['role']) : '';
 
     // Error array to store validation errors
     $errors = [];
@@ -33,6 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate email
     if (!$email) {
         $errors[] = "A valid email address is required.";
+    }
+    // Validate position
+    $allowed_roles = ['Admin', 'OSDS', 'CID', 'User'];
+    if (!in_array($roles, $allowed_roles)) {
+        $errors[] = "Please select a valid position.";
     }
 
     // Check if email already exists
@@ -61,10 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = bin2hex(random_bytes(16));
     $token_hash = hash('sha256', $token);
 
-    // Insert email into the database with pending status
+    // Insert email and position into the database with pending status
     try {
-        $stmt = $mysqli->prepare("INSERT INTO users (email, account_activation_hash) VALUES (?, ?)");
-        $stmt->bind_param("ss", $email, $token_hash);
+        $stmt = $mysqli->prepare("INSERT INTO users (email, roles, account_activation_hash) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $email, $roles, $token_hash);
         $stmt->execute();
 
         if ($stmt->affected_rows === 0) {
@@ -97,8 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $host = $_SERVER['HTTP_HOST'];
         $base_url = $protocol . $host;
         
-        // Correct activation link path after restructure
-        $activation_link = $base_url . '/auth/pages/activate-account.php?token=' . urlencode($token);
+        // Ensure activation link includes the correct project folder
+        $activation_link = $base_url . '/deped_PIS/auth/pages/activate-account.php?token=' . urlencode($token);
 
         $mail->isHtml(true);
         $mail->Subject = "DepEd System: Activate Your Account";

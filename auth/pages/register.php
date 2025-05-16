@@ -211,6 +211,20 @@ if ($rateLimiter->isRateLimited()) {
                     </div>
                 </div>
 
+                <div class="form-floating mb-4">
+                    <select class="form-select" id="role" name="role" required>
+                        <option value="" disabled selected>Select role</option>
+                        <option value="Admin" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
+                        <option value="OSDS" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'OSDS') ? 'selected' : ''; ?>>OSDS</option>
+                        <option value="CID" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'CID') ? 'selected' : ''; ?>>CID</option>
+                        <option value="User" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'User') ? 'selected' : ''; ?>>User</option>
+                    </select>
+                    <label for="role">Role</label>
+                    <div class="invalid-feedback">
+                        Please select a role.
+                    </div>
+                </div>
+
                 <!-- CSRF Protection -->
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 

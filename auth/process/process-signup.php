@@ -227,14 +227,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($use_2fa) {
             $_SESSION['setup_2fa'] = true;
             $_SESSION['user_email'] = $email;
-            header("Location: /auth/2fa/setup-2fa.php");
+            header("Location: /deped_PIS/auth/2fa/setup-2fa.php");
             exit;
         }
 
         // Redirect to login page
         $_SESSION['success'] = "Account setup complete! You can now log in.";
         unset($_SESSION['verified_email']); // Clear the verified email
-        header("Location: ../auth/pages/login.php");
+        header("Location: /deped_PIS/auth/pages/login.php");
         exit;
     } catch (Exception $e) {
         // Log the error but don't expose details to users

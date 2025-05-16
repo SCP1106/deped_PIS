@@ -7,15 +7,15 @@
  * and returns the connection object.
  */
 
-$host = "localhost";
-$dbname = "jsonmapdata";
-$username = "root";
-$password = "";
+// $host = "localhost";
+// $dbname = "jsonmapdata";
+// $username = "root";
+// $password = "";
 
-//$host = "rimsdone.com";
-//$dbname = "rimsdone_depedPIS";
-//$username = "rimsdone_SCP1106";
-//$password = "M$6-yK]u(#Q2";
+$host = "rimsdone.com";
+$dbname = "rimsdone_depedPIS";
+$username = "rimsdone_SCP1106";
+$password = "M$6-yK]u(#Q2";
 
 
 try {
