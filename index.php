@@ -2670,13 +2670,24 @@
         if (!isPanelVisible) {
           togglePanel();
         }
-        
-        // Make sure we're showing the card container
-        document.getElementById("card-container").style.display = "block";
-        document.getElementById("school-info").style.display = "none";
-        document.getElementById("barangay-info").style.display = "none";
-        
-        // Apply the map filter - this will also update the panel filter if needed
+        // If this is elementary or secondary filter, update both map and panel filters
+        else if (filter === "elementary" || filter === "secondary") {
+          // Update the panel filter to match
+
+          if (filter === "elementary") {
+            fetchFilteredSchools("elementary");
+          } else {
+            fetchFilteredSchools("secondary");
+          }
+
+      
+          // Show the panel if not already visible
+          if (!isPanelVisible) {
+            togglePanel();
+          }
+        }
+    
+        // Apply the map filter
         applyMapFilter(filter);
         
         // Close the dropdown
