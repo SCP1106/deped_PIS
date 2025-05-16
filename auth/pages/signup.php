@@ -74,7 +74,7 @@ if (!isset($_SESSION['csrf_token'])) {
 
           <div class="card shadow-lg border-0 rounded-4">
             <div class="card-body p-4 p-md-5">
-              <form id="signupForm" action="/auth/process/process-signup.php" method="post" novalidate>
+              <form id="signupForm" action="/deped_PIS/auth/process/process-signup.php" method="post" novalidate>
                 <div class="row g-3">
                   <!-- First Name -->
                   <div class="col-md-6">
@@ -292,7 +292,7 @@ if (!isset($_SESSION['csrf_token'])) {
     </div>
   </div>
 
-  <script src="/auth/assets/js/script.js"></script>
+  <script src="../assets/js/script.js"></script>
 </body>
 
 </html>

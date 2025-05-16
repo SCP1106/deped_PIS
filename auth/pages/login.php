@@ -44,11 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $user = $result->fetch_assoc();
             $stmt->close();
 
-            // Set access level if user is admin
-            if ($user && isset($user['role']) && $user['role'] === 'admin') {
-                $_SESSION['access_level'] = 'admin';
-            } else {
-                $_SESSION['access_level'] = 'user';
+            // Store user's position in session
+            if ($user && isset($user['position'])) {
+                $_SESSION['position'] = $user['position'];
             }
 
             if ($user && $user["account_activation_hash"] === null) {
