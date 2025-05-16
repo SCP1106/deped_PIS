@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE
+html >
+  <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1932,6 +1933,9 @@
             "<p class='text-sm'>School ID: <span class='font-medium'>" +
             (item.schoolID || "N/A") +
             "</span></p>" +
+            "<p class='text-sm'>District: <span class='font-medium'>" +
+            (item.district || "N/A") +
+            "</span></p>" +
             "<p class='text-sm'>Barangay: <span class='font-medium'>" +
             (item.barangay_name || "N/A") +
             "</span></p>";
@@ -2120,8 +2124,8 @@
         document.getElementById("school-level").textContent = displayLevel;
         document.getElementById("school-level").className = schoolLevel; // Add class for styling
         document.getElementById("total-enrollees").textContent = data.enrollment_data.total_enrollees ?? "N/A";
-        document.getElementById("male-enrollees").textContent = data.enrollment_data.total_males || "N/A";
-        document.getElementById("female-enrollees").textContent = data.enrollment_data.total_females || "N/A";
+        document.getElementById("male-enrollees").textContent = data.enrollment_data.total_male || "N/A";
+        document.getElementById("female-enrollees").textContent = data.enrollment_data.total_female || "N/A";
         document.getElementById("teachers").textContent = data.employee_count ?? "N/A";
         document.getElementById("barangay").textContent = data.school_info.barangay_name || "N/A";
 
@@ -2659,6 +2663,12 @@
         };
       }
 
+      // Debounced search to improve performance
+      const debouncedSearch = debounce(function () {
+        // Only perform the search without zooming to any marker
+        performSearch(searchInput.value);
+      }, 300);
+
       // Main search function
       function performSearch(searchText) {
         const searchSpinner = document.querySelector(".search-spinner");
@@ -2790,7 +2800,8 @@
         if (matchCount === 0) {
           Swal.fire({
             title: "No Results",
-            text: "No schools match your search criteria.",
+            text: "No schools match your search criteria. Try a different search term or check your spelling.",
+            // This alert appears when the search doesn't find any matching schools or barangays
             icon: "info",
             confirmButtonText: "OK",
           });
@@ -2798,11 +2809,6 @@
 
         searchSpinner.style.display = "none";
       }
-
-      // Debounced search to improve performance
-      const debouncedSearch = debounce(function () {
-        performSearch(searchInput.value);
-      }, 300);
 
       // Add event listener to search input
       searchInput.addEventListener("input", function () {

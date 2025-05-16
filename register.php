@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf_token = $_SESSION['csrf_token'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,13 +155,13 @@
     <div class="registration-card">
       <h2>Create an Account</h2>
       <div id="message-container"></div>
-      <form id="registrationForm" action="auth/process-register.php" method="post" class="needs-validation" novalidate>
+      <form id="registrationForm" action="auth/process/process-register.php" method="post" class="needs-validation" novalidate>
         <div class="form-floating mb-4">
           <input type="email" class="form-control" id="email" name="email" placeholder="Email address" required />
           <label for="email">Email address</label>
           <div class="invalid-feedback">Please provide a valid email address.</div>
         </div>
-        <input type="hidden" name="csrf_token" id="csrf_token" value="" />
+        <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>" />
         <button type="submit" class="btn btn-primary w-100">Register</button>
       </form>
     </div>
@@ -176,19 +183,7 @@
         });
       }
 
-      const card = document.querySelector('.registration-card');
-      const directions = ['move-up', 'move-down', 'move-left', 'move-right'];
-
-      card.addEventListener('mouseenter', () => {
-        const randomDirection = directions[Math.floor(Math.random() * directions.length)];
-        card.classList.add(randomDirection);
-      });
-
-      card.addEventListener('mouseleave', () => {
-        setTimeout(() => {
-          directions.forEach(dir => card.classList.remove(dir));
-        }, 150);
-      });
+      
     });
   </script>
 </body>

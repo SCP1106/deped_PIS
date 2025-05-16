@@ -24,20 +24,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['data'])) {
 
     if ($cityID !== null) {
         // Query for schools in the specific city
-        $stmt = $conn->prepare("SELECT si.schoolID, si.schoolName, b.barangay_name 
+        $stmt = $conn->prepare("SELECT si.schoolID, si.schoolName, b.barangay_name, cd.CDName as district
             FROM schoolinfo si
             JOIN schooladd sa ON si.address_id = sa.address_id
             JOIN barangay b ON sa.barangay_code = b.barangay_code
+            JOIN citydistrict cd ON si.CDNum = cd.CDNum
             WHERE sa.city_id = ?");
         $stmt->bind_param("i", $cityID);
     } else {
         // Query for all schools
-        $stmt = $conn->prepare("SELECT si.schoolID, si.schoolName, b.barangay_name 
+        $stmt = $conn->prepare("SELECT si.schoolID, si.schoolName, b.barangay_name, cd.CDName as district
             FROM schoolinfo si
             JOIN schooladd sa ON si.address_id = sa.address_id
-            JOIN barangay b ON sa.barangay_code = b.barangay_code");
+            JOIN barangay b ON sa.barangay_code = b.barangay_code
+            JOIN citydistrict cd ON si.CDNum = cd.CDNum");
     }
-
+    
     $stmt->execute();
     $result = $stmt->get_result();
 

@@ -66,41 +66,58 @@ if (!$schoolData) {
 $schoolData['principal'] = $schoolData['principal'] ?? 'No principal found';
 $schoolData['principal_age'] = $schoolData['principal_age'] ?? 'N/A';
 
-
-$stmt = $conn->prepare("SELECT * FROM enrollment_data WHERE SchoolID = ? LIMIT 1");
+// Get enrollment data from new table
+$stmt = $conn->prepare("
+    SELECT 
+        ELEM_TOTAL_M, ELEM_TOTAL_F,
+        JHS_TOTAL_M, JHS_TOTAL_F,
+        FS_SHS_TTL_M, FS_SHS_TTL_F,
+        SS_SHS_TTL_M, SS_SHS_TTL_F,
+        ALL_GRADE_TTL
+    FROM enrollment_data
+    WHERE schoolID = ? AND SchoolYear = 2024
+    LIMIT 1
+");
 $stmt->bind_param("s", $schoolID);
 $stmt->execute();
-$row = $stmt->get_result()->fetch_assoc();
+$enrollmentData = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
-$enrollmentData = [];
-if ($row) {
-    $male_fields = array_filter(array_keys($row), fn($key) => str_ends_with($key, '_M'));
-    $female_fields = array_filter(array_keys($row), fn($key) => str_ends_with($key, '_F'));
-
-    $total_males = array_sum(array_map(fn($key) => (int)$row[$key], $male_fields));
-    $total_females = array_sum(array_map(fn($key) => (int)$row[$key], $female_fields));
-    $total_enrollees = (int)($row['ALL_GRADE_TTL'] ?? ($total_males + $total_females));
-
+// Fallback if no data
+if (!$enrollmentData) {
     $enrollmentData = [
-        'schoolID' => $row['schoolID'],
-        'total_males' => $total_males,
-        'total_females' => $total_females,
-        'total_enrollees' => $total_enrollees
+        "ELEM_TOTAL_M" => 0, "ELEM_TOTAL_F" => 0,
+        "JHS_TOTAL_M" => 0, "JHS_TOTAL_F" => 0,
+        "FS_SHS_TTL_M" => 0, "FS_SHS_TTL_F" => 0,
+        "SS_SHS_TTL_M" => 0, "SS_SHS_TTL_F" => 0,
+        "ALL_GRADE_TTL" => 0
     ];
-} else {
-    $enrollmentData = ["message" => "No enrollment data found"];
 }
 
-// Get Employee Count
-$empQuery = "SELECT COUNT(*) AS total_employees FROM employee_records WHERE School_ID = ?";
-$stmt = $conn->prepare($empQuery);
+// Calculate total male, female, and enrollees
+$total_male = ($enrollmentData['ELEM_TOTAL_M'] ?? 0) +
+              ($enrollmentData['JHS_TOTAL_M'] ?? 0) +
+              ($enrollmentData['FS_SHS_TTL_M'] ?? 0) +
+              ($enrollmentData['SS_SHS_TTL_M'] ?? 0);
+
+$total_female = ($enrollmentData['ELEM_TOTAL_F'] ?? 0) +
+                ($enrollmentData['JHS_TOTAL_F'] ?? 0) +
+                ($enrollmentData['FS_SHS_TTL_F'] ?? 0) +
+                ($enrollmentData['SS_SHS_TTL_F'] ?? 0);
+
+$enrollmentData['total_male'] = $total_male;
+$enrollmentData['total_female'] = $total_female;
+$enrollmentData['total_enrollees'] = $total_male + $total_female;
+
+// Get employee count
+$stmt = $conn->prepare("SELECT COUNT(*) AS total_employees FROM employee_records WHERE School_ID = ?");
 $stmt->bind_param("s", $schoolID);
 $stmt->execute();
 $empResult = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
 $conn->close();
+
 // Return JSON response
 echo json_encode([
     "school_info" => $schoolData,
