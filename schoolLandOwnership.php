@@ -1187,92 +1187,95 @@ html >
 
       // Function to perform search based on selected columns
       function performSearch(searchTerm) {
-        if (!currentDistrict) return;
-        
-        const searchTermLower = searchTerm.toLowerCase().trim();
-        
-        // Safely access school data
-        const schools = window.schoolData && window.schoolData[currentDistrict] 
-          ? window.schoolData[currentDistrict] 
-          : [];
-        
-        if (!Array.isArray(schools)) {
-          console.error("Invalid schools data for district", currentDistrict);
-          return;
-        }
-        
-        // Check if any column is selected
-        const isAnyColumnSelected = Object.values(window.selectedColumns).some(value => value);
-        if (!isAnyColumnSelected) {
-          // If no columns selected, don't filter
-          filteredSchools = currentMunicipality 
-            ? schools.filter((school) => {
-                const schoolName = (school.SchoolName || school.school_name || "").toLowerCase();
-                return schoolName.includes(currentMunicipality.toLowerCase());
-              })
-            : [...schools];
-          
-          // Reset to first page and display
-          currentPage = 1;
-          displaySchoolsWithPagination();
-          return;
-        }
-        
-        // Filter schools based on search term and current municipality if applicable
-        filteredSchools = schools.filter(function(school) {
-          if (!school) return false;
-          
-          // First check if we need to filter by municipality
-          if (currentMunicipality) {
-            const schoolName = (school.SchoolName || school.school_name || "").toLowerCase();
-            if (!schoolName.includes(currentMunicipality.toLowerCase())) {
-              return false;
-            }
-          }
-          
-          // If search term is empty, include all schools
-          if (!searchTermLower) return true;
-          
-          // Search in selected columns only
-          if (window.selectedColumns.schoolId && 
-              (school.schoolId || school.school_id || "").toString().toLowerCase().includes(searchTermLower)) {
-            return true;
-          }
-          
-          if (window.selectedColumns.schoolName && 
-              (school.SchoolName || school.school_name || "").toLowerCase().includes(searchTermLower)) {
-            return true;
-          }
-          
-          if (window.selectedColumns.yearEstablished && 
-              (school.yearEstablished || school.year_estab || school.year_established || "").toString().toLowerCase().includes(searchTermLower)) {
-            return true;
-          }
-          
-          if (window.selectedColumns.totalLandArea && 
-              (school.totalLandArea || school.land_area || "").toString().toLowerCase().includes(searchTermLower)) {
-            return true;
-          }
-          
-          if (window.selectedColumns.transferDoc && 
-              (school.transfer_doc || school.transfer_instrument || "").toLowerCase().includes(searchTermLower)) {
-            return true;
-          }
-          
-          if (window.selectedColumns.titleNumber && 
-              (school.titleNumber || school.title_no || "").toLowerCase().includes(searchTermLower)) {
-            return true;
-          }
-          
-          return false;
-        });
-        
-        // Reset to first page when searching
-        currentPage = 1;
-        
-        // Display filtered schools with pagination
-        displaySchoolsWithPagination();
+  if (!currentDistrict) return;
+  
+  const searchTermLower = searchTerm.toLowerCase().trim();
+  
+  // Safely access school data
+  const schools = window.schoolData && window.schoolData[currentDistrict] 
+    ? window.schoolData[currentDistrict] 
+    : [];
+  
+  if (!Array.isArray(schools)) {
+    console.error("Invalid schools data for district", currentDistrict);
+    return;
+  }
+  
+  // If search term is empty, show all schools for current municipality or district
+  if (!searchTermLower) {
+    filteredSchools = currentMunicipality 
+      ? schools.filter((school) => {
+          const schoolCDName = (school.CDName || "").toLowerCase();
+          return schoolCDName === currentMunicipality.toLowerCase();
+        })
+      : [...schools];
+    
+    // Reset to first page and display
+    currentPage = 1;
+    displaySchoolsWithPagination();
+    return;
+  }
+  
+  // Check if any column is selected
+  const isAnyColumnSelected = Object.values(window.selectedColumns).some(value => value);
+  if (!isAnyColumnSelected) {
+    // If no columns selected, don't filter
+    document.getElementById("column-warning").style.display = "block";
+    return;
+  }
+  
+  // Filter schools based on search term and current municipality if applicable
+  filteredSchools = schools.filter(function(school) {
+    if (!school) return false;
+    
+    // First check if we need to filter by municipality
+    if (currentMunicipality) {
+      const schoolCDName = (school.CDName || "").toLowerCase();
+      if (schoolCDName !== currentMunicipality.toLowerCase()) {
+        return false;
       }
+    }
+    
+    // Search in selected columns only
+    if (window.selectedColumns.schoolId && 
+        (school.schoolId || school.school_id || "").toString().toLowerCase().includes(searchTermLower)) {
+      return true;
+    }
+    
+    if (window.selectedColumns.schoolName && 
+        (school.SchoolName || school.school_name || "").toLowerCase().includes(searchTermLower)) {
+      return true;
+    }
+    
+    if (window.selectedColumns.yearEstablished && 
+        (school.yearEstablished || school.year_estab || school.year_established || "").toString().toLowerCase().includes(searchTermLower)) {
+      return true;
+    }
+    
+    if (window.selectedColumns.totalLandArea && 
+        (school.totalLandArea || school.land_area || "").toString().toLowerCase().includes(searchTermLower)) {
+      return true;
+    }
+    
+    if (window.selectedColumns.transferDoc && 
+        (school.transfer_doc || school.transfer_instrument || "").toLowerCase().includes(searchTermLower)) {
+      return true;
+    }
+    
+    if (window.selectedColumns.titleNumber && 
+        (school.titleNumber || school.title_no || "").toLowerCase().includes(searchTermLower)) {
+      return true;
+    }
+    
+    return false;
+  });
+  
+  // Reset to first page when searching
+  currentPage = 1;
+  
+  // Display filtered schools with pagination
+  displaySchoolsWithPagination();
+}
 
       // Set up event listeners for all modals to ensure proper backdrop cleanup
       function setupModalEventListeners() {
