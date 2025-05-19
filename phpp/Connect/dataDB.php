@@ -5,6 +5,7 @@ $conn = mysqli_connect("localhost", "root", "", "jsonmapdata");
 
 $conn->set_charset("utf8mb4");
 
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 

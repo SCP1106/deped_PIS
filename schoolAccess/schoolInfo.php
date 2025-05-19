@@ -83,7 +83,6 @@ if (!isset($_SESSION['user_id'])) {
         font-weight: 500;
         border-radius: 5px;
         transition: all 0.3s ease;
-        display: inline;
       }
 
       .action-buttons .btn:hover {
@@ -892,14 +891,10 @@ if (!isset($_SESSION['user_id'])) {
               <i class="bi bi-pencil-square"></i>
               Update
             </button>
-              <button class="btn btn-warning dropdown-toggle" type="button" id="actionButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-gear"></i>
-                Action
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="actionButton">
-                <li><button class="dropdown-item" onclick="importData()"><i class="bi bi-upload"></i> Import</button></li>
-                <li><button class="dropdown-item" onclick="exportToExcel()"><i class="bi bi-file-earmark-excel"></i> Export</button></li>
-              </ul>
+            <button class="btn btn-warning" onclick="exportToExcel()">
+              <i class="bi bi-file-earmark-excel"></i>
+              Export
+            </button>
           </div>
         </div>
 
@@ -1040,58 +1035,12 @@ if (!isset($_SESSION['user_id'])) {
                       />
                       <label for="schoolDistrict">District</label>
                     </div>
-                    
-                    <div class="form-floating mb-3">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="schoolPrincipal"
-                        placeholder="Principal"
-                        required
-                      />
-                      <label for="schoolPrincipal">Principal</label>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                      <input
-                        type="tel"
-                        class="form-control"
-                        id="contactNumber"
-                        placeholder="Contact Number"
-                      />
-                      <label for="contactNumber">Contact Number</label>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="emailAddress"
-                        placeholder="Email Address"
-                      />
-                      <label for="emailAddress">Email Address</label>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="principalAge"
-                        placeholder="Age"
-                        min="18"
-                        max="100"
-                      />
-                      <label for="principalAge">Age</label>
-                    </div>
                   </div>
-                </div>
 
-                <!-- Right Column - Address and Map -->
-                <div class="col-md-6">
                   <div class="form-card">
                     <div class="form-card-header">
                       <h6 class="form-card-title">
-                        <i class="bi bi-geo-alt"></i> Address
+                        <i class="bi bi-geo-alt"></i> Address Information
                       </h6>
                     </div>
 
@@ -1139,14 +1088,17 @@ if (!isset($_SESSION['user_id'])) {
                       <input
                         type="text"
                         class="form-control"
-                        id="landMark"
-                        placeholder="Landmark"
+                        id="streetAddress"
+                        placeholder="Street Address"
                         required
                       />
-                      <label for="landMark">Landmark</label>
+                      <label for="streetAddress">Street Address</label>
                     </div>
                   </div>
+                </div>
 
+                <!-- Right Column - Map and Location -->
+                <div class="col-md-6">
                   <div class="form-card">
                     <div class="form-card-header">
                       <h6 class="form-card-title">
@@ -1202,6 +1154,57 @@ if (!isset($_SESSION['user_id'])) {
                       >
                         <i class="bi bi-cursor"></i> Use Current Location
                       </button>
+                    </div>
+                  </div>
+
+                  <div class="form-card">
+                    <div class="form-card-header">
+                      <h6 class="form-card-title">
+                        <i class="bi bi-person"></i> Contact Information
+                      </h6>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="schoolPrincipal"
+                        placeholder="Principal"
+                        required
+                      />
+                      <label for="schoolPrincipal">Principal</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="contactNumber"
+                        placeholder="Contact Number"
+                      />
+                      <label for="contactNumber">Contact Number</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="emailAddress"
+                        placeholder="Email Address"
+                      />
+                      <label for="emailAddress">Email Address</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="principalAge"
+                        placeholder="Age"
+                        min="18"
+                        max="100"
+                      />
+                      <label for="principalAge">Age</label>
                     </div>
                   </div>
                 </div>
@@ -1682,45 +1685,31 @@ if (!isset($_SESSION['user_id'])) {
         }
       }
 
+      // --- Map Functions ---
       function initializeMap() {
-  const mapContainer = document.getElementById("school-map-container");
-  if (!mapContainer) return;
-
-  const lat = parseFloat(document.getElementById("latitude").value) || defaultLat;
-  const lng = parseFloat(document.getElementById("longitude").value) || defaultLng;
-
-  if (schoolMap) {
-    schoolMap.remove();
-    schoolMap = null;
-  }
-
-  schoolMap = L.map("school-map-container").setView([lat, lng], 13);
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(schoolMap);
-
-  // Corrected this line
-  schoolMarker = L.marker([lat, lng], { draggable: true }).addTo(schoolMap);
-
-  schoolMarker.on("dragend", function (event) {
-    const marker = event.target;
-    const position = marker.getLatLng();
-    document.getElementById("latitude").value = position.lat.toFixed(7);
-    document.getElementById("longitude").value = position.lng.toFixed(7);
-  });
-
-  schoolMap.on("click", function (e) {
-    schoolMarker.setLatLng(e.latlng);
-    document.getElementById("latitude").value = e.latlng.lat.toFixed(7);
-    document.getElementById("longitude").value = e.latlng.lng.toFixed(7);
-  });
-
-  setTimeout(() => {
-    if (schoolMap) schoolMap.invalidateSize();
-  }, 100);
-}
-
+        const mapContainer = document.getElementById("school-map-container");
+        if (!mapContainer) return;
+        const lat = parseFloat(document.getElementById("latitude").value) || defaultLat;
+        const lng = parseFloat(document.getElementById("longitude").value) || defaultLng;
+        if (schoolMap) { schoolMap.remove(); schoolMap = null; }
+        schoolMap = L.map("school-map-container").setView([lat, lng], 13);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(schoolMap);
+        schoolMarker = L.marker([lat, lng], { draggable: true }).addTo(schoolMap);
+        schoolMarker.on("dragend", function (event) {
+          const marker = event.target;
+          const position = marker.getLatLng();
+          document.getElementById("latitude").value = position.lat.toFixed(7);
+          document.getElementById("longitude").value = position.lng.toFixed(7);
+        });
+        schoolMap.on("click", function (e) {
+          schoolMarker.setLatLng(e.latlng);
+          document.getElementById("latitude").value = e.latlng.lat.toFixed(7);
+          document.getElementById("longitude").value = e.latlng.lng.toFixed(7);
+        });
+        setTimeout(() => { if (schoolMap) schoolMap.invalidateSize(); }, 100);
+      }
       
       function updateMarkerFromInputs() {
         if (!schoolMap || !schoolMarker) return;
@@ -2116,7 +2105,7 @@ if (!isset($_SESSION['user_id'])) {
         document.getElementById("contactNumber").value = selectedSchool.contact_no || "";
         document.getElementById("emailAddress").value = selectedSchool.email || "";
         document.getElementById("principalAge").value = selectedSchool.principal_age || "";
-        document.getElementById("landMark").value = selectedSchool.land_mark || "";
+        document.getElementById("streetAddress").value = selectedSchool.street_address || "";
 
         // Set coordinates if available, otherwise use defaults
         document.getElementById("latitude").value = selectedSchool.latitude || defaultLat.toFixed(7);
@@ -2159,7 +2148,7 @@ if (!isset($_SESSION['user_id'])) {
           regionId: document.getElementById("regionSelect").value,
           cityId: document.getElementById("citySelect").value,
           barangayId: document.getElementById("barangaySelect").value,
-          landMark: document.getElementById("landMark").value
+          streetAddress: document.getElementById("streetAddress").value
         };
 
         // Get region, city, and barangay names for display
@@ -2242,7 +2231,7 @@ if (!isset($_SESSION['user_id'])) {
               region_id: formData.regionId,
               city_id: formData.cityId,
               barangay_id: formData.barangayId,
-              land_mark: formData.landMark,
+              street_address: formData.streetAddress,
               region_name: formData.regionName,
               city_name: formData.cityName,
               barangay_name: formData.barangayName
@@ -2287,7 +2276,7 @@ if (!isset($_SESSION['user_id'])) {
           regionId: document.getElementById("regionSelect").value,
           cityId: document.getElementById("citySelect").value,
           barangayId: document.getElementById("barangaySelect").value,
-          landMark: document.getElementById("landMark").value
+          streetAddress: document.getElementById("streetAddress").value
         };
 
         // Get region, city, and barangay names for display
@@ -2372,7 +2361,7 @@ if (!isset($_SESSION['user_id'])) {
                 region_id: formData.regionId,
                 city_id: formData.cityId,
                 barangay_id: formData.barangayId,
-                land_mark: formData.landMark,
+                street_address: formData.streetAddress,
                 region_name: formData.regionName,
                 city_name: formData.cityName,
                 barangay_name: formData.barangayName
@@ -2727,7 +2716,7 @@ if (!isset($_SESSION['user_id'])) {
           { id: "region_name", name: "Region" },
           { id: "city_name", name: "City/Municipality" },
           { id: "barangay_name", name: "Barangay" },
-          { id: "land_mark", name: "Landmark" }
+          { id: "street_address", name: "Street Address" }
         ];
 
         // Create HTML for column selection
@@ -2869,56 +2858,6 @@ if (!isset($_SESSION['user_id'])) {
         // Clean up
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
-      }
-
-      function importData() {
-        Swal.fire({
-          title: 'Import Data',
-          text: 'This feature will allow you to import school data from a CSV file.',
-          icon: 'info',
-          showCancelButton: true,
-          confirmButtonText: 'Upload File',
-          confirmButtonColor: '#4caf50',
-          cancelButtonText: 'Cancel',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // Create a file input element
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.accept = '.csv';
-            
-            // Trigger click on the file input
-            fileInput.click();
-            
-            // Handle file selection
-            fileInput.addEventListener('change', function() {
-              if (this.files && this.files[0]) {
-                const file = this.files[0];
-                
-                // Show loading indicator
-                Swal.fire({
-                  title: 'Processing File',
-                  text: 'Please wait while we process your file...',
-                  allowOutsideClick: false,
-                  didOpen: () => {
-                    Swal.showLoading();
-                  }
-                });
-                
-                // In a real implementation, you would send the file to the server
-                // For demo purposes, we'll just show a success message after a delay
-                setTimeout(() => {
-                  Swal.fire({
-                    title: 'Import Successful',
-                    text: `File "${file.name}" has been processed successfully.`,
-                    icon: 'success',
-                    confirmButtonColor: '#4caf50'
-                  });
-                }, 2000);
-              }
-            });
-          }
-        });
       }
 
       // --- Enrollment Functions ---
