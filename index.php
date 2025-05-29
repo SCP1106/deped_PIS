@@ -2947,12 +2947,13 @@ document.querySelectorAll(".filter-dropdown-item").forEach(item => {
     
     // Show panel if not visible
     if (!isPanelVisible) {
-      togglePanel();
+      togglePanel();  
     }
     
     // Apply filter (this will sync both map and panel)
-    applyMapFilter(filter);
+    
     loadMarkerData(placeClicked);
+    applyMapFilter(filter);
     // Close dropdown
     filterDropdown.classList.remove("show");
   });
