@@ -28,20 +28,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                    CASE
                        WHEN si.CurricularOffer REGEXP 'Grade[[:space:]]*1-6' THEN 'elementary'
                        WHEN si.CurricularOffer REGEXP 'Grade[[:space:]]*7-10|Grade[[:space:]]*11-12' THEN 'secondary'
-                       ELSE 'secondary'
+                       ELSE 'elementary'
                    END AS CurricularOffer
             FROM schoolcoor sc
             INNER JOIN schoolinfo si ON sc.schoolCoorID = si.schoolCoorID
             INNER JOIN schooladd sa ON si.address_id = sa.address_id
             INNER JOIN barangay b ON sa.barangay_code = b.barangay_code";
 
-    // Add WHERE clause only if cityID is found
+    // Build WHERE clause
+    $whereConditions = [];
     $params = [];
     $paramTypes = '';
+
+    // Add city filter if cityID is found
     if ($cityID !== null) {
-        $sql .= " WHERE sc.city_id = ?";
+        $whereConditions[] = "sc.city_id = ?";
         $params[] = $cityID;
         $paramTypes .= 'i';
+    }
+
+    // Add filter type if specified and not empty
+    if (!empty($filterType) && $filterType !== 'all') {
+        if ($filterType === 'elementary') {
+            $whereConditions[] = "si.CurricularOffer REGEXP 'Grade[[:space:]]*1-6'";
+        } elseif ($filterType === 'secondary') {
+            $whereConditions[] = "(si.CurricularOffer REGEXP 'Grade[[:space:]]*7-10|Grade[[:space:]]*11-12')";
+        }
+    }
+
+    // Add WHERE clause if there are conditions
+    if (!empty($whereConditions)) {
+        $sql .= " WHERE " . implode(" AND ", $whereConditions);
     }
 
     $stmt = $conn->prepare($sql);
@@ -60,13 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $response = [];
     while ($row = $result->fetch_assoc()) {
-        // Normalize CurricularOffer for filtering
-        $curricular = strtolower($row['CurricularOffer']);
-        if ($filterType && $curricular !== $filterType) {
-            continue;
-        }
         $response[] = $row;
     }
+    
     echo json_encode($response);
     $stmt->close();
 } else {

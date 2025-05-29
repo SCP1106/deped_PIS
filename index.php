@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Planning Information System</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
   <style>
@@ -26,7 +24,7 @@
       z-index: 1;
     }
 
-    /* Navigation Bar Styles */
+    /* Navigation Bar */
     .navbar {
       background-color: #ccedde;
       padding: 0.1rem 0.5rem;
@@ -35,7 +33,7 @@
     }
 
     .navbar-brand {
-      color: rgb(0, 0, 0);
+      color: #000;
       font-weight: bold;
       font-size: 1rem;
       padding: 0;
@@ -69,7 +67,7 @@
       background-image: url("https://www.svgrepo.com/show/506800/burger-menu.svg");
     }
 
-    /* Mobile-specific navbar styles */
+    /* Mobile-specific navbar */
     @media (max-width: 768px) {
       .navbar {
         min-height: 60px;
@@ -95,7 +93,7 @@
       }
     }
 
-    /* Panel styles - hidden by default */
+    /* Panel - hidden by default */
     .panel {
       position: fixed;
       z-index: 1000;
@@ -118,7 +116,7 @@
       display: none;
     }
 
-    /* Mobile panel styles */
+    /* Mobile panel */
     @media (max-width: 768px) {
       .panel {
         bottom: 0;
@@ -137,7 +135,6 @@
         border-radius: 20px;
         background-color: #ccc;
         cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
         position: absolute;
         top: 10px;
         left: 50%;
@@ -146,7 +143,7 @@
       }
     }
 
-    /* Desktop panel styles */
+    /* Desktop panel */
     @media (min-width: 769px) {
       .panel {
         top: 40px;
@@ -187,7 +184,7 @@
       border-right: 4px solid #ddd;
     }
 
-    /* School level color indicators for cards */
+    /* School level color indicators */
     .card.elementary {
       border-right: 4px solid #1e88e5;
     }
@@ -224,25 +221,6 @@
       cursor: grab;
     }
 
-    .bg-image {
-      background-image: none;
-      height: auto;
-      max-width: 100%;
-    }
-    
-    .img-fluid {
-      height: auto;
-      max-width: 30%;
-    }
-
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 15px;
-      cursor: pointer;
-    }
-
     .search-bar-container {
       position: fixed;
       top: 50px;
@@ -254,7 +232,7 @@
       align-items: center;
     }
 
-    /* Adjust search bar position for mobile */
+    /* Mobile search bar */
     @media (max-width: 768px) {
       .search-bar-container {
         top: 70px;
@@ -269,7 +247,7 @@
       border-radius: 5px;
     }
 
-    /* Filter button styles */
+    /* Filter button */
     .filter-map-btn {
       height: 40px;
       margin-right: 5px;
@@ -292,7 +270,7 @@
       font-size: 16px;
     }
 
-    /* Filter dropdown styles */
+    /* Filter dropdown */
     .filter-dropdown {
       position: absolute;
       top: 45px;
@@ -400,7 +378,7 @@
       }
     }
 
-    /* Hover tooltip styles */
+    /* Tooltip */
     .leaflet-tooltip {
       background-color: rgba(13, 128, 23, 0.8);
       color: white;
@@ -463,14 +441,14 @@
       background-color: #0b6d14;
     }
 
-    /* Add highlight styling for search matches */
+    /* Search highlight */
     .search-highlight {
       background-color: rgba(13, 128, 23, 0.2);
       padding: 0 2px;
       border-radius: 2px;
     }
 
-    /* Add a clear button to the search input */
+    /* Search container */
     .search-container {
       position: relative;
       display: flex;
@@ -490,7 +468,7 @@
       display: block;
     }
 
-    /* Add loading indicator for search */
+    /* Search loading indicator */
     .search-spinner {
       position: absolute;
       right: 30px;
@@ -513,7 +491,7 @@
       display: block;
     }
 
-    /* Loading spinner for panel updates */
+    /* Panel loading indicator */
     .panel-loading {
       display: flex;
       justify-content: center;
@@ -530,7 +508,7 @@
       animation: spin 1s ease-in-out infinite;
     }
 
-    /* Google Maps button styling */
+    /* Google Maps button */
     .google-maps-btn {
       display: flex;
       align-items: center;
@@ -573,7 +551,7 @@
       border-radius: 50%;
     }
 
-    /* Municipality header panel */
+    /* Municipality header */
     .municipality-header {
       background-color: rgba(255, 255, 255, 0.9);
       border-radius: 5px;
@@ -704,19 +682,6 @@
       font-weight: bold;
     }
 
-    .legend-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 5px;
-    }
-
-    .legend-color {
-      width: 16px;
-      height: 16px;
-      margin-right: 8px;
-      border-radius: 50%;
-    }
-
     .legend-color.elementary {
       background-color: #1e88e5;
     }
@@ -753,7 +718,7 @@
       font-size: 18px;
     }
 
-    /* Mobile legend styles */
+    /* Mobile legend */
     @media (max-width: 768px) {
       .map-legend {
         transform: translateX(120%);
@@ -764,7 +729,7 @@
       }
     }
 
-    /* Desktop legend styles */
+    /* Desktop legend */
     @media (min-width: 769px) {
       .legend-toggle {
         display: none;
@@ -809,7 +774,7 @@
       border-left: 3px solid #7b0404;
     }
 
-    /* Reset button style */
+    /* Reset button */
     .reset-btn {
       height: 40px;
       margin-left: 5px;
@@ -832,7 +797,7 @@
       font-size: 16px;
     }
 
-    /* Filter note style */
+    /* Filter note */
     .filter-note {
       background-color: #fff3cd;
       border-left: 4px solid #ffc107;
@@ -889,7 +854,7 @@
   </nav>
 
   <div class="container-fluid h-100 p-0">
-    <!-- Search Bar Section with Filter Button -->
+    <!-- Search Bar with Filter Button -->
     <div class="search-bar-container">
       <!-- Filter Button -->
       <button id="filter-map-btn" class="filter-map-btn">
@@ -907,7 +872,7 @@
         <div class="search-spinner"></div>
       </div>
 
-      <!-- Reset Button for context menu -->
+      <!-- Reset Button -->
       <button id="reset-context-btn" class="reset-btn">
         <i class="bi bi-arrow-counterclockwise"></i>
       </button>
@@ -917,7 +882,7 @@
         <div class="filter-dropdown-item" data-filter="hide">
           <i class="bi bi-eye-slash"></i> Hide All Schools
         </div>
-        <div class="filter-dropdown-item" data-filter="all">
+        <div class="filter-dropdown-item active" data-filter="all">
           <i class="bi bi-eye"></i> Show All Schools
         </div>
         <div class="filter-dropdown-item" data-filter="elementary">
@@ -1088,7 +1053,7 @@
       </div>
     </div>
 
-    <!-- Map Section - Full screen -->
+    <!-- Map Section -->
     <div id="map"></div>
 
     <!-- Legend Toggle Button -->
@@ -1136,7 +1101,9 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS and dependencies -->
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -1173,11 +1140,11 @@
     L.control.layers(baseMaps, {}, { position: "bottomleft" }).addTo(map);
     L.control.zoom({ position: "bottomleft" }).addTo(map);
 
-    // Layer groups for organization
+    // Layer groups
     const geoJSONLayerGroup = L.layerGroup().addTo(map);
     const brgyLayerGroup = L.layerGroup().addTo(map);
 
-    // Store all markers, barangay polygons, and school data
+    // Store data
     const markersMap = new Map();
     const barangayPolygons = new Map();
     const schoolData = new Map();
@@ -1194,18 +1161,17 @@
     let currentMarkerCoords = null;
     let currentFilter = "all";
     let mapFilter = "all";
+    let lastSearchText = ""; // Track the last search text
 
-    // School level colors
+    // School level colors and icons
     const schoolLevelColors = {
       elementary: "#1e88e5", // Blue
       secondary: "#7b0404", // Red
     };
 
-    // School level icons
     const schoolLevelIcons = {
       elementary: createCustomIcon("elementary"),
       secondary: createCustomIcon("secondary"),
-      // Large versions for active markers
       elementaryLarge: createCustomIcon("elementary", true),
       secondaryLarge: createCustomIcon("secondary", true),
     };
@@ -1217,18 +1183,17 @@
       secondary: 0,
     };
 
-    // Function to create custom marker icons based on school level
+    // Create custom marker icons
     function createCustomIcon(schoolLevel, isLarge = false) {
       const size = isLarge ? 48 : 32;
       const anchor = isLarge ? 24 : 16;
 
-      // Create a canvas element
       const canvas = document.createElement("canvas");
       canvas.width = size;
       canvas.height = size;
       const ctx = canvas.getContext("2d");
 
-      // Draw a circle with the school level color
+      // Draw circle with school level color
       ctx.beginPath();
       ctx.arc(size / 2, size / 2, size / 2 - 2, 0, 2 * Math.PI);
       ctx.fillStyle = schoolLevelColors[schoolLevel] || "#999";
@@ -1237,31 +1202,26 @@
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      // Add a white dot in the center
+      // Add white dot in center
       ctx.beginPath();
       ctx.arc(size / 2, size / 2, size / 6, 0, 2 * Math.PI);
       ctx.fillStyle = "#fff";
       ctx.fill();
 
-      // Convert canvas to data URL
-      const dataUrl = canvas.toDataURL();
-
       return L.icon({
-        iconUrl: dataUrl,
+        iconUrl: canvas.toDataURL(),
         iconSize: [size, size],
         iconAnchor: [anchor, anchor],
         popupAnchor: [0, -anchor],
       });
     }
 
-    // Function to determine school level from school name or data
+    // Determine school level from name or data
     function getSchoolLevel(schoolName, schoolData) {
-      // First check if the school data has a CurricularOffer property
       if (schoolData && schoolData.CurricularOffer) {
         return schoolData.CurricularOffer.toLowerCase();
       }
       
-      // If not, try to determine from the school name
       if (schoolName) {
         const name = schoolName.toLowerCase();
         if (name.includes("elementary")) {
@@ -1275,32 +1235,37 @@
         }
       }
 
-      // Default to elementary if we can't determine
-      return "elementary";
+      return "elementary"; // Default
     }
+
+    // Initialize filters
+    function initializeFilters() {
+  // Set default filters - both panel and map start synchronized
+  currentFilter = "all";
+  mapFilter = "all";
+  
+  // Update UI to reflect default state
+  document.getElementById("filter-all").classList.add("active");
+  document.getElementById("filter-elementary").classList.remove("active");
+  document.getElementById("filter-secondary").classList.remove("active");
+  updateMapFilterDropdown("all");
+  
+  console.log("Filters initialized - currentFilter:", currentFilter, "mapFilter:", mapFilter);
+}
 
     // Panel toggle functionality
     const panelToggle = document.getElementById("panel-toggle");
     const infoPanel = document.getElementById("info-panel");
 
-    panelToggle.addEventListener("click", () => {
-      togglePanel();
-    });
-
-    // Function to toggle panel visibility
     function togglePanel() {
       isPanelVisible = !isPanelVisible;
-
-      if (isPanelVisible) {
-        infoPanel.style.display = "block";
-        panelToggle.innerHTML = '<i class="bi bi-x"></i>';
-      } else {
-        infoPanel.style.display = "none";
-        panelToggle.innerHTML = '<i class="bi bi-list"></i>';
-      }
+      infoPanel.style.display = isPanelVisible ? "block" : "none";
+      panelToggle.innerHTML = isPanelVisible ? '<i class="bi bi-x"></i>' : '<i class="bi bi-list"></i>';
     }
 
-    // Hide panel when context menu is triggered
+    panelToggle.addEventListener("click", togglePanel);
+
+    // Hide panel on context menu
     document.addEventListener("contextmenu", function (e) {
       if (isPanelVisible) {
         togglePanel();
@@ -1334,10 +1299,8 @@
         .toUpperCase()
         .replace(/\s+/g, "");
 
-      // Get the municipality name for display
+      // Get municipality name for display
       const municipalityName = feature.properties.adm3_en || "Nueva Ecija";
-
-      // Update the municipality name in the header
       document.getElementById("municipality-name").textContent = municipalityName;
 
       // Clear existing layers and reset state
@@ -1356,29 +1319,32 @@
       // Hide barangay info panel
       document.getElementById("barangay-info").style.display = "none";
 
-      // Zoom to the clicked polygon
+      // Zoom to clicked polygon
       map.fitBounds(layer.getBounds());
       previousZoomLevel = map.getZoom();
       previousCenter = map.getCenter();
 
-      // Load barangay data for the clicked area
+      // Load barangay data
       loadDataBrgy(placeClicked);
 
-      // Show panel when municipality is clicked
+      // Show panel
       if (!isPanelVisible) {
         togglePanel();
       }
       
-      // Always show the card container when a municipality is clicked
+      // Show card container
       document.getElementById("card-container").style.display = "block";
       document.getElementById("school-info").style.display = "none";
     }
 
-    // Load barangay GeoJSON data - FIXED
+    // Fixed loadDataBrgy function
     function loadDataBrgy(data) {
+      console.log("Loading barangay data for:", data);
+      
       barangayPolygons.clear();
       brgyLayerGroup.clearLayers();
       
+      // Ensure layer group is added to map
       if (!map.hasLayer(brgyLayerGroup)) {
         brgyLayerGroup.addTo(map);
       }
@@ -1390,110 +1356,119 @@
         },
         body: new URLSearchParams({ data }),
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("HTTP error! Status: " + response.status);
-          }
-          return response.json();
-        })
-        .then((geojsonData) => {
-          // Create a GeoJSON layer for barangays
-          const barangayLayer = L.geoJSON(geojsonData, {
-            style: (feature) => {
-              const { borderColor } = getNextColor(10);
-              return {
-                fillColor: "white",
-                color: borderColor,
-                weight: 3,
-                fillOpacity: 0.2,
-              };
-            },
-            onEachFeature: (feature, layer) => {
-              // Make sure we have a valid property to use as barangay name
-              const barangayName =
-                feature.properties.adm4_en ||
-                feature.properties.brgy_name ||
-                feature.properties.name ||
-                "Unknown";
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("HTTP error! Status: " + response.status);
+        }
+        return response.json();
+      })
+      .then(geojsonData => {
+        console.log("Received barangay GeoJSON data:", geojsonData);
+        
+        // Check if we have valid GeoJSON data
+        if (!geojsonData || !geojsonData.features || geojsonData.features.length === 0) {
+          console.error("No barangay features found in GeoJSON data");
+          return;
+        }
+        
+        // Create barangay layer
+        const barangayLayer = L.geoJSON(geojsonData, {
+          style: feature => {
+            return {
+              fillColor: "white",
+              color: "black",
+              weight: 2,
+              fillOpacity: 0.3,
+              dashArray: "5, 5" // Dashed border to distinguish from municipality borders
+            };
+          },
+          onEachFeature: (feature, layer) => {
+            // Get barangay name from various possible properties
+            const barangayName = 
+              feature.properties.adm4_en ||
+              feature.properties.brgy_name ||
+              feature.properties.name ||
+              feature.properties.BRGY_NAME ||
+              "Unknown";
 
-              // Store barangay name and polygon for later reference
-              barangayPolygons.set(barangayName, layer);
+            console.log("Creating barangay polygon for:", barangayName);
 
-              // Add popup with barangay name
-              layer.bindPopup("<strong>Barangay:</strong> " + barangayName);
+            // Store barangay polygon
+            barangayPolygons.set(barangayName, layer);
 
-              // Add hover and click functionality
-              layer.on({
-                mouseover: (e) => {
-                  if (selectedBarangay !== barangayName) {
-                    const layer = e.target;
-                    layer.setStyle({
-                      fillOpacity: 0.5,
-                      weight: 4,
-                    });
-                    layer
-                      .bindTooltip(barangayName, {
-                        permanent: false,
-                        direction: "center",
-                        className: "leaflet-tooltip",
-                      })
-                      .openTooltip();
-                  }
-                },
-                mouseout: (e) => {
-                  if (selectedBarangay !== barangayName) {
-                    const layer = e.target;
-                    layer.setStyle({
-                      fillOpacity: 0.2,
-                      weight: 3,
-                    });
-                    layer.closeTooltip();
-                  }
-                },
-                click: (e) => {
-                  // Ensure the click event is properly captured
-                  if (e.originalEvent) {
-                    e.originalEvent.stopPropagation();
-                  }
-                  onBarangayClick(barangayName, e.target);
+            // Add popup
+            layer.bindPopup("<strong>Barangay:</strong> " + barangayName);
 
-                  // Show panel if not already visible
-                  if (!isPanelVisible) {
-                    togglePanel();
-                  }
-                },
-              });
-            },
-          });
+            // Add hover and click functionality
+            layer.on({
+              mouseover: e => {
+                if (selectedBarangay !== barangayName) {
+                  const layer = e.target;
+                  layer.setStyle({
+                    fillOpacity: 0.6,
+                    weight: 3,
+                    color: "#0d8017"
+                  });
+                  layer.bindTooltip(barangayName, {
+                    permanent: false,
+                    direction: "center",
+                    className: "leaflet-tooltip",
+                  }).openTooltip();
+                }
+              },
+              mouseout: e => {
+                if (selectedBarangay !== barangayName) {
+                  const layer = e.target;
+                  layer.setStyle({
+                    fillOpacity: 0.3,
+                    weight: 2,
+                    color: "black"
+                  });
+                  layer.closeTooltip();
+                }
+              },
+              click: e => {
+                // Stop propagation
+                if (e.originalEvent) {
+                  e.originalEvent.stopPropagation();
+                }
+                onBarangayClick(barangayName, e.target);
 
-          // Add the layer to the map
-          barangayLayer.addTo(brgyLayerGroup);
-
-          // Debug: Log the number of barangay polygons created
-          console.log("Created " + barangayPolygons.size + " barangay polygons");
-        })
-        .catch((error) => {
-          console.error("Error fetching GeoJSON data:", error);
+                // Show panel
+                if (!isPanelVisible) {
+                  togglePanel();
+                }
+              },
+            });
+          },
         });
+
+        // Add to layer group
+        barangayLayer.addTo(brgyLayerGroup);
+        console.log("Created " + barangayPolygons.size + " barangay polygons");
+        
+        // Force map refresh
+        map.invalidateSize();
+      })
+      .catch(error => {
+        console.error("Error fetching barangay GeoJSON data:", error);
+      });
 
       // Load marker data for schools
       loadMarkerData(placeClicked);
     }
 
-    /**
-     * This function is triggered when a barangay is clicked.
-     * It shows all schools that are inside the selected barangay.
-     */
+    // Handle barangay click
     function onBarangayClick(barangayName, layer) {
       console.log("Barangay clicked: " + barangayName);
 
-      // Reset previous selected barangay if exists
+      // Reset previous selected barangay
       if (selectedBarangay && selectedBarangay !== barangayName) {
         const prevLayer = barangayPolygons.get(selectedBarangay);
         if (prevLayer) {
           prevLayer.setStyle({
-            fillOpacity: 0.2,
-            weight: 3,
+            fillOpacity: 0.3,
+            weight: 2,
             color: "black",
           });
         }
@@ -1509,20 +1484,20 @@
         color: "#0d8017",
       });
 
-      // Zoom to barangay bounds
+      // Zoom to barangay
       map.fitBounds(layer.getBounds());
 
-      // Filter and show only schools in this barangay
+      // Filter schools by barangay
       filterSchoolsByBarangay(barangayName);
 
-      // Update panel with barangay info
+      // Update panel
       updateBarangayPanel(barangayName);
 
-      // Get center of barangay for Google Maps link
+      // Get center for Google Maps link
       const bounds = layer.getBounds();
       const center = bounds.getCenter();
 
-      // Show Google Maps button for barangay
+      // Show Google Maps button
       const googleMapsBtn = document.getElementById("barangay-google-maps");
       googleMapsBtn.style.display = "block";
       googleMapsBtn.onclick = function () {
@@ -1532,33 +1507,18 @@
         );
       };
       
-      // Always show markers when a barangay is clicked, unless mapFilter is "hide"
-      if (mapFilter !== "hide") {
-        // Show markers for this barangay based on current filter
-        markersMap.forEach((markerData, schoolId) => {
-          const schoolInfo = schoolData.get(schoolId);
-          if (schoolInfo && schoolInfo.barangay_name === barangayName) {
-            // Apply current filter
-            if (
-              currentFilter === "all" ||
-              (currentFilter === "elementary" && schoolInfo.schoolLevel === "elementary") ||
-              (currentFilter === "secondary" && schoolInfo.schoolLevel === "secondary")
-            ) {
-              markerData.marker.addTo(brgyLayerGroup);
-            }
-          }
-        });
-      }
+      // Show markers for this barangay based on current filter
+      refreshMarkers();
     }
 
     // Filter schools by barangay
     function filterSchoolsByBarangay(barangayName) {
-      // Hide all markers first
-      markersMap.forEach((markerData) => {
+      // Hide all markers
+      markersMap.forEach(markerData => {
         markerData.marker.remove();
       });
 
-      // Count schools in this barangay
+      // Count schools in barangay
       let schoolCount = 0;
       let elementaryCount = 0;
       let secondaryCount = 0;
@@ -1567,21 +1527,6 @@
       markersMap.forEach((markerData, schoolId) => {
         const schoolInfo = schoolData.get(schoolId);
         if (schoolInfo && schoolInfo.barangay_name === barangayName) {
-          // Apply current filter
-          if (
-            currentFilter === "all" ||
-            (currentFilter === "elementary" && schoolInfo.schoolLevel === "elementary") ||
-            (currentFilter === "secondary" && schoolInfo.schoolLevel === "secondary")
-          ) {
-            // Only show if map filter allows
-            if (
-              mapFilter !== "hide" &&
-              (mapFilter === "all" || mapFilter === schoolInfo.schoolLevel)
-            ) {
-              markerData.marker.addTo(brgyLayerGroup);
-            }
-          }
-
           schoolCount++;
 
           // Count by school level
@@ -1598,7 +1543,7 @@
       document.getElementById("barangay-elementary-schools").textContent = elementaryCount;
       document.getElementById("barangay-secondary-schools").textContent = secondaryCount;
 
-      // If no schools found, show a message
+      // Show message if no schools found
       if (schoolCount === 0) {
         Swal.fire({
           title: "No Schools Found",
@@ -1609,9 +1554,9 @@
       }
     }
 
-    // Update barangay panel with information
+    // Update barangay panel
     function updateBarangayPanel(barangayName) {
-      // Update barangay info panel
+      // Update barangay info
       document.getElementById("barangay-name").textContent = barangayName;
       document.getElementById("barangay-info").style.display = "block";
 
@@ -1619,7 +1564,7 @@
       document.getElementById("school-info").style.display = "none";
       document.getElementById("card-container").style.display = "none";
 
-      // Clear the schools list in barangay info panel
+      // Clear schools list
       const schoolsList = document.getElementById("barangay-schools-list");
       schoolsList.innerHTML = "";
 
@@ -1627,27 +1572,27 @@
       let elementaryCount = 0;
       let secondaryCount = 0;
 
-      // Add schools to the barangay schools list
-      schoolData.forEach((school) => {
+      // Add schools to list
+      schoolData.forEach(school => {
         if (school.barangay_name === barangayName) {
-          // Apply current filter
+          // Apply filter
           if (
             currentFilter !== "all" &&
             school.schoolLevel !== currentFilter
           ) {
-            return; // Skip schools that don't match the filter
+            return; // Skip schools that don't match filter
           }
 
           hasSchools = true;
 
-          // Count by school level
+          // Count by level
           if (school.schoolLevel === "elementary") {
             elementaryCount++;
           } else if (school.schoolLevel === "secondary") {
             secondaryCount++;
           }
 
-          // Create school item for the barangay schools list
+          // Create school item
           const schoolItem = document.createElement("div");
           schoolItem.className = `school-item ${school.schoolLevel}`;
           schoolItem.innerHTML = `
@@ -1658,32 +1603,30 @@
           schoolItem.addEventListener("click", () => {
             const markerData = markersMap.get(school.schoolID);
             if (markerData) {
-              // Zoom to the marker
+              // Zoom to marker
               zoomToMarker(markerData.position[0], markerData.position[1]);
 
-              // Store marker coordinates for Google Maps
+              // Store coordinates for Google Maps
               currentMarkerCoords = {
                 lat: markerData.position[0],
                 lng: markerData.position[1],
               };
 
-              // Update the panel with school info
+              // Update panel
               updatePanelFromServer(school.schoolID);
 
-              // Reset previous active marker if exists
+              // Reset previous active marker
               if (activeMarker && activeMarker !== markerData.marker) {
                 const prevMarkerData = Array.from(markersMap.values()).find(
-                  (m) => m.marker === activeMarker
+                  m => m.marker === activeMarker
                 );
                 if (prevMarkerData) {
                   activeMarker.setIcon(prevMarkerData.normalIcon);
                 }
               }
 
-              // Set this as the active marker
+              // Set active marker
               activeMarker = markerData.marker;
-
-              // Make the marker larger
               markerData.marker.setIcon(markerData.largeIcon);
 
               // Add pulse animation
@@ -1697,20 +1640,20 @@
             }
           });
 
-          // Add to the schools list
+          // Add to list
           schoolsList.appendChild(schoolItem);
         }
       });
 
-      // Update barangay school counts
+      // Update counts
       document.getElementById("barangay-elementary-schools").textContent = elementaryCount;
       document.getElementById("barangay-secondary-schools").textContent = secondaryCount;
 
-      // Show schools list if there are schools
+      // Show schools list
       if (hasSchools) {
         document.getElementById("schools-in-barangay").style.display = "block";
       } else {
-        // Show a message if no schools match the filter
+        // Show no results message
         const noResults = document.createElement("div");
         noResults.className = "text-center p-4 text-gray-500";
         noResults.textContent = "No schools match the selected filter";
@@ -1726,36 +1669,21 @@
         const layer = barangayPolygons.get(selectedBarangay);
         if (layer) {
           layer.setStyle({
-            fillOpacity: 0.2,
-            weight: 3,
+            fillOpacity: 0.3,
+            weight: 2,
             color: "black",
           });
         }
         selectedBarangay = null;
       }
 
-      // Show all markers based on current filter
-      markersMap.forEach((markerData, schoolId) => {
-        const schoolInfo = schoolData.get(schoolId);
-        if (
-          currentFilter === "all" ||
-          (currentFilter === "elementary" && schoolInfo.schoolLevel === "elementary") ||
-          (currentFilter === "secondary" && schoolInfo.schoolLevel === "secondary")
-        ) {
-          // Only show if map filter allows
-          if (
-            mapFilter !== "hide" &&
-            (mapFilter === "all" || mapFilter === schoolInfo.schoolLevel)
-          ) {
-            markerData.marker.addTo(brgyLayerGroup);
-          }
-        }
-      });
+      // Show all markers based on filter
+      refreshMarkers();
 
       // Reset active marker
       if (activeMarker) {
         const markerData = Array.from(markersMap.values()).find(
-          (m) => m.marker === activeMarker
+          m => m.marker === activeMarker
         );
         if (markerData) {
           activeMarker.setIcon(markerData.normalIcon);
@@ -1784,7 +1712,7 @@
       }
     });
 
-    // Load marker data for schools
+    // Fixed loadMarkerData function
     function loadMarkerData(data, filter = "") {
       console.log("Loading marker data for:", data, "Filter:", filter);
       showSchoolPanel(data);
@@ -1793,6 +1721,10 @@
       schoolStats.total = 0;
       schoolStats.elementary = 0;
       schoolStats.secondary = 0;
+      
+      // Clear existing data
+      markersMap.clear();
+      schoolData.clear();
       
       fetch("phpp/map/fetchMarkerData.php", {
         method: "POST",
@@ -1804,47 +1736,67 @@
           filter: filter
         }),
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("HTTP error! Status: " + response.status);
-          }
-          return response.json();
-        })
-        .then((jsonData) => {
-          jsonData.forEach((item) => {
-            // Determine school level from CurricularOffer field or name
-            const schoolLevel = item.CurricularOffer ? 
-              item.CurricularOffer.toLowerCase() : 
-              getSchoolLevel(item.SchoolName, item);
-            
-            // Store school data with barangay info and school level
-            schoolData.set(item.SchoolID, {
-              schoolID: item.SchoolID,
-              schoolName: item.SchoolName,
-              barangay_name: item.barangay_name || "Unknown",
-              schoolLevel: schoolLevel,
-            });
-            
-            // Update school statistics
-            schoolStats.total++;
-            if (schoolLevel === "elementary") {
-              schoolStats.elementary++;
-            } else if (schoolLevel === "secondary") {
-              schoolStats.secondary++;
-            }
-            
-            createMarker(item, schoolLevel);
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("HTTP error! Status: " + response.status);
+        }
+        return response.json();
+      })
+      .then(jsonData => {
+        console.log("Received marker data:", jsonData);
+        
+        if (!Array.isArray(jsonData)) {
+          console.error("Invalid marker data received:", jsonData);
+          return;
+        }
+        
+        if (jsonData.length === 0) {
+          console.warn("No marker data received");
+          return;
+        }
+        
+        jsonData.forEach(item => {
+          // Determine school level
+          const schoolLevel = item.CurricularOffer ? 
+            item.CurricularOffer.toLowerCase() : 
+            getSchoolLevel(item.SchoolName, item);
+          
+          // Store school data
+          schoolData.set(item.SchoolID, {
+            schoolID: item.SchoolID,
+            schoolName: item.SchoolName,
+            barangay_name: item.barangay_name || "Unknown",
+            schoolLevel: schoolLevel,
           });
           
-          // Update statistics display
-          updateSchoolStatistics();
+          // Update statistics
+          schoolStats.total++;
+          if (schoolLevel === "elementary") {
+            schoolStats.elementary++;
+          } else if (schoolLevel === "secondary") {
+            schoolStats.secondary++;
+          }
           
-          // Apply initial map filter
-          applyMapFilter(mapFilter);
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
+          createMarker(item, schoolLevel);
         });
+        
+        console.log("Created", markersMap.size, "markers");
+        console.log("School stats:", schoolStats);
+        
+        // Update statistics display
+        updateSchoolStatistics();
+        
+        // Make sure filters are properly initialized
+        if (mapFilter === undefined || currentFilter === undefined) {
+          initializeFilters();
+        }
+        
+        // Apply filters to show markers
+        refreshMarkers();
+      })
+      .catch(error => {
+        console.error("Error fetching marker data:", error);
+      });
     }
 
     // Update school statistics display
@@ -1856,1257 +1808,6 @@
 
     // Create marker for a school
     function createMarker(item, schoolLevel) {
-      const latitude = item.latitude;
-      const longitude = item.longitude;
-
-      // Use the appropriate icon based on school level
-      const normalIcon = schoolLevelIcons[schoolLevel] || schoolLevelIcons.elementary;
-      const largeIcon = schoolLevelIcons[schoolLevel + "Large"] || schoolLevelIcons.elementaryLarge;
-
-      const marker = L.marker([latitude, longitude], { icon: normalIcon });
-
-      // Store the marker with its ID for later reference
-      markersMap.set(item.SchoolID, {
-        marker: marker,
-        position: [latitude, longitude],
-        normalIcon: normalIcon,
-        largeIcon: largeIcon,
-        barangay: item.barangay_name || "Unknown",
-        schoolLevel: schoolLevel,
-      });
-
-      // Format school level for display
-      const displayLevel = schoolLevel.charAt(0).toUpperCase() + schoolLevel.slice(1);
-
-      // Add tooltip to show school name on hover
-      marker.bindTooltip(item.SchoolName, {
-        permanent: false,
-        direction: "top",
-        className: "leaflet-tooltip",
-      });
-
-      marker
-        .bindPopup(
-          "School ID: " + item.SchoolID +
-          "<br>School Name: " + item.SchoolName +
-          "<br>Level: " + displayLevel +
-          "<br>Barangay: " + (item.barangay_name || item.adm3_en || "Unknown")
-        )
-        .on("click", function () {
-          const sID = item.SchoolID;
-          console.log("Marker clicked for school ID:", sID);
-
-          // Store marker coordinates for Google Maps
-          currentMarkerCoords = {
-            lat: latitude,
-            lng: longitude,
-          };
-
-          // Reset previous active marker if exists
-          if (activeMarker && activeMarker !== marker) {
-            const prevMarkerData = Array.from(markersMap.values()).find(
-              (m) => m.marker === activeMarker
-            );
-            if (prevMarkerData) {
-              activeMarker.setIcon(prevMarkerData.normalIcon);
-            }
-          }
-
-          // Set this as the active marker
-          activeMarker = marker;
-
-          // Zoom to the marker
-          zoomToMarker(latitude, longitude);
-
-          // Make the marker larger
-          marker.setIcon(largeIcon);
-
-          // Add pulse animation class to marker element
-          const markerElement = marker.getElement();
-          if (markerElement) {
-            markerElement.classList.add("marker-pulse");
-            // Remove the class after animation completes
-            setTimeout(() => {
-              markerElement.classList.remove("marker-pulse");
-            }, 1000);
-          }
-
-          // Update panel with school info
-          updatePanelFromServer(sID);
-
-          // Show panel if not already visible
-          if (!isPanelVisible) {
-            togglePanel();
-          }
-        });
-
-      // Only add to map if it matches the current filter and map filter
-      if (
-        currentFilter === "all" ||
-        (currentFilter === "elementary" && schoolLevel === "elementary") ||
-        (currentFilter === "secondary" && schoolLevel === "secondary")
-      ) {
-        // Only add if map filter allows
-        if (
-          mapFilter !== "hide" &&
-          (mapFilter === "all" || mapFilter === schoolLevel)
-        ) {
-          marker.addTo(brgyLayerGroup);
-        }
-      }
-    }
-
-    // Zoom to a marker with animation
-    function zoomToMarker(lat, lng) {
-      map.flyTo([lat, lng], 16, {
-        animate: true,
-        duration: 1.5, // seconds
-      });
-    }
-
-    // Show school panel with data
-    function showSchoolPanel(data) {
-      fetch("phpp/map/fetchPolygonPanel.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({ data }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          polygonPanel(data);
-        })
-        .catch((error) => console.error("Error fetching data:", error));
-    }
-
-    // Update polygon panel with school data
-    function polygonPanel(data) {
-      const container = document.getElementById("card-container");
-      container.innerHTML = ""; // Clear existing content
-
-      if (!Array.isArray(data) || data.length === 0) {
-        container.innerHTML = "<p class='text-gray-500 text-center mt-4'>No data available</p>";
-        return;
-      }
-
-      let displayedCount = 0;
-
-      data.forEach((item) => {
-        // Determine school level from CurricularOffer field or name
-        const schoolLevel = item.CurricularOffer ? 
-          item.CurricularOffer.toLowerCase() : 
-          getSchoolLevel(item.schoolName, item);
-
-        // Apply current filter
-        if (currentFilter !== "all" && schoolLevel !== currentFilter) {
-          return; // Skip schools that don't match the filter
-        }
-
-        displayedCount++;
-
-        const card = document.createElement("div");
-        card.className = `card ${schoolLevel}`;
-
-        // Create school level badge
-        const levelBadge = `<span class="school-level-badge ${schoolLevel}">${
-          schoolLevel.charAt(0).toUpperCase() + schoolLevel.slice(1)
-        }</span>`;
-
-        card.innerHTML =
-          "<h5 class='text-lg font-semibold'>" +
-          (item.schoolName || "N/A") +
-          " " +
-          levelBadge +
-          "</h5>" +
-          "<p class='text-sm'>School ID: <span class='font-medium'>" +
-          (item.schoolID || "N/A") +
-          "</span></p>" +
-          "<p class='text-sm'>Barangay: <span class='font-medium'>" +
-          (item.barangay_name || "N/A") +
-          "</span></p>";
-
-        card.addEventListener("click", () => {
-          // Find the marker for this school and trigger its click event
-          const markerData = markersMap.get(item.schoolID);
-          if (markerData) {
-            // Zoom to the marker
-            zoomToMarker(markerData.position[0], markerData.position[1]);
-
-            // Store marker coordinates for Google Maps
-            currentMarkerCoords = {
-              lat: markerData.position[0],
-              lng: markerData.position[1],
-            };
-
-            // Update the panel with school info
-            updatePanelFromServer(item.schoolID);
-
-            // Reset previous active marker if exists
-            if (activeMarker && activeMarker !== markerData.marker) {
-              const prevMarkerData = Array.from(markersMap.values()).find(
-                (m) => m.marker === activeMarker
-              );
-              if (prevMarkerData) {
-                activeMarker.setIcon(prevMarkerData.normalIcon);
-              }
-            }
-
-            // Set this as the active marker
-            activeMarker = markerData.marker;
-
-            // Make the marker larger
-            markerData.marker.setIcon(markerData.largeIcon);
-
-            // Add pulse animation
-            const markerElement = markerData.marker.getElement();
-            if (markerElement) {
-              markerElement.classList.add("marker-pulse");
-              setTimeout(() => {
-                markerElement.classList.remove("marker-pulse");
-              }, 1000);
-            }
-          } else {
-            Swal.fire({
-              title: item.schoolName || "N/A",
-              text:
-                "School ID: " +
-                (item.schoolID || "N/A") +
-                "\nBarangay: " +
-                (item.barangay_name || "N/A") +
-                "\nLevel: " +
-                schoolLevel.charAt(0).toUpperCase() +
-                schoolLevel.slice(1),
-              icon: "info",
-              confirmButtonText: "OK",
-            });
-          }
-        });
-
-        container.appendChild(card);
-      });
-
-      // Show "no results" message if no schools match the filter
-      if (displayedCount === 0) {
-        const noResults = document.createElement("div");
-        noResults.className = "text-center p-4 text-gray-500";
-        noResults.textContent = "No schools match the selected filter";
-        container.appendChild(noResults);
-      }
-
-      document.getElementById("card-container").style.display = "block";
-      document.getElementById("school-info").style.display = "none";
-      document.getElementById("barangay-info").style.display = "none";
-
-      // Hide Google Maps buttons
-      document.getElementById("open-google-maps").style.display = "none";
-      document.getElementById("barangay-google-maps").style.display = "none";
-    }
-
-    // Function to update the panel with fetched data
-    function updatePanelFromServer(schoolID) {
-      // Don't fetch if we're already showing this school
-      if (currentSchoolId === schoolID) {
-        return;
-      }
-
-      // Update current school ID
-      currentSchoolId = schoolID;
-
-      // Show loading indicator
-      const schoolInfoPanel = document.getElementById("school-info");
-      const loadingIndicator = document.getElementById("school-info-loading");
-
-      // Clear previous data
-      document.getElementById("district").textContent = "";
-      document.getElementById("school-id").textContent = "";
-      document.getElementById("school-name").textContent = "";
-      document.getElementById("school-level").textContent = "";
-      document.getElementById("total-enrollees").textContent = "";
-      document.getElementById("male-enrollees").textContent = "";
-      document.getElementById("female-enrollees").textContent = "";
-      document.getElementById("teachers").textContent = "";
-      document.getElementById("barangay").textContent = "";
-
-      // Show panel with loading indicator
-      schoolInfoPanel.style.display = "block";
-      loadingIndicator.style.display = "flex";
-
-      // Hide other panels
-      document.getElementById("card-container").style.display = "none";
-      document.getElementById("barangay-info").style.display = "none";
-
-      fetch("phpp/map/fetchPanelData.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: "SchoolID=" + encodeURIComponent(schoolID),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok: " + response.status);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Hide loading indicator
-          loadingIndicator.style.display = "none";
-
-          // Update panel with data
-          updatePanel(data);
-
-          // Show Google Maps button if we have coordinates
-          const googleMapsBtn = document.getElementById("open-google-maps");
-          if (currentMarkerCoords) {
-            googleMapsBtn.style.display = "block";
-            googleMapsBtn.onclick = function () {
-              window.open(
-                `https://www.google.com/maps?q=${currentMarkerCoords.lat},${currentMarkerCoords.lng}`,
-                "_blank"
-              );
-            };
-          } else {
-            googleMapsBtn.style.display = "none";
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-
-          // Hide loading indicator
-          loadingIndicator.style.display = "none";
-
-          // Show error message
-          Swal.fire({
-            title: "Error",
-            text: "Failed to load school information. Please try again.",
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-        });
-    }
-
-    // Update panel with school information
-    function updatePanel(data) {
-      // Check if data is valid
-      if (!data || !data.school_info) {
-        console.error("Invalid data received:", data);
-        return;
-      }
-
-      // Determine school level from CurricularOffer field or name
-      const schoolName = data.school_info.schoolName || "";
-      const schoolLevel = data.school_info.CurricularOffer ? 
-        data.school_info.CurricularOffer.toLowerCase() : 
-        getSchoolLevel(schoolName, data.school_info);
-
-      // Format school level for display
-      const displayLevel = schoolLevel.charAt(0).toUpperCase() + schoolLevel.slice(1);
-
-      // Update school info fields
-      document.getElementById("district").textContent = data.school_info.district || "N/A";
-      document.getElementById("school-id").textContent = data.school_info.schoolID || "N/A";
-      document.getElementById("school-name").textContent = data.school_info.schoolName || "N/A";
-      document.getElementById("school-level").textContent = displayLevel;
-      document.getElementById("school-level").className = schoolLevel; // Add class for styling
-      document.getElementById("total-enrollees").textContent = data.enrollment_data.total_enrollees ?? "N/A";
-      document.getElementById("male-enrollees").textContent = data.enrollment_data.total_males || "N/A";
-      document.getElementById("female-enrollees").textContent = data.enrollment_data.total_females || "N/A";
-      document.getElementById("teachers").textContent = data.employee_count ?? "N/A";
-      document.getElementById("barangay").textContent = data.school_info.barangay_name || "N/A";
-
-      // Make sure the panel is visible
-      document.getElementById("school-info").style.display = "block";
-
-      // Hide other panels
-      document.getElementById("card-container").style.display = "none";
-      document.getElementById("barangay-info").style.display = "none";
-    }
-
-    // Load GeoJSON data for the map
-    function loadGeoJSONData(data) {
-      fetch("phpp/map/fetchMapData.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({ data }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("HTTP error! Status: " + response.status);
-          }
-          return response.json();
-        })
-        .then((geojsonData) => {
-          L.geoJSON(geojsonData, {
-            style: (feature) => {
-              const { color, borderColor } = getNextColor(feature.properties.CD_NUM);
-              return {
-                fillColor: color,
-                color: borderColor,
-                weight: 1,
-                fillOpacity: 0.175,
-              };
-            },
-            onEachFeature: (feature, layer) => {
-              // Add hover functionality
-              layer.on({
-                mouseover: (e) => {
-                  const layer = e.target;
-                  layer.setStyle({
-                    fillOpacity: 0.5,
-                    weight: 2,
-                  });
-                  layer
-                    .bindTooltip(feature.properties.adm3_en || "Unknown", {
-                      permanent: false,
-                      direction: "center",
-                      className: "leaflet-tooltip",
-                    })
-                    .openTooltip();
-                },
-                mouseout: (e) => {
-                  const layer = e.target;
-                  layer.setStyle({
-                    fillOpacity: 0.175,
-                    weight: 1,
-                  });
-                  layer.closeTooltip();
-                },
-                click: (e) => {
-                  onPolygonMapClick(e.target, feature);
-                },
-              });
-            },
-          }).addTo(geoJSONLayerGroup);
-        })
-        .catch((error) => {
-          console.error("Error fetching GeoJSON data:", error);
-        });
-    }
-
-    // Load initial GeoJSON data
-    loadGeoJSONData(placeClicked);
-
-    // Handle right-click to reset view
-    let lastRightClickTime = 0;
-
-    document.addEventListener("contextmenu", (event) => {
-      const currentTime = Date.now();
-      const timeDifference = currentTime - lastRightClickTime;
-      placeClicked = "NUEVAECIJA";
-
-      if (timeDifference >= 1000) {
-        event.preventDefault();
-        document.getElementById("school-info").style.display = "none";
-        document.getElementById("card-container").style.display = "none";
-        document.getElementById("barangay-info").style.display = "none";
-
-      // Show schools list if there are schools
-      if (hasSchools) {
-        document.getElementById("schools-in-barangay").style.display = "block";
-      } else {
-        // Show a message if no schools match the filter
-        const noResults = document.createElement("div");
-        noResults.className = "text-center p-4 text-gray-500";
-        noResults.textContent = "No schools match the selected filter";
-        schoolsList.appendChild(noResults);
-        document.getElementById("schools-in-barangay").style.display = "block";
-      }
-    }
-
-    // Back button handler
-    document.getElementById("back-to-overview").addEventListener("click", () => {
-      // Reset selected barangay
-      if (selectedBarangay) {
-        const layer = barangayPolygons.get(selectedBarangay);
-        if (layer) {
-          layer.setStyle({
-            fillOpacity: 0.2,
-            weight: 3,
-            color: "black",
-          });
-        }
-        selectedBarangay = null;
-        currentSchoolId = null;
-        currentMarkerCoords = null;
-        markersMap.clear();
-        barangayPolygons.clear();
-        schoolData.clear();
-
-        // Reset school statistics
-        schoolStats.total = 0;
-        schoolStats.elementary = 0;
-        schoolStats.secondary = 0;
-        updateSchoolStatistics();
-
-        // Reset municipality name
-        document.getElementById("municipality-name").textContent = "Nueva Ecija";
-
-        // Reset filter to show all schools
-        setFilter("all");
-
-        // Reset map filter dropdown
-        updateMapFilterDropdown("all");
-
-        // Reload initial data
-        loadGeoJSONData("NUEVAECIJA");
-
-        // Reset view to default
-        const defaultCenter = [15.666687955868635, 121.0108536597733];
-        const defaultZoomLevel = 10;
-        map.setView(defaultCenter, defaultZoomLevel);
-
-        lastRightClickTime = currentTime;
-      }
-    });
-
-    // Add Reset Context Button functionality
-    const resetContextBtn = document.getElementById("reset-context-btn");
-    resetContextBtn.addEventListener("click", function() {
-      // Simulate right-click functionality
-      document.getElementById("school-info").style.display = "none";
-      document.getElementById("card-container").style.display = "none";
-      document.getElementById("barangay-info").style.display = "none";
-
-      // Hide Google Maps buttons
-      document.getElementById("open-google-maps").style.display = "none";
-      document.getElementById("barangay-google-maps").style.display = "none";
-
-      // Reset map and layers
-      geoJSONLayerGroup.clearLayers();
-      brgyLayerGroup.clearLayers();
-
-      // Reset state variables
-      activeMarker = null;
-      selectedBarangay = null;
-      currentSchoolId = null;
-      currentMarkerCoords = null;
-      markersMap.clear();
-      barangayPolygons.clear();
-      schoolData.clear();
-      placeClicked = "NUEVAECIJA";
-
-      // Reset school statistics
-      schoolStats.total = 0;
-      schoolStats.elementary = 0;
-      schoolStats.secondary = 0;
-      updateSchoolStatistics();
-
-      // Reset municipality name
-      document.getElementById("municipality-name").textContent = "Nueva Ecija";
-
-      // Reset filter to show all schools
-      setFilter("all");
-
-      // Reset map filter dropdown
-      updateMapFilterDropdown("all");
-
-      // Reload initial data
-      loadGeoJSONData("NUEVAECIJA");
-
-      // Reset view to default
-      const defaultCenter = [15.666687955868635, 121.0108536597733];
-      const defaultZoomLevel = 10;
-      map.setView(defaultCenter, defaultZoomLevel);
-
-      // Clear search input
-      document.getElementById("searchInput").value = "";
-      document.querySelector(".search-clear").style.display = "none";
-    });
-
-    // Add a reset button to the map
-    const resetButton = L.control({ position: "topright" });
-    resetButton.onAdd = () => {
-      const div = L.DomUtil.create("div", "reset-button");
-      div.innerHTML = '<button class="btn btn-sm btn-light" style="padding: 6px 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"><i class="bi bi-arrows-fullscreen"></i></button>';
-      div.onclick = () => {
-        // Reset active marker if exists
-        if (activeMarker) {
-          const markerData = Array.from(markersMap.values()).find(
-            (m) => m.marker === activeMarker
-          );
-          if (markerData) {
-            activeMarker.setIcon(markerData.normalIcon);
-          }
-          activeMarker = null;
-        }
-
-        // Reset current school ID and marker coordinates
-        currentSchoolId = null;
-        currentMarkerCoords = null;
-
-        // Hide Google Maps buttons
-        document.getElementById("open-google-maps").style.display = "none";
-        document.getElementById("barangay-google-maps").style.display = "none";
-
-        // Reset selected barangay if exists
-        if (selectedBarangay) {
-          const layer = barangayPolygons.get(selectedBarangay);
-          if (layer) {
-            layer.setStyle({
-              fillOpacity: 0.2,
-              weight: 3,
-              color: "black",
-            });
-          }
-          selectedBarangay = null;
-
-          // Show all markers based on current filter
-          markersMap.forEach((markerData, schoolId) => {
-            const schoolInfo = schoolData.get(schoolId);
-            if (
-              currentFilter === "all" ||
-              (currentFilter === "elementary" && schoolInfo.schoolLevel === "elementary") ||
-              (currentFilter === "secondary" && schoolInfo.schoolLevel === "secondary")
-            ) {
-              // Only show if map filter allows
-              if (
-                mapFilter !== "hide" &&
-                (mapFilter === "all" || mapFilter === schoolInfo.schoolLevel)
-              ) {
-                markerData.marker.addTo(brgyLayerGroup);
-              }
-            }
-          });
-
-          // Hide barangay info panel
-          document.getElementById("barangay-info").style.display = "none";
-
-          // Show overview panel
-          showSchoolPanel(placeClicked);
-        }
-
-        // Return to the previous view
-        if (previousCenter && previousZoomLevel) {
-          map.setView(previousCenter, previousZoomLevel);
-        } else {
-          const defaultCenter = [15.666687955868635, 121.0108536597733];
-          const defaultZoomLevel = 10;
-          map.setView(defaultCenter, defaultZoomLevel);
-        }
-      };
-      return div;
-    };
-    resetButton.addTo(map);
-
-    // Panel dragging functionality for mobile
-    const panel = document.querySelector(".panel");
-    let isDragging = false;
-    let startY = 0;
-    let startPanelY = 0;
-
-    function onDragStart(event) {
-      if (window.innerWidth <= 768) {
-        isDragging = true;
-        startY = event.touches ? event.touches[0].clientY : event.clientY;
-        startPanelY = panel.getBoundingClientRect().top;
-        panel.classList.add("draggable");
-      }
-    }
-
-    function onDragMove(event) {
-      if (isDragging && window.innerWidth <= 768) {
-        const deltaY = startY - (event.touches ? event.touches[0].clientY : event.clientY);
-        const newHeight = window.innerHeight - startPanelY + deltaY;
-        const maxHeight = window.innerHeight * 0.85;
-        panel.style.height = Math.min(Math.max(newHeight, 150), maxHeight) + "px";
-        map.invalidateSize();
-      }
-    }
-
-    function onDragEnd() {
-      isDragging = false;
-      panel.classList.remove("draggable");
-    }
-
-    // Add event listeners for panel dragging
-    panel.addEventListener("touchstart", onDragStart);
-    document.addEventListener("touchmove", onDragMove);
-    document.addEventListener("touchend", onDragEnd);
-
-    panel.addEventListener("mousedown", onDragStart);
-    document.addEventListener("mousemove", onDragMove);
-    document.addEventListener("mouseup", onDragEnd);
-
-    // Reset panel height on window resize
-    function resetPanelHeightForDesktop() {
-      if (window.innerWidth > 768) {
-        panel.style.height = "calc(100vh - 40px)";
-      } else {
-        panel.style.height = "150px";
-      }
-    }
-
-    window.addEventListener("resize", resetPanelHeightForDesktop);
-    resetPanelHeightForDesktop();
-
-    // Filter functionality
-    function setFilter(filter) {
-      // Update current filter
-      currentFilter = filter;
-
-      // Update active button state
-      document.getElementById("filter-all").classList.toggle("active", filter === "all");
-      document.getElementById("filter-elementary").classList.toggle("active", filter === "elementary");
-      document.getElementById("filter-secondary").classList.toggle("active", filter === "secondary");
-
-      // Clear all markers
-      markersMap.forEach((markerData) => {
-        markerData.marker.remove();
-      });
-
-      // Add markers based on filter
-      markersMap.forEach((markerData, schoolId) => {
-        const schoolInfo = schoolData.get(schoolId);
-        if (!schoolInfo) return;
-
-        if (
-          filter === "all" ||
-          (filter === "elementary" && schoolInfo.schoolLevel === "elementary") ||
-          (filter === "secondary" && schoolInfo.schoolLevel === "secondary")
-        ) {
-          // Only show markers for the selected barangay if one is selected
-          if (!selectedBarangay || schoolInfo.barangay_name === selectedBarangay) {
-            // Only show if map filter allows
-            if (
-              mapFilter !== "hide" &&
-              (mapFilter === "all" || mapFilter === schoolInfo.schoolLevel)
-            ) {
-              markerData.marker.addTo(brgyLayerGroup);
-            }
-          }
-        }
-      });
-
-      // Update panel content based on current view
-      if (selectedBarangay) {
-        updateBarangayPanel(selectedBarangay);
-      } else {
-        showSchoolPanel(placeClicked);
-      }
-    }
-
-    // Map filter functionality
-    function applyMapFilter(filter) {
-      // Update current map filter
-      mapFilter = filter;
-
-      // Update dropdown UI
-      updateMapFilterDropdown(filter);
-
-      // Clear all markers
-      markersMap.forEach((markerData) => {
-        markerData.marker.remove();
-      });
-
-      // Add markers based on filter
-      if (filter !== "hide") {
-        markersMap.forEach((markerData, schoolId) => {
-          const schoolInfo = schoolData.get(schoolId);
-          if (!schoolInfo) return;
-
-          // Check if it matches the map filter
-          const matchesMapFilter = filter === "all" || filter === schoolInfo.schoolLevel;
-
-          // Check if it matches the panel filter
-          const matchesPanelFilter = currentFilter === "all" || currentFilter === schoolInfo.schoolLevel;
-
-          // Check if it matches the barangay filter
-          const matchesBarangay = !selectedBarangay || schoolInfo.barangay_name === selectedBarangay;
-
-          if (matchesMapFilter && matchesPanelFilter && matchesBarangay) {
-            markerData.marker.addTo(brgyLayerGroup);
-          }
-        });
-      }
-      
-      // Update the panel to show all schools when "all" is selected
-      if (filter === "all") {
-        // Show all schools in the panel
-        showSchoolPanel(placeClicked);
-        document.getElementById("card-container").style.display = "block";
-        
-        // Enable all filter buttons
-        document.getElementById("filter-all").classList.remove("disabled");
-        document.getElementById("filter-elementary").classList.remove("disabled");
-        document.getElementById("filter-secondary").classList.remove("disabled");
-      } else if (filter === "hide") {
-        // Show the message when "hide" is selected
-        const container = document.getElementById("card-container");
-        if (container) {
-          container.innerHTML = "<div class='filter-message'><i class='bi bi-info-circle'></i> All school markers are currently hidden. Use the filter to show schools.</div>";
-          container.style.display = "block";
-        }
-        
-        // Also hide any currently displayed school info or barangay info
-        document.getElementById("school-info").style.display = "none";
-        document.getElementById("barangay-info").style.display = "none";
-        
-        // Disable elementary and secondary filter buttons when "hide all" is selected
-        document.getElementById("filter-all").classList.add("disabled");
-        document.getElementById("filter-elementary").classList.add("disabled");
-        document.getElementById("filter-secondary").classList.add("disabled");
-      } else {
-        // Enable all filter buttons for other filter options
-        document.getElementById("filter-all").classList.remove("disabled");
-        document.getElementById("filter-elementary").classList.remove("disabled");
-        document.getElementById("filter-secondary").classList.remove("disabled");
-      }
-    }
-
-    // Update map filter dropdown UI
-    function updateMapFilterDropdown(filter) {
-      // Update active state in dropdown
-      const items = document.querySelectorAll(".filter-dropdown-item");
-      items.forEach((item) => {
-        item.classList.remove("active");
-        if (item.dataset.filter === filter) {
-          item.classList.add("active");
-        }
-      });
-    }
-
-    // Add event listeners for filter buttons
-    document.getElementById("filter-all").addEventListener("click", () => setFilter("all"));
-    document.getElementById("filter-elementary").addEventListener("click", () => setFilter("elementary"));
-    document.getElementById("filter-secondary").addEventListener("click", () => setFilter("secondary"));
-
-    // Filter map button and dropdown
-    const filterMapBtn = document.getElementById("filter-map-btn");
-    const filterDropdown = document.getElementById("filter-dropdown");
-
-    // Toggle dropdown when filter button is clicked
-    filterMapBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      filterDropdown.classList.toggle("show");
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener("click", () => {
-      filterDropdown.classList.remove("show");
-    });
-
-    // Prevent dropdown from closing when clicking inside it
-    filterDropdown.addEventListener("click", (e) => {
-      e.stopPropagation();
-    });
-
-    // Add event listeners to dropdown items
-    document.querySelectorAll(".filter-dropdown-item").forEach((item) => {
-      item.addEventListener("click", () => {
-        const filter = item.dataset.filter;
-    
-        // If this is the "Show All Schools" option, add special functionality
-        if (filter === "all") {
-          // Show the panel with all schools
-          if (!isPanelVisible) {
-            togglePanel();
-          }
-      
-          // Make sure we're showing the card container
-          document.getElementById("card-container").style.display = "block";
-          document.getElementById("school-info").style.display = "none";
-          document.getElementById("barangay-info").style.display = "none";
-      
-          // Update the panel filter to match
-          setFilter("all");
-      
-          // Fetch and display all schools
-          fetchFilteredSchools("");
-        }
-        // If this is elementary or secondary filter, update both map and panel filters
-        else if (filter === "elementary" || filter === "secondary") {
-          // Update the panel filter to match
-          setFilter(filter);
-      
-          // Show the panel if not already visible
-          if (!isPanelVisible) {
-            togglePanel();
-          }
-        }
-    
-        // Apply the map filter
-        applyMapFilter(filter);
-        filterDropdown.classList.remove("show");
-      });
-    });
-
-    // Login functionality
-    document.getElementById("nav-login").addEventListener("click", () => {
-      window.location.href = 'auth/pages/login.php';
-    });
-
-    const searchInput = document.getElementById("searchInput");
-    const clearSearchBtn = document.querySelector(".search-clear");
-
-    // Clear search function
-    function clearSearch() {
-      searchInput.value = "";
-      clearSearchBtn.style.display = "none";
-      performSearch("");
-    }
-
-    // Add event listener to clear button
-    clearSearchBtn.addEventListener("click", clearSearch);
-
-    // Debounce function to limit search frequency
-    function debounce(func, wait) {
-      let timeout;
-      return function (...args) {
-        const context = this;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(context, args), wait);
-      };
-    }
-
-    // Main search function
-    function performSearch(searchText) {
-      const searchSpinner = document.querySelector(".search-spinner");
-      searchSpinner.style.display = "block";
-
-      // Normalize search text
-      searchText = searchText.toLowerCase().trim();
-
-      // Show clear button if search text exists
-      clearSearchBtn.style.display = searchText ? "block" : "none";
-
-      // Get all cards in the container
-      const cardContainer = document.getElementById("card-container");
-      const cards = cardContainer.querySelectorAll(".card");
-
-      // Track if we're in barangay view or overview
-      const isBarangayView = document.getElementById("barangay-info").style.display !== "none";
-
-      // If no search text, restore original view based on current filter
-      if (!searchText) {
-        // Reset markers based on current filter and view
-        markersMap.forEach((markerData, schoolId) => {
-          const schoolInfo = schoolData.get(schoolId);
-          if (!schoolInfo) return;
-
-          const matchesFilter =
-            currentFilter === "all" ||
-            (currentFilter === "elementary" && schoolInfo.schoolLevel === "elementary") ||
-            (currentFilter === "secondary" && schoolInfo.schoolLevel === "secondary");
-
-          const matchesBarangay = !selectedBarangay || schoolInfo.barangay_name === selectedBarangay;
-
-          const matchesMapFilter =
-            mapFilter !== "hide" &&
-            (mapFilter === "all" || mapFilter === schoolInfo.schoolLevel);
-
-          if (matchesFilter && matchesBarangay && matchesMapFilter) {
-            markerData.marker.addTo(brgyLayerGroup);
-          } else {
-            markerData.marker.remove();
-          }
-        });
-
-        // Show all cards that match the current filter
-        cards.forEach((card) => {
-          const schoolLevel = card.classList.contains("elementary")
-            ? "elementary"
-            : card.classList.contains("secondary")
-            ? "secondary"
-            : "";
-
-          if (currentFilter === "all" || currentFilter === schoolLevel) {
-            card.style.display = "block";
-            
-            // Remove any previous highlighting
-            card.innerHTML = card.innerHTML.replace(/<span class="search-highlight">(.*?)<\/span>/g, "$1");
-          } else {
-            card.style.display = "none";
-          }
-        });
-
-        searchSpinner.style.display = "none";
-        return;
-      }
-
-      // Filter schools based on search text
-      let matchCount = 0;
-
-      // Filter markers on map
-      markersMap.forEach((markerData, schoolId) => {
-        const schoolInfo = schoolData.get(schoolId);
-        if (!schoolInfo) return;
-
-        const schoolName = (schoolInfo.schoolName || "").toLowerCase();
-        const barangayName = (schoolInfo.barangay_name || "").toLowerCase();
-
-        const matchesSearch =
-          schoolName.includes(searchText) ||
-          barangayName.includes(searchText) ||
-          schoolId.toString().includes(searchText);
-
-        const matchesFilter =
-          currentFilter === "all" ||
-          (currentFilter === "elementary" && schoolInfo.schoolLevel === "elementary") ||
-          (currentFilter === "secondary" && schoolInfo.schoolLevel === "secondary");
-
-        const matchesBarangay = !selectedBarangay || schoolInfo.barangay_name === selectedBarangay;
-
-        const matchesMapFilter =
-          mapFilter !== "hide" &&
-          (mapFilter === "all" || mapFilter === schoolInfo.schoolLevel);
-
-        if (matchesSearch && matchesFilter && matchesBarangay && matchesMapFilter) {
-          markerData.marker.addTo(brgyLayerGroup);
-          matchCount++;
-        } else {
-          markerData.marker.remove();
-        }
-      });
-
-      // Filter cards in the panel
-      cards.forEach((card) => {
-        const cardText = card.textContent.toLowerCase();
-        const schoolLevel = card.classList.contains("elementary")
-          ? "elementary"
-          : card.classList.contains("secondary")
-          ? "secondary"
-          : "";
-
-        const matchesSearch = cardText.includes(searchText);
-        const matchesFilter = currentFilter === "all" || currentFilter === schoolLevel;
-
-        if (matchesSearch && matchesFilter) {
-          card.style.display = "block";
-          
-          // First remove any previous highlighting
-          let cardHTML = card.innerHTML.replace(/<span class="search-highlight">(.*?)<\/span>/g, "$1");
-          
-          // Then add new highlighting
-          const regex = new RegExp(searchText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'gi');
-          cardHTML = cardHTML.replace(regex, match => `<span class="search-highlight">${match}</span>`);
-          card.innerHTML = cardHTML;
-        } else {
-          card.style.display = "none";
-        }
-      });
-
-      // Show "no results" message if no matches found
-      if (matchCount === 0) {
-        Swal.fire({
-          title: "No Results",
-          text: "No schools match your search criteria.",
-          icon: "info",
-          confirmButtonText: "OK",
-        });
-      }
-
-      searchSpinner.style.display = "none";
-    }
-
-    // Debounced search to improve performance
-    const debouncedSearch = debounce(function () {
-      performSearch(searchInput.value);
-    }, 300);
-
-    // Add event listener to search input
-    searchInput.addEventListener("input", function () {
-      debouncedSearch();
-    });
-
-    // Add event listener for Enter key
-    searchInput.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        performSearch(searchInput.value);
-      }
-
-      // Clear on Escape key
-      if (e.key === "Escape") {
-        clearSearch();
-      }
-    });
-
-    // Function to fetch filtered schools from the server
-    function fetchFilteredSchools(filterType) {
-      // Show loading indicator
-      const searchSpinner = document.querySelector(".search-spinner");
-      if (searchSpinner) {
-        searchSpinner.style.display = "block";
-      }
-      
-      // Make the AJAX request to your PHP script
-      fetch("phpp/map/fetchMarkerData.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          data: placeClicked,
-          filter: filterType
-        }),
-      })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("HTTP error! Status: " + response.status);
-        }
-        return response.json();
-      })
-      .then((jsonData) => {
-        // Clear existing markers and data
-        brgyLayerGroup.clearLayers();
-        markersMap.clear();
-        schoolData.clear();
-        
-        // Reset school statistics
-        schoolStats.total = 0;
-        schoolStats.elementary = 0;
-        schoolStats.secondary = 0;
-        
-        // Process the returned data
-        jsonData.forEach((item) => {
-          // Determine school level from CurricularOffer field or name
-          const schoolLevel = item.CurricularOffer ? 
-            item.CurricularOffer.toLowerCase() : 
-            getSchoolLevel(item.SchoolName, item);
-          
-          // Store school data with barangay info and school level
-          schoolData.set(item.SchoolID, {
-            schoolID: item.SchoolID,
-            schoolName: item.SchoolName,
-            barangay_name: item.barangay_name || "Unknown",
-            schoolLevel: schoolLevel,
-          });
-          
-          // Update school statistics
-          schoolStats.total++;
-          if (schoolLevel === "elementary") {
-            schoolStats.elementary++;
-          } else if (schoolLevel === "secondary") {
-            schoolStats.secondary++;
-          }
-          
-          // Create marker for this school
-          createMarker(item, schoolLevel);
-        });
-        
-        // Update statistics display
-        updateSchoolStatistics();
-        
-        // Apply current map filter
-        applyMapFilter(mapFilter);
-        
-        // Hide loading indicator
-        if (searchSpinner) {
-          searchSpinner.style.display = "none";
-        }
-        
-        // Update panel content based on current view
-        if (selectedBarangay) {
-          updateBarangayPanel(selectedBarangay);
-        } else {
-          showSchoolPanel(placeClicked);
-        }
-        
-        // IMPORTANT: Reload barangay polygons to ensure they remain visible
-        if (selectedPolygonData) {
-          // Reload barangay data but keep the markers
-          reloadBarangayPolygons(placeClicked);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching filtered data:", error);
-        
-        // Hide loading indicator
-        if (searchSpinner) {
-          searchSpinner.style.display = "none";
-        }
-        
-        // Show error message
-        Swal.fire({
-          title: "Error",
-          text: "Failed to load school data. Please try again.",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-      });
-    }
-    
-    // Function to reload only barangay polygons without affecting markers
-    function reloadBarangayPolygons(data) {
-      fetch("phpp/map/fetchMapData.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({ data }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("HTTP error! Status: " + response.status);
-          }
-          return response.json();
-        })
-        .then((jsonData) => {
-          console.log(`Received ${jsonData.length} schools from server`);
-          
-          // Process each school
-          jsonData.forEach((item) => {
-            // Determine school level from CurricularOffer field or name
-            const schoolLevel = item.CurricularOffer ? 
-              item.CurricularOffer.toLowerCase() : 
-              getSchoolLevel(item.SchoolName, item);
-            
-            // Store school data with barangay info and school level
-            schoolData.set(item.SchoolID, {
-              schoolID: item.SchoolID,
-              schoolName: item.SchoolName,
-              barangay_name: item.barangay_name || "Unknown",
-              schoolLevel: schoolLevel,
-            });
-            
-            // Update school statistics
-            schoolStats.total++;
-            if (schoolLevel === "elementary") {
-              schoolStats.elementary++;
-            } else if (schoolLevel === "secondary") {
-              schoolStats.secondary++;
-            }
-            
-            // Create marker for this school
-            createMarker(item, schoolLevel);
-          });
-          
-          // Update statistics display
-          updateSchoolStatistics();
-          console.log(`Created ${markersMap.size} markers`);
-          
-          // CHANGE: Apply filter after all markers are created
-          refreshMarkers();
-          
-          // CHANGE: Debug check to verify markers are on the map
-          setTimeout(() => {
-            let visibleMarkers = 0;
-            brgyLayerGroup.eachLayer(layer => {
-              if (layer instanceof L.Marker) {
-                visibleMarkers++;
-              }
-            });
-            console.log(`Visible markers on map: ${visibleMarkers}`);
-          }, 500);
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
-    }
-
-    // Update school statistics display
-    function updateSchoolStatistics() {
-      document.getElementById("total-schools").textContent = schoolStats.total;
-      document.getElementById("elementary-schools").textContent = schoolStats.elementary;
-      document.getElementById("secondary-schools").textContent = schoolStats.secondary;
-    }
-
-    // CHANGE: Completely revised createMarker function to ensure markers are properly created
-    function createMarker(item, schoolLevel) {
-      // Parse coordinates and validate
       const latitude = parseFloat(item.latitude);
       const longitude = parseFloat(item.longitude);
 
@@ -3116,14 +1817,14 @@
         return;
       }
 
-      // Use the appropriate icon based on school level
+      // Use appropriate icon
       const normalIcon = schoolLevelIcons[schoolLevel] || schoolLevelIcons.elementary;
       const largeIcon = schoolLevelIcons[schoolLevel + "Large"] || schoolLevelIcons.elementaryLarge;
 
-      // Create the marker with the appropriate icon
+      // Create marker
       const marker = L.marker([latitude, longitude], { icon: normalIcon });
 
-      // Store the marker with its ID for later reference
+      // Store marker
       markersMap.set(item.SchoolID, {
         marker: marker,
         position: [latitude, longitude],
@@ -3136,7 +1837,7 @@
       // Format school level for display
       const displayLevel = schoolLevel.charAt(0).toUpperCase() + schoolLevel.slice(1);
 
-      // Add tooltip to show school name on hover
+      // Add tooltip
       marker.bindTooltip(item.SchoolName, {
         permanent: false,
         direction: "top",
@@ -3155,99 +1856,106 @@
           const sID = item.SchoolID;
           console.log("Marker clicked for school ID:", sID);
 
-          // Store marker coordinates for Google Maps
+          // Store coordinates for Google Maps
           currentMarkerCoords = {
             lat: latitude,
             lng: longitude,
           };
 
-          // Reset previous active marker if exists
+          // Reset previous active marker
           if (activeMarker && activeMarker !== marker) {
             const prevMarkerData = Array.from(markersMap.values()).find(
-              (m) => m.marker === activeMarker
+              m => m.marker === activeMarker
             );
             if (prevMarkerData) {
               activeMarker.setIcon(prevMarkerData.normalIcon);
             }
           }
 
-          // Set this as the active marker
+          // Set active marker
           activeMarker = marker;
 
-          // Zoom to the marker
+          // Zoom to marker
           zoomToMarker(latitude, longitude);
 
-          // Make the marker larger
+          // Make marker larger
           marker.setIcon(largeIcon);
 
-          // Add pulse animation class to marker element
+          // Add pulse animation
           const markerElement = marker.getElement();
           if (markerElement) {
             markerElement.classList.add("marker-pulse");
-            // Remove the class after animation completes
             setTimeout(() => {
               markerElement.classList.remove("marker-pulse");
             }, 1000);
           }
 
-          // Update panel with school info
+          // Update panel
           updatePanelFromServer(sID);
 
-          // Show panel if not already visible
+          // Show panel
           if (!isPanelVisible) {
             togglePanel();
           }
         });
 
-      // CHANGE: Don't add markers to the map here - we'll do it in refreshMarkers()
-      // This prevents duplicate markers and ensures proper filtering
+      // Don't add to map yet - will be done in refreshMarkers()
     }
 
-    // CHANGE: New function to refresh markers based on current filters
+    // Fixed refreshMarkers function with better logic
     function refreshMarkers() {
-      console.log("Refreshing markers with filter:", mapFilter, "and panel filter:", currentFilter);
-      
-      // First remove all markers from the map
-      markersMap.forEach((markerData) => {
-        markerData.marker.remove();
-      });
-      
-      // Make sure the layer group is on the map
-      if (!map.hasLayer(brgyLayerGroup)) {
-        brgyLayerGroup.addTo(map);
-      }
-      
-      // Add markers based on current filters
-      let visibleMarkers = 0;
-      
-      markersMap.forEach((markerData, schoolId) => {
-        const schoolInfo = schoolData.get(schoolId);
-        if (!schoolInfo) return;
-        
-        // Check if it matches the barangay filter
-        const matchesBarangay = !selectedBarangay || schoolInfo.barangay_name === selectedBarangay;
-        
-        // Check if it matches the panel filter
-        const matchesPanelFilter = 
-          currentFilter === "all" || 
-          currentFilter === schoolInfo.schoolLevel;
-        
-        // Check if it matches the map filter
-        const matchesMapFilter = 
-          mapFilter !== "hide" && 
-          (mapFilter === "all" || mapFilter === schoolInfo.schoolLevel);
-        
-        // Only show markers that match all filters
-        if (matchesBarangay && matchesPanelFilter && matchesMapFilter) {
-          markerData.marker.addTo(brgyLayerGroup);
-          visibleMarkers++;
-        }
-      });
-      
-      console.log(`Added ${visibleMarkers} visible markers to the map`);
+  console.log("Refreshing markers - mapFilter:", mapFilter, "currentFilter:", currentFilter, "selectedBarangay:", selectedBarangay);
+  
+  // Remove all markers from the map first
+  markersMap.forEach(markerData => {
+    markerData.marker.remove();
+  });
+  
+  // Make sure layer group is on map
+  if (!map.hasLayer(brgyLayerGroup)) {
+    brgyLayerGroup.addTo(map);
+  }
+  
+  // If map filter is "hide", don't show any markers
+  if (mapFilter === "hide") {
+    console.log("Map filter is 'hide' - not showing any markers");
+    return;
+  }
+  
+  // Add markers based on filters
+  let visibleMarkers = 0;
+  
+  markersMap.forEach((markerData, schoolId) => {
+    const schoolInfo = schoolData.get(schoolId);
+    if (!schoolInfo) {
+      console.log("No school info found for ID:", schoolId);
+      return;
     }
+    
+    // Check barangay filter (only apply if a barangay is selected)
+    const matchesBarangay = !selectedBarangay || schoolInfo.barangay_name === selectedBarangay;
+    
+    // Use the synchronized filter (both panel and map filters should be the same now)
+    const effectiveFilter = mapFilter !== "hide" ? mapFilter : currentFilter;
+    
+    // Check filter (unified between panel and map)
+    const matchesFilter = 
+      effectiveFilter === "all" || 
+      effectiveFilter === schoolInfo.schoolLevel;
+    
+    // Show marker if it matches all active filters
+    const shouldShow = matchesBarangay && matchesFilter;
+    
+    if (shouldShow) {
+      markerData.marker.addTo(brgyLayerGroup);
+      visibleMarkers++;
+    }
+  });
+  
+  console.log(`Showing ${visibleMarkers} markers out of ${markersMap.size} total markers`);
+}
 
-    // Zoom to a marker with animation
+    // Zoom to marker with animation
     function zoomToMarker(lat, lng) {
       map.flyTo([lat, lng], 16, {
         animate: true,
@@ -3264,11 +1972,11 @@
         },
         body: new URLSearchParams({ data }),
       })
-        .then((response) => response.json())
-        .then((data) => {
+        .then(response => response.json())
+        .then(data => {
           polygonPanel(data);
         })
-        .catch((error) => console.error("Error fetching data:", error));
+        .catch(error => console.error("Error fetching data:", error));
     }
 
     // Update polygon panel with school data
@@ -3283,15 +1991,15 @@
 
       let displayedCount = 0;
 
-      data.forEach((item) => {
-        // Determine school level from CurricularOffer field or name
+      data.forEach(item => {
+        // Determine school level
         const schoolLevel = item.CurricularOffer ? 
           item.CurricularOffer.toLowerCase() : 
           getSchoolLevel(item.schoolName, item);
 
-        // Apply current filter
+        // Apply filter
         if (currentFilter !== "all" && schoolLevel !== currentFilter) {
-          return; // Skip schools that don't match the filter
+          return; // Skip schools that don't match filter
         }
 
         displayedCount++;
@@ -3321,35 +2029,33 @@
           "</span></p>";
 
         card.addEventListener("click", () => {
-          // Find the marker for this school and trigger its click event
+          // Find marker for this school
           const markerData = markersMap.get(item.schoolID);
           if (markerData) {
-            // Zoom to the marker
+            // Zoom to marker
             zoomToMarker(markerData.position[0], markerData.position[1]);
 
-            // Store marker coordinates for Google Maps
+            // Store coordinates for Google Maps
             currentMarkerCoords = {
               lat: markerData.position[0],
               lng: markerData.position[1],
             };
 
-            // Update the panel with school info
+            // Update panel
             updatePanelFromServer(item.schoolID);
 
-            // Reset previous active marker if exists
+            // Reset previous active marker
             if (activeMarker && activeMarker !== markerData.marker) {
               const prevMarkerData = Array.from(markersMap.values()).find(
-                (m) => m.marker === activeMarker
+                m => m.marker === activeMarker
               );
               if (prevMarkerData) {
                 activeMarker.setIcon(prevMarkerData.normalIcon);
               }
             }
 
-            // Set this as the active marker
+            // Set active marker
             activeMarker = markerData.marker;
-
-            // Make the marker larger
             markerData.marker.setIcon(markerData.largeIcon);
 
             // Add pulse animation
@@ -3380,7 +2086,7 @@
         container.appendChild(card);
       });
 
-      // Show "no results" message if no schools match the filter
+      // Show "no results" message if no schools match filter
       if (displayedCount === 0) {
         const noResults = document.createElement("div");
         noResults.className = "text-center p-4 text-gray-500";
@@ -3397,9 +2103,9 @@
       document.getElementById("barangay-google-maps").style.display = "none";
     }
 
-    // Function to update the panel with fetched data
+    // Update panel with fetched data
     function updatePanelFromServer(schoolID) {
-      // Don't fetch if we're already showing this school
+      // Don't fetch if already showing this school
       if (currentSchoolId === schoolID) {
         return;
       }
@@ -3437,17 +2143,17 @@
         },
         body: "SchoolID=" + encodeURIComponent(schoolID),
       })
-        .then((response) => {
+        .then(response => {
           if (!response.ok) {
             throw new Error("Network response was not ok: " + response.status);
           }
           return response.json();
         })
-        .then((data) => {
+        .then(data => {
           // Hide loading indicator
           loadingIndicator.style.display = "none";
 
-          // Update panel with data
+          // Update panel
           updatePanel(data);
 
           // Show Google Maps button if we have coordinates
@@ -3464,13 +2170,10 @@
             googleMapsBtn.style.display = "none";
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.error("Error fetching data:", error);
-
-          // Hide loading indicator
           loadingIndicator.style.display = "none";
-
-          // Show error message
+          
           Swal.fire({
             title: "Error",
             text: "Failed to load school information. Please try again.",
@@ -3488,16 +2191,16 @@
         return;
       }
 
-      // Determine school level from CurricularOffer field or name
+      // Determine school level
       const schoolName = data.school_info.schoolName || "";
       const schoolLevel = data.school_info.CurricularOffer ? 
         data.school_info.CurricularOffer.toLowerCase() : 
         getSchoolLevel(schoolName, data.school_info);
 
-      // Format school level for display
+      // Format for display
       const displayLevel = schoolLevel.charAt(0).toUpperCase() + schoolLevel.slice(1);
 
-      // Update school info fields
+      // Update fields
       document.getElementById("district").textContent = data.school_info.district || "N/A";
       document.getElementById("school-id").textContent = data.school_info.schoolID || "N/A";
       document.getElementById("school-name").textContent = data.school_info.schoolName || "N/A";
@@ -3509,10 +2212,8 @@
       document.getElementById("teachers").textContent = data.employee_count ?? "N/A";
       document.getElementById("barangay").textContent = data.school_info.barangay_name || "N/A";
 
-      // Make sure the panel is visible
+      // Show panel
       document.getElementById("school-info").style.display = "block";
-
-      // Hide other panels
       document.getElementById("card-container").style.display = "none";
       document.getElementById("barangay-info").style.display = "none";
     }
@@ -3526,15 +2227,15 @@
         },
         body: new URLSearchParams({ data }),
       })
-        .then((response) => {
+        .then(response => {
           if (!response.ok) {
             throw new Error("HTTP error! Status: " + response.status);
           }
           return response.json();
         })
-        .then((geojsonData) => {
+        .then(geojsonData => {
           L.geoJSON(geojsonData, {
-            style: (feature) => {
+            style: feature => {
               const { color, borderColor } = getNextColor(feature.properties.CD_NUM);
               return {
                 fillColor: color,
@@ -3546,7 +2247,7 @@
             onEachFeature: (feature, layer) => {
               // Add hover functionality
               layer.on({
-                mouseover: (e) => {
+                mouseover: e => {
                   const layer = e.target;
                   layer.setStyle({
                     fillOpacity: 0.5,
@@ -3560,7 +2261,7 @@
                     })
                     .openTooltip();
                 },
-                mouseout: (e) => {
+                mouseout: e => {
                   const layer = e.target;
                   layer.setStyle({
                     fillOpacity: 0.175,
@@ -3568,14 +2269,14 @@
                   });
                   layer.closeTooltip();
                 },
-                click: (e) => {
+                click: e => {
                   onPolygonMapClick(e.target, feature);
                 },
               });
             },
           }).addTo(geoJSONLayerGroup);
         })
-        .catch((error) => {
+        .catch(error => {
           console.error("Error fetching GeoJSON data:", error);
         });
     }
@@ -3586,110 +2287,84 @@
     // Handle right-click to reset view
     let lastRightClickTime = 0;
 
-    document.addEventListener("contextmenu", (event) => {
+    document.addEventListener("contextmenu", event => {
       const currentTime = Date.now();
       const timeDifference = currentTime - lastRightClickTime;
-      placeClicked = "NUEVAECIJA";
-
+      
       if (timeDifference >= 1000) {
         event.preventDefault();
-        document.getElementById("school-info").style.display = "none";
-        document.getElementById("card-container").style.display = "none";
-        document.getElementById("barangay-info").style.display = "none";
-
-        // Hide Google Maps buttons
-        document.getElementById("open-google-maps").style.display = "none";
-        document.getElementById("barangay-google-maps").style.display = "none";
-
-        // Reset map and layers
-        geoJSONLayerGroup.clearLayers();
-        brgyLayerGroup.clearLayers();
-
-        // Reset state variables
-        activeMarker = null;
-        selectedBarangay = null;
-        currentSchoolId = null;
-        currentMarkerCoords = null;
-        markersMap.clear();
-        barangayPolygons.clear();
-        schoolData.clear();
-
-        // Reset school statistics
-        schoolStats.total = 0;
-        schoolStats.elementary = 0;
-        schoolStats.secondary = 0;
-        updateSchoolStatistics();
-
-        // Reset municipality name
-        document.getElementById("municipality-name").textContent = "Nueva Ecija";
-
-        // Reset filter to show all schools
-        setFilter("all");
-
-        // Reset map filter dropdown
-        updateMapFilterDropdown("all");
-
-        // Reload initial data
-        loadGeoJSONData("NUEVAECIJA");
-
-        // Reset view to default
-        const defaultCenter = [15.666687955868635, 121.0108536597733];
-        const defaultZoomLevel = 10;
-        map.setView(defaultCenter, defaultZoomLevel);
-
+        resetMapView();
         lastRightClickTime = currentTime;
       }
     });
 
-    // Add Reset Context Button functionality - FIXED
+    // Fixed resetMapView function
+    function resetMapView() {
+  console.log("Resetting map view");
+  
+  // Hide panels
+  document.getElementById("school-info").style.display = "none";
+  document.getElementById("card-container").style.display = "none";
+  document.getElementById("barangay-info").style.display = "none";
+  
+  // Hide Google Maps buttons
+  document.getElementById("open-google-maps").style.display = "none";
+  document.getElementById("barangay-google-maps").style.display = "none";
+
+  // Reset map and layers
+  geoJSONLayerGroup.clearLayers();
+  brgyLayerGroup.clearLayers();
+
+  // Reset state variables
+  activeMarker = null;
+  selectedBarangay = null;
+  currentSchoolId = null;
+  currentMarkerCoords = null;
+  markersMap.clear();
+  barangayPolygons.clear();
+  schoolData.clear();
+  placeClicked = "NUEVAECIJA";
+
+  // Reset school statistics
+  schoolStats.total = 0;
+  schoolStats.elementary = 0;
+  schoolStats.secondary = 0;
+  updateSchoolStatistics();
+
+  // Reset municipality name
+  document.getElementById("municipality-name").textContent = "Nueva Ecija";
+
+  // Reset filters to default - synchronize both
+  currentFilter = "all";
+  mapFilter = "all";
+  
+  // Update filter UI - both panel and dropdown
+  document.getElementById("filter-all").classList.add("active");
+  document.getElementById("filter-elementary").classList.remove("active");
+  document.getElementById("filter-secondary").classList.remove("active");
+  updateMapFilterDropdown("all");
+  
+  // Enable all filter buttons
+  document.getElementById("filter-all").classList.remove("disabled");
+  document.getElementById("filter-elementary").classList.remove("disabled");
+  document.getElementById("filter-secondary").classList.remove("disabled");
+
+  // Reload initial data
+  loadGeoJSONData("NUEVAECIJA");
+
+  // Reset view to default
+  const defaultCenter = [15.666687955868635, 121.0108536597733];
+  const defaultZoomLevel = 10;
+  map.setView(defaultCenter, defaultZoomLevel);
+  
+  console.log("Map view reset complete - filters synchronized");
+}
+
+    // Add Reset Context Button functionality
     const resetContextBtn = document.getElementById("reset-context-btn");
     resetContextBtn.addEventListener("click", function() {
-      // Simulate right-click functionality
-      document.getElementById("school-info").style.display = "none";
-      document.getElementById("card-container").style.display = "none";
-      document.getElementById("barangay-info").style.display = "none";
+      resetMapView();
       
-      // Hide Google Maps buttons
-      document.getElementById("open-google-maps").style.display = "none";
-      document.getElementById("barangay-google-maps").style.display = "none";
-
-      // Reset map and layers
-      geoJSONLayerGroup.clearLayers();
-      brgyLayerGroup.clearLayers();
-
-      // Reset state variables
-      activeMarker = null;
-      selectedBarangay = null;
-      currentSchoolId = null;
-      currentMarkerCoords = null;
-      markersMap.clear();
-      barangayPolygons.clear();
-      schoolData.clear();
-      placeClicked = "NUEVAECIJA";
-
-      // Reset school statistics
-      schoolStats.total = 0;
-      schoolStats.elementary = 0;
-      schoolStats.secondary = 0;
-      updateSchoolStatistics();
-
-      // Reset municipality name
-      document.getElementById("municipality-name").textContent = "Nueva Ecija";
-
-      // Reset filter to show all schools
-      setFilter("all");
-
-      // Reset map filter dropdown
-      updateMapFilterDropdown("all");
-
-      // Reload initial data
-      loadGeoJSONData("NUEVAECIJA");
-
-      // Reset view to default
-      const defaultCenter = [15.666687955868635, 121.0108536597733];
-      const defaultZoomLevel = 10;
-      map.setView(defaultCenter, defaultZoomLevel);
-
       // Clear search input
       document.getElementById("searchInput").value = "";
       document.querySelector(".search-clear").style.display = "none";
@@ -3700,16 +2375,16 @@
       }
     });
 
-    // Add a reset button to the map
+    // Add reset button to map
     const resetButton = L.control({ position: "topright" });
     resetButton.onAdd = () => {
       const div = L.DomUtil.create("div", "reset-button");
       div.innerHTML = '<button class="btn btn-sm btn-light" style="padding: 6px 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"><i class="bi bi-arrows-fullscreen"></i></button>';
       div.onclick = () => {
-        // Reset active marker if exists
+        // Reset active marker
         if (activeMarker) {
           const markerData = Array.from(markersMap.values()).find(
-            (m) => m.marker === activeMarker
+            m => m.marker === activeMarker
           );
           if (markerData) {
             activeMarker.setIcon(markerData.normalIcon);
@@ -3725,35 +2400,20 @@
         document.getElementById("open-google-maps").style.display = "none";
         document.getElementById("barangay-google-maps").style.display = "none";
 
-        // Reset selected barangay if exists
+        // Reset selected barangay
         if (selectedBarangay) {
           const layer = barangayPolygons.get(selectedBarangay);
           if (layer) {
             layer.setStyle({
-              fillOpacity: 0.2,
-              weight: 3,
+              fillOpacity: 0.3,
+              weight: 2,
               color: "black",
             });
           }
           selectedBarangay = null;
 
-          // Show all markers based on current filter
-          markersMap.forEach((markerData, schoolId) => {
-            const schoolInfo = schoolData.get(schoolId);
-            if (
-              currentFilter === "all" ||
-              (currentFilter === "elementary" && schoolInfo.schoolLevel === "elementary") ||
-              (currentFilter === "secondary" && schoolInfo.schoolLevel === "secondary")
-            ) {
-              // Only show if map filter allows
-              if (
-                mapFilter !== "hide" &&
-                (mapFilter === "all" || mapFilter === schoolInfo.schoolLevel)
-              ) {
-                markerData.marker.addTo(brgyLayerGroup);
-              }
-            }
-          });
+          // Show all markers based on filter
+          refreshMarkers();
 
           // Hide barangay info panel
           document.getElementById("barangay-info").style.display = "none";
@@ -3762,7 +2422,7 @@
           showSchoolPanel(placeClicked);
         }
 
-        // Return to the previous view
+        // Return to previous view
         if (previousCenter && previousZoomLevel) {
           map.setView(previousCenter, previousZoomLevel);
         } else {
@@ -3826,112 +2486,121 @@
     window.addEventListener("resize", resetPanelHeightForDesktop);
     resetPanelHeightForDesktop();
 
-    // CHANGE: Completely revised setFilter function to work with refreshMarkers
+    // Fixed setFilter function
     function setFilter(filter) {
-      console.log("Setting panel filter to:", filter);
-      
-      // Update current filter
-      currentFilter = filter;
+  console.log("Setting panel filter to:", filter);
+  
+  // Update current filter
+  currentFilter = filter;
 
-      // Update active button state
-      document.getElementById("filter-all").classList.toggle("active", filter === "all");
-      document.getElementById("filter-elementary").classList.toggle("active", filter === "elementary");
-      document.getElementById("filter-secondary").classList.toggle("active", filter === "secondary");
+  // Update active button state
+  document.getElementById("filter-all").classList.toggle("active", filter === "all");
+  document.getElementById("filter-elementary").classList.toggle("active", filter === "elementary");
+  document.getElementById("filter-secondary").classList.toggle("active", filter === "secondary");
 
-      // Refresh markers based on new filter
-      refreshMarkers();
+  // Synchronize map filter dropdown with panel filter
+  // Only sync if map filter is not "hide" - preserve "hide" state
+  if (mapFilter !== "hide") {
+    mapFilter = filter;
+    updateMapFilterDropdown(filter);
+  }
 
-      // Update panel content based on current view
-      if (selectedBarangay) {
-        updateBarangayPanel(selectedBarangay);
-      } else {
-        showSchoolPanel(placeClicked);
-      }
-    }
+  // Only refresh markers if map filter is not "hide"
+  if (mapFilter !== "hide") {
+    refreshMarkers();
+  }
 
-    // CHANGE: Completely revised applyMapFilter function
+  // Update panel content
+  if (selectedBarangay) {
+    updateBarangayPanel(selectedBarangay);
+  } else {
+    showSchoolPanel(placeClicked);
+  }
+}
+
+    // Fixed applyMapFilter function
     function applyMapFilter(filter) {
-      console.log("Applying map filter:", filter);
-      
-      // Update current map filter
-      mapFilter = filter;
+  console.log("Applying map filter:", filter);
+  
+  // Update current map filter
+  mapFilter = filter;
 
-      // Update dropdown UI
-      updateMapFilterDropdown(filter);
+  // Update dropdown UI
+  updateMapFilterDropdown(filter);
 
-      // CHANGE: Make sure the layer group is on the map
-      if (!map.hasLayer(brgyLayerGroup)) {
-        brgyLayerGroup.addTo(map);
-      }
+  // Make sure layer group is on map
+  if (!map.hasLayer(brgyLayerGroup)) {
+    brgyLayerGroup.addTo(map);
+  }
 
-      // Refresh markers based on new filter
-      refreshMarkers();
-      
-      // Update the panel to show all schools when "all" is selected
-      if (filter === "all") {
-        // Show all schools in the panel
-        showSchoolPanel(placeClicked);
-        document.getElementById("card-container").style.display = "block";
-        
-        // Enable all filter buttons
-        document.getElementById("filter-all").classList.remove("disabled");
-        document.getElementById("filter-elementary").classList.remove("disabled");
-        document.getElementById("filter-secondary").classList.remove("disabled");
-      } else if (filter === "hide") {
-        // Show the message when "hide" is selected
-        const container = document.getElementById("card-container");
-        if (container) {
-          container.innerHTML = "<div class='filter-message'><i class='bi bi-info-circle'></i> All school markers are currently hidden. Use the filter to show schools.</div>";
-          container.style.display = "block";
-        }
-        
-        // Also hide any currently displayed school info or barangay info
-        document.getElementById("school-info").style.display = "none";
-        document.getElementById("barangay-info").style.display = "none";
-        
-        // Disable elementary and secondary filter buttons when "hide all" is selected
-        document.getElementById("filter-all").classList.add("disabled");
-        document.getElementById("filter-elementary").classList.add("disabled");
-        document.getElementById("filter-secondary").classList.add("disabled");
-      } else {
-        // For elementary or secondary filters
-        // Update the panel filter to match the map filter
-        setFilter(filter);
-        
-        // Enable all filter buttons for other filter options
-        document.getElementById("filter-all").classList.remove("disabled");
-        document.getElementById("filter-elementary").classList.remove("disabled");
-        document.getElementById("filter-secondary").classList.remove("disabled");
-      }
+  // Handle different filter cases
+  if (filter === "hide") {
+    // Hide all markers
+    markersMap.forEach(markerData => {
+      markerData.marker.remove();
+    });
+    
+    // Show message when "hide" is selected
+    const container = document.getElementById("card-container");
+    if (container) {
+      container.innerHTML = "<div class='filter-message'><i class='bi bi-info-circle'></i> All school markers are currently hidden. Use the filter to show schools.</div>";
+      container.style.display = "block";
     }
+    
+    // Hide info panels
+    document.getElementById("school-info").style.display = "none";
+    document.getElementById("barangay-info").style.display = "none";
+    
+    // Disable filter buttons but don't change their active state
+    document.getElementById("filter-all").classList.add("disabled");
+    document.getElementById("filter-elementary").classList.add("disabled");
+    document.getElementById("filter-secondary").classList.add("disabled");
+    
+    // Close dropdown
+    filterDropdown.classList.remove("show");
+    return;
+  }
 
-    // Toggle legend visibility when button is clicked
-    legendToggle.addEventListener("click", () => {
-      mapLegend.classList.toggle("visible");
-      
-      // CHANGE: Debug check to verify markers are on the map
-      setTimeout(() => {
-        let visibleMarkers = 0;
-        brgyLayerGroup.eachLayer(layer => {
-          if (layer instanceof L.Marker) {
-            visibleMarkers++;
-          }
-        });
-        console.log(`After filter applied: ${visibleMarkers} visible markers on map`);
-      }, 500);
-    }
+  // Enable all filter buttons for non-hide filters
+  document.getElementById("filter-all").classList.remove("disabled");
+  document.getElementById("filter-elementary").classList.remove("disabled");
+  document.getElementById("filter-secondary").classList.remove("disabled");
+
+  // Synchronize panel filter with map filter
+  currentFilter = filter;
+  
+  // Update panel button active states
+  document.getElementById("filter-all").classList.toggle("active", filter === "all");
+  document.getElementById("filter-elementary").classList.toggle("active", filter === "elementary");
+  document.getElementById("filter-secondary").classList.toggle("active", filter === "secondary");
+
+  // Refresh markers
+  refreshMarkers();
+  
+  // Update panel content
+  if (selectedBarangay) {
+    updateBarangayPanel(selectedBarangay);
+  } else {
+    showSchoolPanel(placeClicked);
+  }
+  
+  // Close dropdown
+  filterDropdown.classList.remove("show");
+}
 
     // Update map filter dropdown UI
     function updateMapFilterDropdown(filter) {
-      // Update active state in dropdown
-      const items = document.querySelectorAll(".filter-dropdown-item");
-      items.forEach((item) => {
-        item.classList.remove("active");
-        if (item.dataset.filter === filter) {
-          item.classList.add("active");
-        }
-      });
+  console.log("Updating map filter dropdown to:", filter);
+  
+  // Update active state
+  const items = document.querySelectorAll(".filter-dropdown-item");
+  items.forEach(item => {
+    item.classList.remove("active");
+    if (item.dataset.filter === filter) {
+      item.classList.add("active");
     }
+  });
+}
 
     // Add event listeners for filter buttons
     document.getElementById("filter-all").addEventListener("click", () => setFilter("all"));
@@ -3942,8 +2611,8 @@
     const filterMapBtn = document.getElementById("filter-map-btn");
     const filterDropdown = document.getElementById("filter-dropdown");
 
-    // Toggle dropdown when filter button is clicked
-    filterMapBtn.addEventListener("click", (e) => {
+    // Toggle dropdown
+    filterMapBtn.addEventListener("click", e => {
       e.stopPropagation();
       filterDropdown.classList.toggle("show");
     });
@@ -3953,42 +2622,26 @@
       filterDropdown.classList.remove("show");
     });
 
-    // Prevent dropdown from closing when clicking inside it
-    filterDropdown.addEventListener("click", (e) => {
+    // Prevent dropdown from closing when clicking inside
+    filterDropdown.addEventListener("click", e => {
       e.stopPropagation();
     });
 
-    // CHANGE: Completely revised dropdown item click handlers
-    document.querySelectorAll(".filter-dropdown-item").forEach((item) => {
+    // Add event listeners to dropdown items
+    document.querySelectorAll(".filter-dropdown-item").forEach(item => {
       item.addEventListener("click", () => {
         const filter = item.dataset.filter;
         console.log("Filter dropdown clicked:", filter);
         
-        // Show the panel if not already visible
+        // Show panel if not visible
         if (!isPanelVisible) {
           togglePanel();
         }
-        // If this is elementary or secondary filter, update both map and panel filters
-        else if (filter === "elementary" || filter === "secondary") {
-          // Update the panel filter to match
-
-          if (filter === "elementary") {
-            fetchFilteredSchools("elementary");
-          } else {
-            fetchFilteredSchools("secondary");
-          }
-
-      
-          // Show the panel if not already visible
-          if (!isPanelVisible) {
-            togglePanel();
-          }
-        }
-    
-        // Apply the map filter
+        
+        // Apply filter
         applyMapFilter(filter);
         
-        // Close the dropdown
+        // Close dropdown
         filterDropdown.classList.remove("show");
       });
     });
@@ -3998,31 +2651,31 @@
       window.location.href = 'auth/pages/login.php';
     });
 
+    // Search functionality
     const searchInput = document.getElementById("searchInput");
     const clearSearchBtn = document.querySelector(".search-clear");
 
-    // Clear search function - FIXED
+    // Clear search function
     function clearSearch() {
       searchInput.value = "";
       clearSearchBtn.style.display = "none";
+      lastSearchText = ""; // Reset last search text
       
       // Show loading indicator
       const searchSpinner = document.querySelector(".search-spinner");
       searchSpinner.style.display = "block";
       
-      // Reset search and reload the panel content
+      // Reset search and reload panel content
       if (selectedBarangay) {
-        // If in barangay view, update the barangay panel
         updateBarangayPanel(selectedBarangay);
       } else {
-        // If in overview, reload the school panel
         showSchoolPanel(placeClicked);
       }
       
-      // Make sure the card container is visible
+      // Show card container
       document.getElementById("card-container").style.display = "block";
       
-      // Refresh markers based on current filters
+      // Refresh markers
       refreshMarkers();
       
       // Hide loading indicator
@@ -4032,7 +2685,7 @@
     // Add event listener to clear button
     clearSearchBtn.addEventListener("click", clearSearch);
 
-    // Debounce function to limit search frequency
+    // Debounce function
     function debounce(func, wait) {
       let timeout;
       return function (...args) {
@@ -4042,120 +2695,160 @@
       };
     }
 
-    // Debounced search to improve performance
+    // Debounced search
     const debouncedSearch = debounce(function () {
-      // Only perform the search without zooming to any marker
       performSearch(searchInput.value);
     }, 300);
 
-    // Main search function - FIXED
+    // Main search function
     function performSearch(searchText) {
-      const searchSpinner = document.querySelector(".search-spinner");
-      searchSpinner.style.display = "block";
+  const searchSpinner = document.querySelector(".search-spinner");
+  searchSpinner.style.display = "block";
 
-      // Normalize search text
-      searchText = searchText.toLowerCase().trim();
+  // Normalize search text
+  searchText = searchText.toLowerCase().trim();
 
-      // Show clear button if search text exists
-      clearSearchBtn.style.display = searchText ? "block" : "none";
+  // Show clear button if search text exists
+  clearSearchBtn.style.display = searchText ? "block" : "none";
 
-      // If no search text, restore original view based on current filter
-      if (!searchText) {
-        clearSearch();
-        return;
-      }
+  // If no search text, restore original view
+  if (!searchText) {
+    clearSearch();
+    return;
+  }
 
-      // Get all cards in the container
-      const cardContainer = document.getElementById("card-container");
-      const cards = cardContainer.querySelectorAll(".card");
+  // Always reset the markers and refresh the view when searching
+  brgyLayerGroup.clearLayers();
+  
+  // Get cards
+  const cardContainer = document.getElementById("card-container");
+  cardContainer.style.display = "block";
+  cardContainer.innerHTML = ""; // Clear existing cards
+  
+  // Filter schools
+  let matchCount = 0;
 
-      // Filter schools based on search text
-      let matchCount = 0;
+  // Use synchronized filter
+  const effectiveFilter = mapFilter !== "hide" ? mapFilter : currentFilter;
 
-      // Filter markers on map
-      markersMap.forEach((markerData, schoolId) => {
-        const schoolInfo = schoolData.get(schoolId);
-        if (!schoolInfo) return;
+  // Filter markers on map
+  markersMap.forEach((markerData, schoolId) => {
+    const schoolInfo = schoolData.get(schoolId);
+    if (!schoolInfo) return;
 
-        const schoolName = (schoolInfo.schoolName || "").toLowerCase();
-        const barangayName = (schoolInfo.barangay_name || "").toLowerCase();
+    const schoolName = (schoolInfo.schoolName || "").toLowerCase();
+    const barangayName = (schoolInfo.barangay_name || "").toLowerCase();
+    const schoolIdStr = schoolId.toString();
 
-        const matchesSearch =
-          schoolName.includes(searchText) ||
-          barangayName.includes(searchText) ||
-          schoolId.toString().includes(searchText);
+    const matchesSearch =
+      schoolName.includes(searchText) ||
+      barangayName.includes(searchText) ||
+      schoolIdStr.includes(searchText);
 
-        const matchesFilter =
-          currentFilter === "all" ||
-          (currentFilter === "elementary" && schoolInfo.schoolLevel === "elementary") ||
-          (currentFilter === "secondary" && schoolInfo.schoolLevel === "secondary");
+    const matchesFilter =
+      effectiveFilter === "all" ||
+      effectiveFilter === schoolInfo.schoolLevel;
 
-        const matchesBarangay = !selectedBarangay || schoolInfo.barangay_name === selectedBarangay;
+    const matchesBarangay = !selectedBarangay || schoolInfo.barangay_name === selectedBarangay;
 
-        const matchesMapFilter =
-          mapFilter !== "hide" &&
-          (mapFilter === "all" || mapFilter === schoolInfo.schoolLevel);
+    const matchesMapFilter = mapFilter !== "hide";
 
-        if (matchesSearch && matchesFilter && matchesBarangay && matchesMapFilter) {
-          markerData.marker.addTo(brgyLayerGroup);
-          matchCount++;
-        } else {
-          markerData.marker.remove();
+    if (matchesSearch && matchesFilter && matchesBarangay && matchesMapFilter) {
+      markerData.marker.addTo(brgyLayerGroup);
+      matchCount++;
+      
+      // Create card for this school
+      const card = document.createElement("div");
+      card.className = `card ${schoolInfo.schoolLevel}`;
+      
+      // Create school level badge
+      const levelBadge = `<span class="school-level-badge ${schoolInfo.schoolLevel}">${
+        schoolInfo.schoolLevel.charAt(0).toUpperCase() + schoolInfo.schoolLevel.slice(1)
+      }</span>`;
+      
+      card.innerHTML =
+        "<h5 class='text-lg font-semibold'>" +
+        (schoolInfo.schoolName || "N/A") +
+        " " +
+        levelBadge +
+        "</h5>" +
+        "<p class='text-sm'>School ID: <span class='font-medium'>" +
+        (schoolInfo.schoolID || "N/A") +
+        "</span></p>" +
+        "<p class='text-sm'>Barangay: <span class='font-medium'>" +
+        (schoolInfo.barangay_name || "N/A") +
+        "</span></p>";
+        
+      // Highlight search terms
+      const regex = new RegExp(searchText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'gi');
+      card.innerHTML = card.innerHTML.replace(regex, match => `<span class="search-highlight">${match}</span>`);
+      
+      card.addEventListener("click", () => {
+        // Zoom to marker
+        zoomToMarker(markerData.position[0], markerData.position[1]);
+        
+        // Store coordinates for Google Maps
+        currentMarkerCoords = {
+          lat: markerData.position[0],
+          lng: markerData.position[1],
+        };
+        
+        // Update panel
+        updatePanelFromServer(schoolId);
+        
+        // Reset previous active marker
+        if (activeMarker && activeMarker !== markerData.marker) {
+          const prevMarkerData = Array.from(markersMap.values()).find(
+            m => m.marker === activeMarker
+          );
+          if (prevMarkerData) {
+            activeMarker.setIcon(prevMarkerData.normalIcon);
+          }
+        }
+        
+        // Set active marker
+        activeMarker = markerData.marker;
+        markerData.marker.setIcon(markerData.largeIcon);
+        
+        // Add pulse animation
+        const markerElement = markerData.marker.getElement();
+        if (markerElement) {
+          markerElement.classList.add("marker-pulse");
+          setTimeout(() => {
+            markerElement.classList.remove("marker-pulse");
+          }, 1000);
         }
       });
-
-      // Filter cards in the panel
-      cards.forEach((card) => {
-        const cardText = card.textContent.toLowerCase();
-        const schoolLevel = card.classList.contains("elementary")
-          ? "elementary"
-          : card.classList.contains("secondary")
-          ? "secondary"
-          : "";
-
-        const matchesSearch = cardText.includes(searchText);
-        const matchesFilter = currentFilter === "all" || currentFilter === schoolLevel;
-
-        if (matchesSearch && matchesFilter) {
-          card.style.display = "block";
-          
-          // First remove any previous highlighting
-          let cardHTML = card.innerHTML.replace(/<span class="search-highlight">(.*?)<\/span>/g, "$1");
-          
-          // Then add new highlighting
-          const regex = new RegExp(searchText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'gi');
-          cardHTML = cardHTML.replace(regex, match => `<span class="search-highlight">${match}</span>`);
-          card.innerHTML = cardHTML;
-        } else {
-          card.style.display = "none";
-        }
-      });
-
-      // Show "no results" message if no matches found - FIXED
-      // Using a simple text message instead of Swal modal
-      if (matchCount === 0) {
-        // Create a message in the card container instead of showing a modal
-        const container = document.getElementById("card-container");
-        container.innerHTML = "<div class='filter-message'><i class='bi bi-info-circle'></i> No schools match your search criteria. Try a different search term or check your spelling.</div>";
-        container.style.display = "block";
-        
-        // Hide other panels
-        document.getElementById("school-info").style.display = "none";
-        document.getElementById("barangay-info").style.display = "none";
-        
-        // Make sure the panel is visible to show the message
-        if (!isPanelVisible) {
-          togglePanel();
-        }
-      }
-
-      searchSpinner.style.display = "none";
+      
+      cardContainer.appendChild(card);
+    } else {
+      markerData.marker.remove();
     }
+  });
+
+  // Show "no results" message
+  if (matchCount === 0) {
+    cardContainer.innerHTML = "<div class='filter-message'><i class='bi bi-info-circle'></i> No schools match your search criteria. Try a different search term or check your spelling.</div>";
+    
+    // Hide other panels
+    document.getElementById("school-info").style.display = "none";
+    document.getElementById("barangay-info").style.display = "none";
+  }
+  
+  // Update last search text
+  lastSearchText = searchText;
+  
+  // Hide loading indicator
+  searchSpinner.style.display = "none";
+  
+  // Show panel if not visible
+  if (!isPanelVisible) {
+    togglePanel();
+  }
+}
 
     // Add event listener to search input
-    searchInput.addEventListener("input", function () {
-      debouncedSearch();
-    });
+    searchInput.addEventListener("input", debouncedSearch);
 
     // Add event listener for Enter key
     searchInput.addEventListener("keydown", function (e) {
@@ -4170,215 +2863,21 @@
       }
     });
 
-    // Function to fetch filtered schools from the server - FIXED
-    function fetchFilteredSchools(filterType) {
-      // Show loading indicator
-      const searchSpinner = document.querySelector(".search-spinner");
-      if (searchSpinner) {
-        searchSpinner.style.display = "block";
+    // Legend toggle functionality
+    const legendToggle = document.getElementById("legend-toggle");
+    const mapLegend = document.querySelector(".map-legend");
+
+    // Initialize legend visibility
+    function initLegendVisibility() {
+      if (window.innerWidth <= 768) {
+        mapLegend.classList.remove("visible");
       }
-      
-      // Make the AJAX request to your PHP script
-      fetch("phpp/map/fetchMarkerData.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          data: placeClicked,
-          filter: filterType
-        }),
-      })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("HTTP error! Status: " + response.status);
-        }
-        return response.json();
-      })
-      .then((jsonData) => {
-        // Clear existing markers and data
-        brgyLayerGroup.clearLayers();
-        markersMap.clear();
-        schoolData.clear();
-        
-        // Reset school statistics
-        schoolStats.total = 0;
-        schoolStats.elementary = 0;
-        schoolStats.secondary = 0;
-        
-        // Process the returned data
-        jsonData.forEach((item) => {
-          // Determine school level from CurricularOffer field or name
-          const schoolLevel = item.CurricularOffer ? 
-            item.CurricularOffer.toLowerCase() : 
-            getSchoolLevel(item.SchoolName, item);
-          
-          // Store school data with barangay info and school level
-          schoolData.set(item.SchoolID, {
-            schoolID: item.SchoolID,
-            schoolName: item.SchoolName,
-            barangay_name: item.barangay_name || "Unknown",
-            schoolLevel: schoolLevel,
-          });
-          
-          // Update school statistics
-          schoolStats.total++;
-          if (schoolLevel === "elementary") {
-            schoolStats.elementary++;
-          } else if (schoolLevel === "secondary") {
-            schoolStats.secondary++;
-          }
-          
-          // Create marker for this school
-          createMarker(item, schoolLevel);
-        });
-        
-        // Update statistics display
-        updateSchoolStatistics();
-        
-        // Apply current map filter
-        refreshMarkers();
-        
-        // Hide loading indicator
-        if (searchSpinner) {
-          searchSpinner.style.display = "none";
-        }
-        
-        // Update panel content based on current view
-        if (selectedBarangay) {
-          updateBarangayPanel(selectedBarangay);
-        } else {
-          showSchoolPanel(placeClicked);
-        }
-        
-        // IMPORTANT: Reload barangay polygons to ensure they remain visible
-        // But ONLY if we don't already have them
-        if (selectedPolygonData && barangayPolygons.size === 0) {
-          reloadBarangayPolygons(placeClicked);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching filtered data:", error);
-        
-        // Hide loading indicator
-        if (searchSpinner) {
-          searchSpinner.style.display = "none";
-        }
-        
-        // Show error message
-        Swal.fire({
-          title: "Error",
-          text: "Failed to load school data. Please try again.",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-      });
     }
-    
-    // Function to reload only barangay polygons without affecting markers - FIXED
-    function reloadBarangayPolygons(data) {
-      // Clear existing barangay polygons to prevent duplicates
-      barangayPolygons.clear();
+
+    // Toggle legend visibility
+    legendToggle.addEventListener("click", () => {
+      mapLegend.classList.toggle("visible");
       
-      fetch("phpp/map/fetchMapData.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({ data }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("HTTP error! Status: " + response.status);
-          }
-          return response.json();
-        })
-        .then((geojsonData) => {
-          // Create a GeoJSON layer for barangays
-          const barangayLayer = L.geoJSON(geojsonData, {
-            style: (feature) => {
-              const { borderColor } = getNextColor(10);
-              return {
-                fillColor: "white",
-                color: borderColor,
-                weight: 3,
-                fillOpacity: 0.2,
-              };
-            },
-            onEachFeature: (feature, layer) => {
-              // Make sure we have a valid property to use as barangay name
-              const barangayName =
-                feature.properties.adm4_en ||
-                feature.properties.brgy_name ||
-                feature.properties.name ||
-                "Unknown";
-
-              // Store barangay name and polygon for later reference
-              barangayPolygons.set(barangayName, layer);
-
-              // Add popup with barangay name
-              layer.bindPopup("<strong>Barangay:</strong> " + barangayName);
-
-              // Add hover and click functionality
-              layer.on({
-                mouseover: (e) => {
-                  if (selectedBarangay !== barangayName) {
-                    const layer = e.target;
-                    layer.setStyle({
-                      fillOpacity: 0.5,
-                      weight: 4,
-                    });
-                    layer
-                      .bindTooltip(barangayName, {
-                        permanent: false,
-                        direction: "center",
-                        className: "leaflet-tooltip",
-                      })
-                      .openTooltip();
-                  }
-                },
-                mouseout: (e) => {
-                  if (selectedBarangay !== barangayName) {
-                    const layer = e.target;
-                    layer.setStyle({
-                      fillOpacity: 0.2,
-                      weight: 3,
-                    });
-                    layer.closeTooltip();
-                  }
-                },
-                click: (e) => {
-                  // Ensure the click event is properly captured
-                  if (e.originalEvent) {
-                    e.originalEvent.stopPropagation();
-                  }
-                  onBarangayClick(barangayName, e.target);
-
-                  // Show panel if not already visible
-                  if (!isPanelVisible) {
-                    togglePanel();
-                  }
-                },
-              });
-              
-              // If this is the currently selected barangay, highlight it
-              if (selectedBarangay === barangayName) {
-                layer.setStyle({
-                  fillOpacity: 0.6,
-                  weight: 4,
-                  color: "#0d8017",
-                });
-              }
-            },
-          });
-
-          // Add the layer to the map
-          barangayLayer.addTo(brgyLayerGroup);
-        })
-        .catch((error) => {
-          console.error("Error fetching GeoJSON data:", error);
-        });
-    }
       // Change icon based on visibility
       if (mapLegend.classList.contains("visible")) {
         legendToggle.innerHTML = '<i class="bi bi-x-lg"></i>';
@@ -4387,11 +2886,79 @@
       }
     });
 
-    // Update legend visibility on window resize
+    // Update legend visibility on resize
     window.addEventListener("resize", initLegendVisibility);
-
-    // Initialize legend visibility on page load
+    
+    // Initialize on page load
     initLegendVisibility();
+
+    // Initialize filters when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeFilters();
+    });
+
+    // Also initialize when loading initial data
+    initializeFilters();
+
+    function addFilterSyncIndicator() {
+  // Add a small indicator to show filters are synchronized
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  filterButtons.forEach(btn => {
+    btn.title = "Panel and map filters are synchronized";
+  });
+  
+  const dropdownItems = document.querySelectorAll('.filter-dropdown-item');
+  dropdownItems.forEach(item => {
+    if (item.dataset.filter !== 'hide') {
+      item.title = "Panel and map filters are synchronized";
+    }
+  });
+}
+
+// Initialize synchronized filters when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  initializeFilters();
+  addFilterSyncIndicator();
+  
+  console.log("Filter synchronization initialized");
+});
+
+// Re-bind event listeners with synchronization
+document.getElementById("filter-all").addEventListener("click", () => {
+  console.log("Panel 'All' button clicked - synchronizing with map filter");
+  setFilter("all");
+});
+
+document.getElementById("filter-elementary").addEventListener("click", () => {
+  console.log("Panel 'Elementary' button clicked - synchronizing with map filter");
+  setFilter("elementary");
+});
+
+document.getElementById("filter-secondary").addEventListener("click", () => {
+  console.log("Panel 'Secondary' button clicked - synchronizing with map filter");
+  setFilter("secondary");
+});
+
+// Enhanced dropdown event listeners
+document.querySelectorAll(".filter-dropdown-item").forEach(item => {
+  item.addEventListener("click", () => {
+    const filter = item.dataset.filter;
+    console.log("Map filter dropdown clicked:", filter, "- synchronizing with panel buttons");
+    
+    // Show panel if not visible
+    if (!isPanelVisible) {
+      togglePanel();
+    }
+    
+    // Apply filter (this will sync both map and panel)
+    applyMapFilter(filter);
+    
+    // Close dropdown
+    filterDropdown.classList.remove("show");
+  });
+});
+
+console.log("Filter binding and synchronization loaded successfully");
   </script>
 </body>
 </html>
