@@ -2952,7 +2952,7 @@ document.querySelectorAll(".filter-dropdown-item").forEach(item => {
     
     // Apply filter (this will sync both map and panel)
     applyMapFilter(filter);
-    
+    loadMarkerData(placeClicked);
     // Close dropdown
     filterDropdown.classList.remove("show");
   });

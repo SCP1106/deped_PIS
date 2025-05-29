@@ -24,16 +24,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Base SQL query
-    $sql = "SELECT sc.SchoolID, si.SchoolName, sc.latitude, sc.longitude, b.barangay_name,
-                   CASE
-                       WHEN si.CurricularOffer REGEXP 'Grade[[:space:]]*1-6' THEN 'elementary'
-                       WHEN si.CurricularOffer REGEXP 'Grade[[:space:]]*7-10|Grade[[:space:]]*11-12' THEN 'secondary'
-                       ELSE 'elementary'
-                   END AS CurricularOffer
-            FROM schoolcoor sc
-            INNER JOIN schoolinfo si ON sc.schoolCoorID = si.schoolCoorID
-            INNER JOIN schooladd sa ON si.address_id = sa.address_id
-            INNER JOIN barangay b ON sa.barangay_code = b.barangay_code";
+    $sql = "
+        SELECT 
+            sc.SchoolID, 
+            si.SchoolName, 
+            sc.latitude, 
+            sc.longitude, 
+            b.barangay_name,
+            CASE
+                WHEN si.CurricularOffer REGEXP 'Grade[[:space:]]*1-6' THEN 'elementary'
+                WHEN si.CurricularOffer REGEXP 'Grade[[:space:]]*7-10|Grade[[:space:]]*11-12' THEN 'secondary'
+                ELSE 'elementary'
+            END AS CurricularOffer
+        FROM 
+            schoolcoor sc
+        INNER JOIN 
+            schoolinfo si ON sc.schoolCoorID = si.schoolCoorID
+        INNER JOIN 
+            schooladd sa ON si.address_id = sa.address_id
+        INNER JOIN 
+            barangay b ON sa.barangay_code = b.barangay_code
+    ";
 
     // Build WHERE clause
     $whereConditions = [];
@@ -79,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     while ($row = $result->fetch_assoc()) {
         $response[] = $row;
     }
-    
+
     echo json_encode($response);
     $stmt->close();
 } else {
