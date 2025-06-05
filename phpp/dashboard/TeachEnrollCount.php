@@ -6,13 +6,17 @@ session_start();
 include '../Connect/dataDB.php';
 
 // Prepare the SQL queries
+// $sql_enrollees = "SELECT SUM(ALL_GRADE_TTL) AS total_enrollees
+//                   FROM enrollment_data
+//                   WHERE SchoolYear = CASE 
+//                       WHEN MONTH(CURDATE()) >= 6 THEN YEAR(CURDATE()) 
+//                       ELSE YEAR(CURDATE()) - 1 
+//                   END;";
+
 $sql_enrollees = "SELECT SUM(ALL_GRADE_TTL) AS total_enrollees
                   FROM enrollment_data
-                  WHERE SchoolYear = CASE 
-                      WHEN MONTH(CURDATE()) >= 6 THEN YEAR(CURDATE()) 
-                      ELSE YEAR(CURDATE()) - 1 
-                  END;";
-
+                  WHERE SchoolYear = 2024;";
+                  
 $sql_employees = "SELECT COUNT(*) AS total_employees FROM employee_records";
 
 // Execute the first query (enrollment)

@@ -479,7 +479,6 @@ if (!isset($_SESSION['user_id'])) {
         <select id="districtFilter" class="form-select district-filter">
           <option value="all">All Districts</option>
           <option value="ALL">Congressional District</option>
-
           <option value="CD1">CD1</option>
           <option value="CD2">CD2</option>
           <option value="CD3">CD3</option>
@@ -1243,12 +1242,304 @@ if (!isset($_SESSION['user_id'])) {
             // Show all municipalities
             showAllMunicipalityCards();
           } else if (selectedValue === "ALL") {
-            // Show all district cards
-            showAllDistrictCards();
+            // Show all district cards AND combined district card
+            showAllDistrictCardsWithCombined();
           } else {
             // Show municipality cards for the selected CD district
             showMunicipalityCards(selectedValue);
           }
+        });
+      }
+
+      // Show all district cards with combined district card
+      function showAllDistrictCardsWithCombined() {
+        const cardsContainer = document.getElementById("district-cards-container");
+        if (!cardsContainer) return;
+
+        // Clear existing cards
+        cardsContainer.innerHTML = "";
+
+        // Generate the original 4 district cards
+        originalDistricts.forEach((district) => {
+          const cardHtml = `
+            <div class="col-md-6">
+              <div class="district-card" data-district="${district.id}">
+                <i class="bi bi-grid-3x3-gap grid-icon"></i>
+                <h2 style="color: var(--primary-green);">${district.name}</h2>
+                <div class="row mt-4">
+                  <div class="col-4">
+                    <div class="metric-label">
+                      <i class="bi bi-person"></i> Total Employees
+                    </div>
+                    <div class="metric-value clickable" id="totEmp-${district.id}" onclick="showEmployees(${district.id})">
+                      <div class="spinner-border text-success" role="status" style="width: 1.5rem; height: 1.5rem; border-width: 3px;">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="metric-label">
+                      <i class="bi bi-clock"></i> Near Retirement
+                    </div>
+                    <div class="metric-value clickable" id="RetireEmp-${district.id}" onclick="showNearRetirement(${district.id})">
+                      <div class="spinner-border text-success" role="status" style="width: 1.5rem; height: 1.5rem; border-width: 3px;">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="metric-label">
+                      <i class="bi bi-award"></i> Avg. Years Service
+                    </div>
+                    <div class="metric-value" id="avgServe-${district.id}">
+                      <div class="spinner-border text-success" role="status" style="width: 1.5rem; height: 1.5rem; border-width: 3px;">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          cardsContainer.innerHTML += cardHtml;
+        });
+
+        // Add the combined district card with white background
+        const combinedCardHtml = `
+          <div class="col-md-6">
+            <div class="district-card" data-district="combined">
+              <i class="bi bi-grid-3x3-gap grid-icon"></i>
+              <h2 style="color: var(--primary-green);">All Districts Combined</h2>
+              <div class="row mt-4">
+                <div class="col-4">
+                  <div class="metric-label">
+                    <i class="bi bi-person"></i> Total Employees
+                  </div>
+                  <div class="metric-value clickable" id="totEmp-combined" onclick="showCombinedEmployees()">
+                    <div class="spinner-border text-success" role="status" style="width: 1.5rem; height: 1.5rem; border-width: 3px;">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="metric-label">
+                    <i class="bi bi-clock"></i> Near Retirement
+                  </div>
+                  <div class="metric-value clickable" id="RetireEmp-combined" onclick="showCombinedRetirement()">
+                    <div class="spinner-border text-success" role="status" style="width: 1.5rem; height: 1.5rem; border-width: 3px;">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="metric-label">
+                    <i class="bi bi-award"></i> Avg. Years Service
+                  </div>
+                  <div class="metric-value" id="avgServe-combined">
+                    <div class="spinner-border text-success" role="status" style="width: 1.5rem; height: 1.5rem; border-width: 3px;">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        cardsContainer.innerHTML += combinedCardHtml;
+
+        // Fetch and update metrics for all districts and combined
+        fetchAllDistrictsData();
+        updateCombinedDistrictMetrics();
+      }
+
+      // Update metrics for combined district (sum of districts 1-4)
+      function updateCombinedDistrictMetrics() {
+        // Fetch data for all districts and combine them
+        Promise.all([
+          fetch("phpp/dashboard/Total_Employees.php").then(response => response.json()),
+          fetch("phpp/dashboard/Total_Retirement.php").then(response => response.json()),
+          fetch("phpp/dashboard/AvgService.php").then(response => response.json())
+        ])
+        .then(([employeeResponse, retirementResponse, serviceResponse]) => {
+          let totalEmployees = 0;
+          let totalRetirement = 0;
+          let totalServiceYears = 0;
+          let totalEmployeesForAvg = 0;
+
+          // Sum up employees from districts 1-4
+          if (employeeResponse.success) {
+            for (let i = 1; i <= 4; i++) {
+              totalEmployees += parseInt(employeeResponse.data[i] || 0);
+            }
+          }
+
+          // Sum up retirement from districts 1-4
+          if (retirementResponse.success) {
+            for (let i = 1; i <= 4; i++) {
+              totalRetirement += parseInt(retirementResponse.data[i] || 0);
+            }
+          }
+
+          // Calculate weighted average service years
+          if (serviceResponse.success) {
+            for (let i = 1; i <= 4; i++) {
+              const districtEmployees = parseInt(employeeResponse.data[i] || 0);
+              const districtAvgService = parseFloat(serviceResponse.data[i] || 0);
+              totalServiceYears += (districtEmployees * districtAvgService);
+              totalEmployeesForAvg += districtEmployees;
+            }
+          }
+
+          const avgService = totalEmployeesForAvg > 0 ? (totalServiceYears / totalEmployeesForAvg).toFixed(1) : 0;
+
+          // Update the combined card metrics
+          const empElement = document.getElementById("totEmp-combined");
+          if (empElement) {
+            empElement.textContent = totalEmployees;
+          }
+
+          const retireElement = document.getElementById("RetireEmp-combined");
+          if (retireElement) {
+            retireElement.textContent = totalRetirement;
+          }
+
+          const serviceElement = document.getElementById("avgServe-combined");
+          if (serviceElement) {
+            serviceElement.textContent = avgService;
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching combined district data:", error);
+          
+          // Show error state
+          ["totEmp-combined", "RetireEmp-combined", "avgServe-combined"].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+              element.textContent = "Error";
+            }
+          });
+        });
+      }
+
+      // Show employees for combined districts
+      function showCombinedEmployees() {
+        closeAllModals();
+
+        // Clear current municipality and set special district
+        currentMunicipality = null;
+        currentDistrict = "combined";
+
+        document.getElementById("employeeDistrictName").textContent = "All Districts Combined";
+        const modal = new bootstrap.Modal(document.getElementById("employeeModal"));
+        modal.show();
+
+        // Fetch combined employee data from all districts
+        Promise.all([
+          fetch("phpp/dashboard/getEmployees.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ districtNum: 1 }),
+          }).then(response => response.json()),
+          fetch("phpp/dashboard/getEmployees.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ districtNum: 2 }),
+          }).then(response => response.json()),
+          fetch("phpp/dashboard/getEmployees.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ districtNum: 3 }),
+          }).then(response => response.json()),
+          fetch("phpp/dashboard/getEmployees.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ districtNum: 4 }),
+          }).then(response => response.json())
+        ])
+        .then(([district1, district2, district3, district4]) => {
+          // Combine all district data
+          schoolData = [...district1, ...district2, ...district3, ...district4];
+          filteredSchoolData = [...schoolData];
+          displaySchoolPage(1);
+          setupPagination(filteredSchoolData.length);
+        })
+        .catch((error) => {
+          console.error("Error fetching combined employee data:", error);
+          const tableBody = document.getElementById("employeeTableBody");
+          tableBody.innerHTML = "<tr><td colspan='4'>Error loading data. Please try again.</td></tr>";
+        });
+
+        addSearchFunctionality("employeeSearchInput", "employeeTableBody");
+      }
+
+      // Show near retirement for combined districts
+      function showCombinedRetirement() {
+        closeAllModals();
+
+        // Clear current municipality
+        currentMunicipality = null;
+
+        document.getElementById("districtNum").textContent = "All Districts Combined";
+        const modal = new bootstrap.Modal(document.getElementById("nearRetirementModal"));
+        modal.show();
+
+        const tableBody = document.getElementById("nearRetirementTableBody");
+        tableBody.innerHTML = ""; // Clear previous data
+
+        // Fetch retirement data from all districts
+        Promise.all([
+          fetch("phpp/dashboard/getRetirement.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ districtNum: 1 }),
+          }).then(response => response.json()),
+          fetch("phpp/dashboard/getRetirement.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ districtNum: 2 }),
+          }).then(response => response.json()),
+          fetch("phpp/dashboard/getRetirement.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ districtNum: 3 }),
+          }).then(response => response.json()),
+          fetch("phpp/dashboard/getRetirement.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ districtNum: 4 }),
+          }).then(response => response.json())
+        ])
+        .then(([district1, district2, district3, district4]) => {
+          // Combine all district data
+          const combinedData = [...district1, ...district2, ...district3, ...district4];
+          
+          combinedData.forEach((employee) => {
+            const row = `
+              <tr>
+                <td data-label="SID">${employee.SchoolID}</td>
+                <td data-label="School Name">${employee.schoolName}</td>
+                <td data-label="Total Retirees">${employee.near_retirement_count}</td>
+                <td data-label="Action">
+                  <button class="btn btn-danger btn-sm" onclick="showRetirementDetails('${employee.SchoolID}', '${encodeURIComponent(employee.schoolName)}')">
+                    View
+                  </button>
+                </td>
+              </tr>
+            `;
+            tableBody.insertAdjacentHTML("beforeend", row);
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching combined retirement data:", error);
+          tableBody.innerHTML = "<tr><td colspan='4'>Error loading data. Please try again.</td></tr>";
+        });
+
+        // Search filter
+        document.getElementById("searchInput").addEventListener("input", function () {
+          const filter = this.value.toLowerCase();
+          document.querySelectorAll("#nearRetirementTableBody tr").forEach((row) => {
+            row.style.display = row.textContent.toLowerCase().includes(filter) ? "" : "none";
+          });
         });
       }
 
@@ -1421,70 +1712,6 @@ if (!isset($_SESSION['user_id'])) {
         }
       }
 
-      // Show all district cards (original view)
-      function showAllDistrictCards() {
-        const cardsContainer = document.getElementById(
-          "district-cards-container"
-        );
-        {
-          const cardsContainer = document.getElementById(
-            "district-cards-container"
-          );
-          if (!cardsContainer) return;
-
-          // Clear existing cards
-          cardsContainer.innerHTML = "";
-
-          // Generate the original 4 district cards
-          originalDistricts.forEach((district) => {
-            const cardHtml = `
-  <div class="col-md-6">
-    <div class="district-card" data-district="${district.id}">
-      <i class="bi bi-grid-3x3-gap grid-icon"></i>
-      <h2 style="color: var(--primary-green);">${district.name}</h2>
-      <div class="row mt-4">
-        <div class="col-4">
-          <div class="metric-label">
-            <i class="bi bi-person"></i> Total Employees
-          </div>
-          <div class="metric-value clickable" id="totEmp-${district.id}" onclick="showEmployees(${district.id})">
-            <div class="spinner-border text-success" role="status" style="width: 1.5rem; height: 1.5rem; border-width: 3px;">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="metric-label">
-            <i class="bi bi-clock"></i> Near Retirement
-          </div>
-          <div class="metric-value clickable" id="RetireEmp-${district.id}" onclick="showNearRetirement(${district.id})">
-            <div class="spinner-border text-success" role="status" style="width: 1.5rem; height: 1.5rem; border-width: 3px;">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="metric-label">
-            <i class="bi bi-award"></i> Avg. Years Service
-          </div>
-          <div class="metric-value" id="avgServe-${district.id}">
-            <div class="spinner-border text-success" role="status" style="width: 1.5rem; height: 1.5rem; border-width: 3px;">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-`;
-
-            cardsContainer.innerHTML += cardHtml;
-          });
-
-          // Fetch and update metrics for all districts
-          fetchAllDistrictsData();
-        }
-      }
       // Show municipality cards for a specific CD district
       function showMunicipalityCards(cdDistrict) {
         const cardsContainer = document.getElementById(
@@ -2445,6 +2672,8 @@ if (!isset($_SESSION['user_id'])) {
               /\s+/g,
               "_"
             )}.csv`;
+          } else if (currentDistrict === "combined") {
+            filename = `Employees_All_Districts_Combined.csv`;
           } else {
             filename = `Employees_District_${currentDistrict}.csv`;
           }
@@ -2478,6 +2707,8 @@ if (!isset($_SESSION['user_id'])) {
               /\s+/g,
               "_"
             )}.csv`;
+          } else if (currentDistrict === "combined") {
+            filename = `Service_All_Districts_Combined.csv`;
           } else {
             filename = `Service_District_${currentDistrict}.csv`;
           }
@@ -2519,6 +2750,8 @@ if (!isset($_SESSION['user_id'])) {
               /\s+/g,
               "_"
             )}.csv`;
+          } else if (currentDistrict === "combined") {
+            filename = `Retirement_All_Districts_Combined.csv`;
           } else {
             filename = `Retirement_District_${currentDistrict}.csv`;
           }

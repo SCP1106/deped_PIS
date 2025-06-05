@@ -12,14 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Ensure it's a POST request
         $district = $data['districtNum'];
 
         // Query to get total employees per school
-        $query = "CALL SELECT 
+        $query = "SELECT 
                     s.SchoolID, 
                     s.schoolName, 
                     COUNT(e.employee_no) AS total_employees 
                 FROM schoolinfo s 
                 LEFT JOIN employee_records e 
                     ON s.schoolID = e.school_id 
-                WHERE s.LD_Num = ?  -- Filtering by LD_Num
+                WHERE s.LD_Num = ? 
                 GROUP BY s.SchoolID, s.schoolName;";
 
         $stmt = $conn->prepare($query);

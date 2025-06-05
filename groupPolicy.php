@@ -1165,7 +1165,7 @@ if (!isset($_SESSION['user_id'])) {
             
             // Update all checkboxes in the parent and sibling rows
             parentCheckboxes.forEach(cb => cb.checked = shouldCheck);
-            siblingRows.forEach(row => {
+            siblingRows.forEach(    row => {
               const checkboxes = row.querySelectorAll('input[type="checkbox"]');
               checkboxes.forEach(cb => cb.checked = shouldCheck);
             });

@@ -6,7 +6,7 @@ header('Pragma: no-cache');
 header('Expires: 0');
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ..auth/pages/login.php');
+    header('Location: auth/pages/login.php');
     exit;
 }
 ?>
@@ -60,9 +60,10 @@ if (!isset($_SESSION['user_id'])) {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 2rem;
       }
+      
       #sidebar-container .sidebar {
         height: 100vh;
-        overflow-y: auto; /* Allows vertical scrolling */
+        overflow-y: auto;
       }
 
       .search-bar input {
@@ -114,7 +115,6 @@ if (!isset($_SESSION['user_id'])) {
         border: 1px solid rgba(117, 117, 117, 0.095);
       }
 
-      /* Enhanced striping for table rows */
       .table tbody tr:nth-child(odd) {
         background-color: #f8f9fa;
       }
@@ -136,7 +136,6 @@ if (!isset($_SESSION['user_id'])) {
         background-color: rgba(0, 123, 255, 0.05);
       }
 
-      /* Modern modal styling */
       .modal-content {
         border-radius: 12px;
         border: none;
@@ -167,7 +166,6 @@ if (!isset($_SESSION['user_id'])) {
         padding: 1rem 1.5rem 1.5rem;
       }
 
-      /* Form styling */
       .form-floating {
         margin-bottom: 1.25rem;
       }
@@ -195,7 +193,6 @@ if (!isset($_SESSION['user_id'])) {
         border-color: var(--primary-color);
       }
 
-      /* Card-based form layout */
       .form-card {
         background-color: #ffffff;
         border-radius: 10px;
@@ -217,7 +214,6 @@ if (!isset($_SESSION['user_id'])) {
         margin-bottom: 0;
       }
 
-      /* Button styling */
       .btn-success {
         background-color: var(--success-color);
         border-color: var(--success-color);
@@ -250,7 +246,6 @@ if (!isset($_SESSION['user_id'])) {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
 
-      /* Map container styling */
       #school-map-container {
         height: 300px;
         border-radius: 8px;
@@ -259,7 +254,6 @@ if (!isset($_SESSION['user_id'])) {
         margin-bottom: 1rem;
       }
 
-      /* Location picker section */
       .location-picker-section {
         background-color: #f8f9fa;
         border-radius: 5px;
@@ -314,35 +308,6 @@ if (!isset($_SESSION['user_id'])) {
         outline: none;
       }
 
-      .skeleton-circle {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background-color: #e9ecef;
-      }
-
-      .skeleton-text {
-        height: 1rem;
-        background-color: #e9ecef;
-        margin: 0.5rem 0;
-        border-radius: 4px;
-      }
-
-      .skeleton-nav-item {
-        height: 2.5rem;
-        background-color: #e9ecef;
-        margin: 0.5rem 0;
-        border-radius: 4px;
-      }
-
-      .skeleton-logo {
-        width: 30px;
-        height: 30px;
-        background-color: #e9ecef;
-        border-radius: 4px;
-      }
-
-      /* New styles for filter panel */
       .filter-panel {
         display: none;
         position: absolute;
@@ -370,164 +335,12 @@ if (!isset($_SESSION['user_id'])) {
         margin-right: 0.5rem;
       }
 
-      /* Improved responsive table styles */
-      @media (max-width: 768px) {
-        .search-bar input {
-          width: 100%;
-          margin-bottom: 1rem;
-        }
-
-        .action-buttons {
-          display: flex;
-          gap: 0.5rem;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          width: 100%;
-        }
-
-        .action-buttons .btn {
-          flex: 1;
-          min-width: calc(33% - 0.5rem);
-          padding: 0.5rem;
-          font-size: 0.875rem;
-        }
-
-        /* Table responsive transformation */
-        .table-responsive {
-          overflow-x: visible;
-        }
-
-        /* Modern card-based layout for mobile */
-        .school-card {
-          background-color: #fff;
-          border-radius: 10px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          margin-bottom: 16px;
-          overflow: hidden;
-          cursor: pointer;
-        }
-
-        .school-card-header {
-          padding: 12px 16px;
-          background-color: var(--success-color);
-          color: white;
-          font-weight: 600;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .school-card-body {
-          padding: 16px;
-        }
-
-        .school-card-row {
-          display: flex;
-          justify-content: space-between;
-          padding: 8px 0;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .school-card-row:last-child {
-          border-bottom: none;
-        }
-
-        .school-card-label {
-          font-weight: 600;
-          color: var(--dark-color);
-        }
-
-        .school-card-value {
-          text-align: right;
-          color: #555;
-        }
-
-        .school-card-footer {
-          padding: 12px 16px;
-          background-color: #f8f9fa;
-          border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .see-more-btn {
-          width: 100%;
-          text-align: center;
-          padding: 8px;
-          background-color: transparent;
-          color: var(--primary-color);
-          border: none;
-          font-weight: 500;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.2s ease;
-        }
-
-        .see-more-btn:hover {
-          background-color: rgba(76, 175, 80, 0.1);
-        }
-
-        .see-more-btn i {
-          margin-left: 4px;
-          transition: transform 0.2s ease;
-        }
-
-        .see-more-btn.active i {
-          transform: rotate(180deg);
-        }
-
-        .hidden-info {
-          display: none;
-          padding-top: 8px;
-        }
-
-        .hidden-info.show {
-          display: block;
-          animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        /* Hide the regular table on mobile */
-        .table {
-          display: none;
-        }
-
-        /* Show cards container on mobile */
-        .mobile-cards-container {
-          display: block;
-        }
-      }
-
-      @media (min-width: 769px) {
-        /* Hide cards on desktop */
-        .mobile-cards-container {
-          display: none;
-        }
-
-        /* Show regular table on desktop */
-        .table {
-          display: table;
-        }
-      }
-
-      /* Disabled update button style */
       .btn-update-disabled {
         opacity: 0.6;
         cursor: not-allowed;
         pointer-events: none;
       }
 
-      /* ENHANCED Enrollment popup styles */
       .enrollment-link {
         cursor: pointer;
         text-decoration: underline;
@@ -543,7 +356,6 @@ if (!isset($_SESSION['user_id'])) {
         color: var(--hover-green) !important;
         transform: scale(1.05);
       }
-
 
       .table td.enrollment-cell {
         position: relative;
@@ -762,7 +574,6 @@ if (!isset($_SESSION['user_id'])) {
         margin-left: 5px;
       }
 
-      /* New styles for address dropdowns */
       .dropdown-loading {
         display: flex;
         align-items: center;
@@ -779,7 +590,51 @@ if (!isset($_SESSION['user_id'])) {
         margin-right: 0.5rem;
       }
 
+      /* Location info styles */
+      .location-info {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid var(--border-color);
+      }
+
+      .location-info h6 {
+        color: var(--success-color);
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .location-info p {
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+      }
+
+      .location-info strong {
+        color: var(--dark-color);
+      }
+
       @media (max-width: 768px) {
+        .search-bar input {
+          width: 100%;
+          margin-bottom: 1rem;
+        }
+
+        .action-buttons {
+          display: flex;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        .action-buttons .btn {
+          flex: 1;
+          min-width: calc(33% - 0.5rem);
+          padding: 0.5rem;
+          font-size: 0.875rem;
+        }
+
         .enrollment-popup-content {
           width: 95%;
           max-height: 85vh;
@@ -800,8 +655,7 @@ if (!isset($_SESSION['user_id'])) {
         }
       }
     </style>
-
-</head>
+  </head>
   <body>
     <div id="sidebar-container">
       <!-- Sidebar will be loaded here -->
@@ -833,30 +687,34 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
                 <div>
                   <input type="checkbox" value="2" id="typeCheck" />
-                  <label for="typeCheck">Type</label>
+                  <label for="typeCheck">Institution Type</label>
                 </div>
                 <div>
-                  <input type="checkbox" value="3" id="popCheck" />
-                  <label for="popCheck">Population</label>
+                  <input type="checkbox" value="3" id="curricularCheck" />
+                  <label for="curricularCheck">Curricular Offer</label>
                 </div>
                 <div>
-                  <input type="checkbox" value="4" id="districtCheck" />
+                  <input type="checkbox" value="4" id="popCheck" />
+                  <label for="popCheck">Enrollment</label>
+                </div>
+                <div>
+                  <input type="checkbox" value="5" id="districtCheck" />
                   <label for="districtCheck">District</label>
                 </div>
                 <div>
-                  <input type="checkbox" value="5" id="principalCheck" />
+                  <input type="checkbox" value="6" id="principalCheck" />
                   <label for="principalCheck">Principal</label>
                 </div>
                 <div>
-                  <input type="checkbox" value="6" id="CNumCheck" />
+                  <input type="checkbox" value="7" id="CNumCheck" />
                   <label for="CNumCheck">Contact Number</label>
                 </div>
                 <div>
-                  <input type="checkbox" value="7" id="emailCheck" />
+                  <input type="checkbox" value="8" id="emailCheck" />
                   <label for="emailCheck">Email</label>
                 </div>
                 <div>
-                  <input type="checkbox" value="8" id="ageCheck" />
+                  <input type="checkbox" value="9" id="ageCheck" />
                   <label for="ageCheck">Age</label>
                 </div>
               </div>
@@ -892,25 +750,26 @@ if (!isset($_SESSION['user_id'])) {
               <i class="bi bi-pencil-square"></i>
               Update
             </button>
-              <button class="btn btn-warning dropdown-toggle" type="button" id="actionButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-gear"></i>
-                Action
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="actionButton">
-                <li><button class="dropdown-item" onclick="importData()"><i class="bi bi-upload"></i> Import</button></li>
-                <li><button class="dropdown-item" onclick="exportToExcel()"><i class="bi bi-file-earmark-excel"></i> Export</button></li>
-              </ul>
+            <button class="btn btn-warning dropdown-toggle" type="button" id="actionButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-gear"></i>
+              Action
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="actionButton">
+              <li><button class="dropdown-item" onclick="importData()"><i class="bi bi-upload"></i> Import</button></li>
+              <li><button class="dropdown-item" onclick="exportToExcel()"><i class="bi bi-file-earmark-excel"></i> Export</button></li>
+            </ul>
           </div>
         </div>
 
-        <!-- Desktop Table View -->
+        <!-- Schools Table -->
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>SID</th>
                 <th>School Name</th>
-                <th>Type</th>
+                <th>Institution Type</th>
+                <th>Curricular Offer</th>
                 <th>Enrollment</th>
                 <th>District</th>
                 <th>Principal</th>
@@ -921,28 +780,17 @@ if (!isset($_SESSION['user_id'])) {
             </thead>
             <tbody id="schoolTableBody">
               <tr>
-                <td colspan="9" class="text-center">
+                <td colspan="10" class="text-center">
                   <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                   </div>
                 </td>
               </tr>
-              <!-- Table rows will be populated by JavaScript -->
             </tbody>
           </table>
         </div>
 
-        <!-- Mobile Cards View -->
-        <div class="mobile-cards-container" id="mobileCardsContainer">
-          <!-- Mobile cards will be inserted here by JavaScript -->
-          <div class="text-center py-4">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pagination (works for both views) -->
+        <!-- Pagination -->
         <div id="pagination" class="d-flex justify-content-center mt-3">
           <button id="prevPage" class="btn btn-outline-secondary mx-1">
             Previous
@@ -955,7 +803,7 @@ if (!isset($_SESSION['user_id'])) {
       </div>
     </div>
 
-    <!-- School Modal (for both Add and Update) -->
+    <!-- School Modal -->
     <div
       class="modal fade"
       id="schoolModal"
@@ -1009,14 +857,28 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
 
                     <div class="form-floating mb-3">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="schoolType"
-                        placeholder="Type"
-                        required
-                      />
-                      <label for="schoolType">Type</label>
+                      <select class="form-select" id="institutionType" required>
+                        <option value="" selected disabled>Select Institution Type</option>
+                        <option value="Public">Public</option>
+                        <option value="Private">Private</option>
+                        <option value="SUC">SUC (State Universities and Colleges)</option>
+                      </select>
+                      <label for="institutionType">Institution Type</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <select class="form-select" id="curricularOffer" required>
+                        <option value="" selected disabled>Select Curricular Offer</option>
+                        <option value="Kinder, Grade 1-6">Kinder & Grade 1-6</option>
+                        <option value="Grade 7-10">Grade 7-10</option>
+                        <option value="Grade 11-12">Grade 11-12</option>
+                        <option value="Grade 1-6, Grade 7-10">Grade 1-6, Grade 7-10</option>
+                        <option value="Grade 7-10, Grade 11-12">Grade 7-10, Grade 11-12</option>
+                        <option value="Kinder, Grade 1-6, Grade 7-10">Kinder & Grade 1-6, Grade 7-10</option>
+                        <option value="Grade 1-6, Grade 7-10, Grade 11-12">Grade 1-6, Grade 7-10, Grade 11-12</option>
+                        <option value="Kinder, Grade 1-6, Grade 7-10, Grade 11-12">Kinder & Grade 1-6, Grade 7-10, Grade 11-12</option>
+                      </select>
+                      <label for="curricularOffer">Curricular Offer</label>
                     </div>
 
                     <div class="form-floating mb-3">
@@ -1027,7 +889,7 @@ if (!isset($_SESSION['user_id'])) {
                         placeholder="Enrollment"
                         required
                       />
-                      <label for="schoolPopulation">Enrollment</label>
+                      <label for="schoolPopulation">Total Enrollment</label>
                     </div>
 
                     <div class="form-floating mb-3">
@@ -1081,17 +943,28 @@ if (!isset($_SESSION['user_id'])) {
                         min="18"
                         max="100"
                       />
-                      <label for="principalAge">Age</label>
+                      <label for="principalAge">Principal Age</label>
                     </div>
                   </div>
                 </div>
 
                 <!-- Right Column - Address and Map -->
                 <div class="col-md-6">
+                  <!-- Location Information Display -->
+                  <div class="location-info" id="locationInfo" style="display: none;">
+                    <h6><i class="bi bi-geo-alt-fill"></i> Current Location Information</h6>
+                    <p><strong>Region:</strong> <span id="currentRegion">-</span></p>
+                    <p><strong>Province:</strong> <span id="currentProvince">-</span></p>
+                    <p><strong>City/Municipality:</strong> <span id="currentCity">-</span></p>
+                    <p><strong>Barangay:</strong> <span id="currentBarangay">-</span></p>
+                    <p><strong>Landmark:</strong> <span id="currentLandmark">-</span></p>
+                    <p><strong>Coordinates:</strong> <span id="currentCoordinates">-</span></p>
+                  </div>
+
                   <div class="form-card">
                     <div class="form-card-header">
                       <h6 class="form-card-title">
-                        <i class="bi bi-geo-alt"></i> Address
+                        <i class="bi bi-geo-alt"></i> Address Information
                       </h6>
                     </div>
 
@@ -1100,12 +973,24 @@ if (!isset($_SESSION['user_id'])) {
                         class="form-select"
                         id="regionSelect"
                         required
-                        onchange="loadCities()"
+                        onchange="loadProvinces()"
                       >
                         <option value="" selected disabled>Select Region</option>
-                        <!-- Regions will be loaded dynamically -->
                       </select>
                       <label for="regionSelect">Region</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="provinceSelect"
+                        required
+                        onchange="loadCities()"
+                        disabled
+                      >
+                        <option value="" selected disabled>Select Province</option>
+                      </select>
+                      <label for="provinceSelect">Province</label>
                     </div>
 
                     <div class="form-floating mb-3">
@@ -1117,7 +1002,6 @@ if (!isset($_SESSION['user_id'])) {
                         disabled
                       >
                         <option value="" selected disabled>Select City/Municipality</option>
-                        <!-- Cities will be loaded dynamically -->
                       </select>
                       <label for="citySelect">City/Municipality</label>
                     </div>
@@ -1130,7 +1014,6 @@ if (!isset($_SESSION['user_id'])) {
                         disabled
                       >
                         <option value="" selected disabled>Select Barangay</option>
-                        <!-- Barangays will be loaded dynamically -->
                       </select>
                       <label for="barangaySelect">Barangay</label>
                     </div>
@@ -1247,17 +1130,20 @@ if (!isset($_SESSION['user_id'])) {
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-      // --- Global Variables ---
+      // Global Variables
       let schoolMap = null;
       let schoolMarker = null;
-      let defaultLat = 14.5995; // Default to Manila
+      let defaultLat = 14.5995;
       let defaultLng = 120.9842;
+      let originalLat = null; // Store original coordinates from database
+      let originalLng = null;
       let schoolsData = [];
       let selectedSchoolIndex = -1;
       let selectedSchool = null;
       
       // Address data
       let regions = [];
+      let provinces = {};
       let cities = {};
       let barangays = {};
 
@@ -1283,7 +1169,7 @@ if (!isset($_SESSION['user_id'])) {
         document.getElementById("schoolModal").addEventListener("shown.bs.modal", loadRegions);
       });
 
-      // --- Component Loader ---
+      // Component Loader
       function loadComponent(componentName, containerId, callback) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -1299,7 +1185,6 @@ if (!isset($_SESSION['user_id'])) {
           })
           .catch((error) => { 
             console.error(error); 
-            // Create fallback components if loading fails
             if (componentName === "sidebar.php") {
               createFallbackSidebar(container);
             } else if (componentName === "topbar.php") {
@@ -1308,7 +1193,6 @@ if (!isset($_SESSION['user_id'])) {
           });
       }
       
-      // Create fallback sidebar if loading fails
       function createFallbackSidebar(container) {
         container.innerHTML = `
           <div class="sidebar bg-dark text-white" style="width: 250px; position: fixed; height: 100vh; left: 0; top: 0; z-index: 1000; padding-top: 60px;">
@@ -1331,7 +1215,6 @@ if (!isset($_SESSION['user_id'])) {
         initializeSidebar();
       }
       
-      // Create fallback topbar if loading fails
       function createFallbackTopbar(container) {
         container.innerHTML = `
           <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top" style="z-index: 1001; padding-left: 260px;">
@@ -1357,7 +1240,6 @@ if (!isset($_SESSION['user_id'])) {
         initializeTopbar();
       }
 
-      // --- Sidebar/Topbar ---
       function initializeSidebar() {
         setTimeout(() => {
           const navLinks = document.querySelectorAll(".sidebar nav a");
@@ -1384,36 +1266,9 @@ if (!isset($_SESSION['user_id'])) {
           });
         }, 200);
       }
-      
-      document.addEventListener("click", (event) => {
-        if (event.target.id === "logoutLink") {
-          event.preventDefault();
-          if (typeof Swal !== "undefined") {
-            Swal.fire({ 
-              title: "Are you sure?", 
-              text: "You are about to logout!", 
-              icon: "warning", 
-              showCancelButton: true, 
-              confirmButtonColor: "#3085d6", 
-              cancelButtonColor: "#d33", 
-              confirmButtonText: "Yes, logout!" 
-            }).then((result) => { 
-              if (result.isConfirmed) window.location.href = "index.php"; 
-            });
-          } else {
-            console.error("SweetAlert (Swal) is not defined. Make sure it's included in your HTML.");
-            if (confirm("Are you sure you want to logout?")) {
-              window.location.href = "index.php";
-            }
-          }
-        }
-      });
 
       function fetchData() {
-        const loadingScreen = document.getElementById("loadingScreen");
-        if (loadingScreen) loadingScreen.style.display = "flex";
-
-        fetch("phpp/dashboard/fetchSchoolInfo.php", { method: "GET" })
+        fetch("phpp/school_info/fetchSchoolInfo.php", { method: "GET" })
           .then((response) => {
             if (!response.ok) {
               throw new Error("Network response was not ok");
@@ -1426,34 +1281,36 @@ if (!isset($_SESSION['user_id'])) {
             }
             schoolsData = schools;
             populateTable(schools);
-            populateMobileCards(schools);
             initializePagination();
             initializeEnrollmentLinks();
           })
           .catch((error) => {
             console.error("Error fetching data:", error);
-            
-
-            // Show error notification
-            if (typeof Swal !== "undefined") {
-              Swal.fire({
-                icon: "warning",
-                title: "Connection Issue",
-                text: "Using sample data. Database connection failed.",
-                confirmButtonColor: "#4caf50"
-              });
-            } else {
-              alert("Database connection failed. Using sample data instead.");
-            }
-          })
-          .finally(() => {
-            if (loadingScreen) loadingScreen.style.display = "none";
+            useSampleData();
           });
       }
 
-      
+      function useSampleData() {
+        // Sample data for demonstration
+        schoolsData = [
+          {
+            SchoolID: "123456",
+            Schoolname: "Sample Elementary School",
+            Institution: "Public",
+            curricularOffer: "Kinder, Grade 1-6",
+            total_enrollees: "450",
+            district: "District I",
+            principal: "John Doe",
+            contact_no: "09123456789",
+            email: "sample@deped.gov.ph",
+            principal_age: "45"
+          }
+        ];
+        populateTable(schoolsData);
+        initializePagination();
+        initializeEnrollmentLinks();
+      }
 
-      // Function to populate the desktop table
       function populateTable(data) {
         const tbody = document.getElementById("schoolTableBody");
         if (!tbody) return;
@@ -1462,15 +1319,15 @@ if (!isset($_SESSION['user_id'])) {
 
         if (data.length === 0) {
           tbody.innerHTML =
-            '<tr><td colspan="9" class="text-center">No data available</td></tr>';
+            '<tr><td colspan="10" class="text-center">No data available</td></tr>';
           return;
         }
 
-        // Column headers for data-label attributes
         const headers = [
           "SID",
           "School Name",
-          "Type",
+          "Institution Type",
+          "Curricular Offer",
           "Enrollment",
           "District",
           "Principal",
@@ -1490,36 +1347,31 @@ if (!isset($_SESSION['user_id'])) {
           <td data-label="${headers[0]}">${school.SchoolID || "N/A"}</td>
           <td data-label="${headers[1]}">${school.Schoolname || "N/A"}</td>
           <td data-label="${headers[2]}">${school.Institution || "N/A"}</td>
-          <td data-label="${headers[3]}" class="enrollment-cell"><a class="enrollment-link">${
+          <td data-label="${headers[3]}">${school.curricularOffer || "N/A"}</td>
+          <td data-label="${headers[4]}" class="enrollment-cell"><a class="enrollment-link">${
             school.total_enrollees || "N/A"
           }</a></td>
-          <td data-label="${headers[4]}">${school.district || "N/A"}</td>
-          <td data-label="${headers[5]}">${school.principal || "N/A"}</td>
-          <td data-label="${headers[6]}">${school.contact_no || "N/A"}</td>
-          <td data-label="${headers[7]}">${school.email || "N/A"}</td>
-          <td data-label="${headers[8]}">${school.principal_age || "N/A"}</td>
+          <td data-label="${headers[5]}">${school.district || "N/A"}</td>
+          <td data-label="${headers[6]}">${school.principal || "N/A"}</td>
+          <td data-label="${headers[7]}">${school.contact_no || "N/A"}</td>
+          <td data-label="${headers[8]}">${school.email || "N/A"}</td>
+          <td data-label="${headers[9]}">${school.principal_age || "N/A"}</td>
         `;
 
-          // Add click event to select row and enable update button
           row.addEventListener("click", function (e) {
-            // Skip if clicking on enrollment cell
             if (e.target.classList.contains("enrollment-link") || e.target.closest(".enrollment-link")) {
               return;
             }
 
-            // Remove selection from all rows
             document.querySelectorAll("#schoolTableBody tr").forEach((r) => {
               r.classList.remove("table-primary");
             });
 
-            // Add selection to clicked row
             this.classList.add("table-primary");
 
-            // Store selected school
             selectedSchoolIndex = index;
             selectedSchool = schoolsData[index];
 
-            // Enable update button
             const updateButton = document.getElementById("updateButton");
             updateButton.classList.remove("btn-update-disabled");
             updateButton.disabled = false;
@@ -1529,198 +1381,43 @@ if (!isset($_SESSION['user_id'])) {
         });
       }
 
-      // Function to populate mobile cards
-      function populateMobileCards(data) {
-        const container = document.getElementById("mobileCardsContainer");
-        if (!container) return;
-
-        container.innerHTML = "";
-
-        if (data.length === 0) {
-          container.innerHTML =
-            '<div class="text-center py-4">No data available</div>';
-          return;
-        }
-
-        data.forEach((school, index) => {
-          const card = document.createElement("div");
-          card.className = "school-card";
-          card.setAttribute("data-row-id", index);
-
-          // Create card header with school ID
-          const cardHeader = document.createElement("div");
-          cardHeader.className = "school-card-header";
-          cardHeader.innerHTML = `
-            <span>School ID: ${school.SchoolID || "N/A"}</span>
-            <span class="badge bg-light text-dark">${
-              school.Institution || "N/A"
-            }</span>
-          `;
-
-          // Create card body with main information
-          const cardBody = document.createElement("div");
-          cardBody.className = "school-card-body";
-
-          // Add the main visible information
-          cardBody.innerHTML = `
-            <div class="school-card-row">
-              <span class="school-card-label">School Name:</span>
-              <span class="school-card-value">${
-                school.Schoolname || "N/A"
-              }</span>
-            </div>
-            <div class="school-card-row">
-              <span class="school-card-label">Principal:</span>
-              <span class="school-card-value">${
-                school.principal || "N/A"
-              }</span>
-            </div>
-            <div class="school-card-row">
-              <span class="school-card-label">Enrollment:</span>
-              <span class="school-card-value enrollment-cell"><a class="enrollment-link"> ${
-                school.total_enrollees || "N/A"
-              }</a></span>
-            </div>
-            <div class="school-card-row">
-              <span class="school-card-label">District:</span>
-              <span class="school-card-value">${school.district || "N/A"}</span>
-            </div>
-          `;
-
-          // Create the hidden information section
-          const hiddenInfo = document.createElement("div");
-          hiddenInfo.className = "hidden-info";
-          hiddenInfo.id = `hidden-info-${index}`;
-          hiddenInfo.innerHTML = `
-            <div class="school-card-row">
-              <span class="school-card-label">Contact No.:</span>
-              <span class="school-card-value">${
-                school.contact_no || "N/A"
-              }</span>
-            </div>
-            <div class="school-card-row">
-              <span class="school-card-label">Email:</span>
-              <span class="school-card-value">${school.email || "N/A"}</span>
-            </div>
-            <div class="school-card-row">
-              <span class="school-card-label">Age:</span>
-              <span class="school-card-value">${
-                school.principal_age || "N/A"
-              }</span>
-            </div>
-          `;
-
-          // Create card footer with "See more" button
-          const cardFooter = document.createElement("div");
-          cardFooter.className = "school-card-footer";
-
-          const seeMoreBtn = document.createElement("button");
-          seeMoreBtn.className = "see-more-btn";
-          seeMoreBtn.innerHTML = `See more... <span class="ms-1"><i class="bi bi-chevron-down"></i></span>`;
-          seeMoreBtn.onclick = function (e) {
-            e.stopPropagation(); // Prevent card click event
-            toggleDetails(index);
-          };
-
-          // Add click event to the card to select it and enable update button
-          card.addEventListener("click", function (e) {
-            // Skip if clicking on enrollment cell or see more button
-            if (
-              e.target.classList.contains("enrollment-link") ||
-              e.target.closest(".enrollment-link") ||
-              e.target.closest(".see-more-btn")
-            ) {
-              return;
-            }
-
-            // Remove selection from all cards
-            document.querySelectorAll(".school-card").forEach((c) => {
-              c.classList.remove("border-primary");
-              c.style.boxShadow = "";
-            });
-
-            // Add selection to clicked card
-            this.classList.add("border-primary");
-            this.style.boxShadow = "0 0 0 0.25rem rgba(13, 110, 253, 0.25)";
-
-            // Store selected school
-            selectedSchoolIndex = index;
-            selectedSchool = schoolsData[index];
-
-            // Enable update button
-            const updateButton = document.getElementById("updateButton");
-            updateButton.classList.remove("btn-update-disabled");
-            updateButton.disabled = false;
-          });
-
-          // Assemble the card
-          cardFooter.appendChild(seeMoreBtn);
-          cardBody.appendChild(hiddenInfo);
-          card.appendChild(cardHeader);
-          card.appendChild(cardBody);
-          card.appendChild(cardFooter);
-
-          // Add to container
-          container.appendChild(card);
-        });
-      }
-
-      // Function to toggle the expanded details
-      function toggleDetails(rowIndex) {
-        const hiddenInfo = document.getElementById(`hidden-info-${rowIndex}`);
-        const card = hiddenInfo.closest(".school-card");
-        const seeMoreBtn = card.querySelector(".see-more-btn");
-
-        if (hiddenInfo.classList.contains("show")) {
-          hiddenInfo.classList.remove("show");
-          seeMoreBtn.innerHTML = `See more... <span class="ms-1"><i class="bi bi-chevron-down"></i></span>`;
-          seeMoreBtn.classList.remove("active");
-        } else {
-          hiddenInfo.classList.add("show");
-          seeMoreBtn.innerHTML = `See less <span class="ms-1"><i class="bi bi-chevron-up"></i></span>`;
-          seeMoreBtn.classList.add("active");
-        }
-      }
-
       function initializeMap() {
-  const mapContainer = document.getElementById("school-map-container");
-  if (!mapContainer) return;
+        const mapContainer = document.getElementById("school-map-container");
+        if (!mapContainer) return;
 
-  const lat = parseFloat(document.getElementById("latitude").value) || defaultLat;
-  const lng = parseFloat(document.getElementById("longitude").value) || defaultLng;
+        const lat = parseFloat(document.getElementById("latitude").value) || defaultLat;
+        const lng = parseFloat(document.getElementById("longitude").value) || defaultLng;
 
-  if (schoolMap) {
-    schoolMap.remove();
-    schoolMap = null;
-  }
+        if (schoolMap) {
+          schoolMap.remove();
+          schoolMap = null;
+        }
 
-  schoolMap = L.map("school-map-container").setView([lat, lng], 13);
+        schoolMap = L.map("school-map-container").setView([lat, lng], 13);
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(schoolMap);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(schoolMap);
 
-  // Corrected this line
-  schoolMarker = L.marker([lat, lng], { draggable: true }).addTo(schoolMap);
+        schoolMarker = L.marker([lat, lng], { draggable: true }).addTo(schoolMap);
 
-  schoolMarker.on("dragend", function (event) {
-    const marker = event.target;
-    const position = marker.getLatLng();
-    document.getElementById("latitude").value = position.lat.toFixed(7);
-    document.getElementById("longitude").value = position.lng.toFixed(7);
-  });
+        schoolMarker.on("dragend", function (event) {
+          const marker = event.target;
+          const position = marker.getLatLng();
+          document.getElementById("latitude").value = position.lat.toFixed(7);
+          document.getElementById("longitude").value = position.lng.toFixed(7);
+        });
 
-  schoolMap.on("click", function (e) {
-    schoolMarker.setLatLng(e.latlng);
-    document.getElementById("latitude").value = e.latlng.lat.toFixed(7);
-    document.getElementById("longitude").value = e.latlng.lng.toFixed(7);
-  });
+        schoolMap.on("click", function (e) {
+          schoolMarker.setLatLng(e.latlng);
+          document.getElementById("latitude").value = e.latlng.lat.toFixed(7);
+          document.getElementById("longitude").value = e.latlng.lng.toFixed(7);
+        });
 
-  setTimeout(() => {
-    if (schoolMap) schoolMap.invalidateSize();
-  }, 100);
-}
-
+        setTimeout(() => {
+          if (schoolMap) schoolMap.invalidateSize();
+        }, 100);
+      }
       
       function updateMarkerFromInputs() {
         if (!schoolMap || !schoolMarker) return;
@@ -1765,30 +1462,36 @@ if (!isset($_SESSION['user_id'])) {
       }
       
       function resetMapLocation() {
-        document.getElementById("latitude").value = defaultLat.toFixed(7);
-        document.getElementById("longitude").value = defaultLng.toFixed(7);
+        // Use original coordinates from database if in update mode, otherwise use default
+        const resetLat = originalLat !== null ? originalLat : defaultLat;
+        const resetLng = originalLng !== null ? originalLng : defaultLng;
+        
+        document.getElementById("latitude").value = resetLat.toFixed(7);
+        document.getElementById("longitude").value = resetLng.toFixed(7);
+        
         if (schoolMarker && schoolMap) {
-          const latLng = L.latLng(defaultLat, defaultLng);
+          const latLng = L.latLng(resetLat, resetLng);
           schoolMarker.setLatLng(latLng);
           schoolMap.panTo(latLng);
           schoolMap.setZoom(13);
         }
+        
+        // Show appropriate message
+        const message = originalLat !== null ? "Location reset to original database coordinates" : "Location reset to default coordinates";
+        Swal.fire({ toast: true, position: "top-end", icon: "info", title: message, showConfirmButton: false, timer: 1500 });
       }
 
-      // --- Address Functions ---
+      // Address Functions
       function loadRegions() {
         const regionSelect = document.getElementById("regionSelect");
         
-        // Clear existing options except the first one
         while (regionSelect.options.length > 1) {
           regionSelect.remove(1);
         }
         
-        // Show loading state
         regionSelect.disabled = true;
         
-        // Fetch regions from API or use mock data
-        fetch("phpp/dashboard/getRegions.php")
+        fetch("phpp/school_info/getRegions.php")
           .then(response => {
             if (!response.ok) {
               throw new Error("Failed to fetch regions");
@@ -1798,7 +1501,6 @@ if (!isset($_SESSION['user_id'])) {
           .then(data => {
             regions = data;
             
-            // Add regions to dropdown
             regions.forEach(region => {
               const option = document.createElement("option");
               option.value = region.id;
@@ -1806,19 +1508,15 @@ if (!isset($_SESSION['user_id'])) {
               regionSelect.appendChild(option);
             });
             
-            // Enable the select
             regionSelect.disabled = false;
             
-            // If updating a school, select the current region
             if (selectedSchool && selectedSchool.region_id) {
               regionSelect.value = selectedSchool.region_id;
-              // Load cities for this region
-              loadCities();
+              loadProvinces();
             }
           })
           .catch(error => {
             console.error("Error loading regions:", error);
-            // Use mock data if API fails
             useMockRegions();
           });
       }
@@ -1826,7 +1524,6 @@ if (!isset($_SESSION['user_id'])) {
       function useMockRegions() {
         const regionSelect = document.getElementById("regionSelect");
         
-        // Mock regions data
         regions = [
           { id: "01", name: "Region I - Ilocos Region" },
           { id: "02", name: "Region II - Cagayan Valley" },
@@ -1846,7 +1543,6 @@ if (!isset($_SESSION['user_id'])) {
           { id: "BARMM", name: "Bangsamoro Autonomous Region in Muslim Mindanao" }
         ];
         
-        // Add regions to dropdown
         regions.forEach(region => {
           const option = document.createElement("option");
           option.value = region.id;
@@ -1854,38 +1550,127 @@ if (!isset($_SESSION['user_id'])) {
           regionSelect.appendChild(option);
         });
         
-        // Enable the select
         regionSelect.disabled = false;
         
-        // If updating a school, select the current region
         if (selectedSchool && selectedSchool.region_id) {
           regionSelect.value = selectedSchool.region_id;
-          // Load cities for this region
-          loadCities();
+          loadProvinces();
         }
       }
       
-      function loadCities() {
+      function loadProvinces() {
         const regionSelect = document.getElementById("regionSelect");
+        const provinceSelect = document.getElementById("provinceSelect");
         const citySelect = document.getElementById("citySelect");
         const barangaySelect = document.getElementById("barangaySelect");
         
-        // Reset city and barangay dropdowns
+        provinceSelect.innerHTML = '<option value="" selected disabled>Select Province</option>';
         citySelect.innerHTML = '<option value="" selected disabled>Select City/Municipality</option>';
         barangaySelect.innerHTML = '<option value="" selected disabled>Select Barangay</option>';
         
-        // Disable both dropdowns initially
+        provinceSelect.disabled = true;
         citySelect.disabled = true;
         barangaySelect.disabled = true;
         
         const selectedRegionId = regionSelect.value;
         if (!selectedRegionId) return;
         
-        // Show loading state
+        provinceSelect.innerHTML = '<option value="" selected disabled>Loading provinces...</option>';
+        
+        fetch(`phpp/school_info/getProvinces.php?region_id=${selectedRegionId}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch provinces");
+            }
+            return response.json();
+          })
+          .then(data => {
+            provinces[selectedRegionId] = data;
+            
+            provinceSelect.innerHTML = '<option value="" selected disabled>Select Province</option>';
+            
+            provinces[selectedRegionId].forEach(province => {
+              const option = document.createElement("option");
+              option.value = province.id;
+              option.textContent = province.name;
+              provinceSelect.appendChild(option);
+            });
+            
+            provinceSelect.disabled = false;
+            
+            if (selectedSchool && selectedSchool.province_id) {
+              provinceSelect.value = selectedSchool.province_id;
+              loadCities();
+            }
+          })
+          .catch(error => {
+            console.error("Error loading provinces:", error);
+            useMockProvinces(selectedRegionId);
+          });
+      }
+      
+      function useMockProvinces(regionId) {
+        const provinceSelect = document.getElementById("provinceSelect");
+        
+        let mockProvinces = [];
+        
+        if (regionId === "NCR") {
+          mockProvinces = [
+            { id: "NCR00", name: "National Capital Region" }
+          ];
+        } else if (regionId === "04") {
+          mockProvinces = [
+            { id: "0421", name: "Batangas" },
+            { id: "0434", name: "Cavite" },
+            { id: "0458", name: "Laguna" },
+            { id: "0471", name: "Quezon" },
+            { id: "0456", name: "Rizal" }
+          ];
+        } else {
+          for (let i = 1; i <= 5; i++) {
+            mockProvinces.push({
+              id: `${regionId}${i.toString().padStart(2, '0')}`,
+              name: `Province ${i}`
+            });
+          }
+        }
+        
+        provinces[regionId] = mockProvinces;
+        
+        provinceSelect.innerHTML = '<option value="" selected disabled>Select Province</option>';
+        
+        mockProvinces.forEach(province => {
+          const option = document.createElement("option");
+          option.value = province.id;
+          option.textContent = province.name;
+          provinceSelect.appendChild(option);
+        });
+        
+        provinceSelect.disabled = false;
+        
+        if (selectedSchool && selectedSchool.province_id) {
+          provinceSelect.value = selectedSchool.province_id;
+          loadCities();
+        }
+      }
+      
+      function loadCities() {
+        const provinceSelect = document.getElementById("provinceSelect");
+        const citySelect = document.getElementById("citySelect");
+        const barangaySelect = document.getElementById("barangaySelect");
+        
+        citySelect.innerHTML = '<option value="" selected disabled>Select City/Municipality</option>';
+        barangaySelect.innerHTML = '<option value="" selected disabled>Select Barangay</option>';
+        
+        citySelect.disabled = true;
+        barangaySelect.disabled = true;
+        
+        const selectedProvinceId = provinceSelect.value;
+        if (!selectedProvinceId) return;
+        
         citySelect.innerHTML = '<option value="" selected disabled>Loading cities...</option>';
         
-        // Fetch cities for the selected region
-        fetch(`phpp/dashboard/getCities.php?region_id=${selectedRegionId}`)
+        fetch(`phpp/school_info/getCities.php?province_id=${selectedProvinceId}`)
           .then(response => {
             if (!response.ok) {
               throw new Error("Failed to fetch cities");
@@ -1893,43 +1678,36 @@ if (!isset($_SESSION['user_id'])) {
             return response.json();
           })
           .then(data => {
-            cities[selectedRegionId] = data;
+            cities[selectedProvinceId] = data;
             
-            // Reset dropdown
             citySelect.innerHTML = '<option value="" selected disabled>Select City/Municipality</option>';
             
-            // Add cities to dropdown
-            cities[selectedRegionId].forEach(city => {
+            cities[selectedProvinceId].forEach(city => {
               const option = document.createElement("option");
               option.value = city.id;
               option.textContent = city.name;
               citySelect.appendChild(option);
             });
             
-            // Enable the select
             citySelect.disabled = false;
             
-            // If updating a school, select the current city
             if (selectedSchool && selectedSchool.city_id) {
               citySelect.value = selectedSchool.city_id;
-              // Load barangays for this city
               loadBarangays();
             }
           })
           .catch(error => {
             console.error("Error loading cities:", error);
-            // Use mock data if API fails
-            useMockCities(selectedRegionId);
+            useMockCities(selectedProvinceId);
           });
       }
       
-      function useMockCities(regionId) {
+      function useMockCities(provinceId) {
         const citySelect = document.getElementById("citySelect");
         
-        // Mock cities data based on region
         let mockCities = [];
         
-        if (regionId === "NCR") {
+        if (provinceId === "NCR00") {
           mockCities = [
             { id: "NCR01", name: "Manila" },
             { id: "NCR02", name: "Quezon City" },
@@ -1942,36 +1720,27 @@ if (!isset($_SESSION['user_id'])) {
             { id: "NCR09", name: "Mandaluyong" },
             { id: "NCR10", name: "Marikina" }
           ];
-        } else if (regionId === "04") {
+        } else if (provinceId === "0421") {
           mockCities = [
-            { id: "0401", name: "Batangas City" },
-            { id: "0402", name: "Calamba" },
-            { id: "0403", name: "Lipa" },
-            { id: "0404", name: "Lucena" },
-            { id: "0405", name: "Antipolo" },
-            { id: "0406", name: "Dasmariñas" },
-            { id: "0407", name: "Bacoor" },
-            { id: "0408", name: "Imus" },
-            { id: "0409", name: "Santa Rosa" },
-            { id: "0410", name: "Biñan" }
+            { id: "042101", name: "Batangas City" },
+            { id: "042102", name: "Lipa" },
+            { id: "042103", name: "Tanauan" },
+            { id: "042104", name: "Santo Tomas" },
+            { id: "042105", name: "Calaca" }
           ];
         } else {
-          // Generic cities for other regions
-          mockCities = [
-            { id: `${regionId}01`, name: "City 1" },
-            { id: `${regionId}02`, name: "City 2" },
-            { id: `${regionId}03`, name: "City 3" },
-            { id: `${regionId}04`, name: "City 4" },
-            { id: `${regionId}05`, name: "City 5" }
-          ];
+          for (let i = 1; i <= 10; i++) {
+            mockCities.push({
+              id: `${provinceId}${i.toString().padStart(2, '0')}`,
+              name: `City ${i}`
+            });
+          }
         }
         
-        cities[regionId] = mockCities;
+        cities[provinceId] = mockCities;
         
-        // Reset dropdown
         citySelect.innerHTML = '<option value="" selected disabled>Select City/Municipality</option>';
         
-        // Add cities to dropdown
         mockCities.forEach(city => {
           const option = document.createElement("option");
           option.value = city.id;
@@ -1979,13 +1748,10 @@ if (!isset($_SESSION['user_id'])) {
           citySelect.appendChild(option);
         });
         
-        // Enable the select
         citySelect.disabled = false;
         
-        // If updating a school, select the current city
         if (selectedSchool && selectedSchool.city_id) {
           citySelect.value = selectedSchool.city_id;
-          // Load barangays for this city
           loadBarangays();
         }
       }
@@ -1994,20 +1760,15 @@ if (!isset($_SESSION['user_id'])) {
         const citySelect = document.getElementById("citySelect");
         const barangaySelect = document.getElementById("barangaySelect");
         
-        // Reset barangay dropdown
         barangaySelect.innerHTML = '<option value="" selected disabled>Select Barangay</option>';
-        
-        // Disable dropdown initially
         barangaySelect.disabled = true;
         
         const selectedCityId = citySelect.value;
         if (!selectedCityId) return;
         
-        // Show loading state
         barangaySelect.innerHTML = '<option value="" selected disabled>Loading barangays...</option>';
         
-        // Fetch barangays for the selected city
-        fetch(`phpp/dashboard/getBarangays.php?city_id=${selectedCityId}`)
+        fetch(`phpp/school_info/getBarangays.php?city_id=${selectedCityId}`)
           .then(response => {
             if (!response.ok) {
               throw new Error("Failed to fetch barangays");
@@ -2017,10 +1778,8 @@ if (!isset($_SESSION['user_id'])) {
           .then(data => {
             barangays[selectedCityId] = data;
             
-            // Reset dropdown
             barangaySelect.innerHTML = '<option value="" selected disabled>Select Barangay</option>';
             
-            // Add barangays to dropdown
             barangays[selectedCityId].forEach(barangay => {
               const option = document.createElement("option");
               option.value = barangay.id;
@@ -2028,17 +1787,14 @@ if (!isset($_SESSION['user_id'])) {
               barangaySelect.appendChild(option);
             });
             
-            // Enable the select
             barangaySelect.disabled = false;
             
-            // If updating a school, select the current barangay
             if (selectedSchool && selectedSchool.barangay_id) {
               barangaySelect.value = selectedSchool.barangay_id;
             }
           })
           .catch(error => {
             console.error("Error loading barangays:", error);
-            // Use mock data if API fails
             useMockBarangays(selectedCityId);
           });
       }
@@ -2046,7 +1802,6 @@ if (!isset($_SESSION['user_id'])) {
       function useMockBarangays(cityId) {
         const barangaySelect = document.getElementById("barangaySelect");
         
-        // Generate mock barangays
         const mockBarangays = [];
         for (let i = 1; i <= 10; i++) {
           mockBarangays.push({
@@ -2057,10 +1812,8 @@ if (!isset($_SESSION['user_id'])) {
         
         barangays[cityId] = mockBarangays;
         
-        // Reset dropdown
         barangaySelect.innerHTML = '<option value="" selected disabled>Select Barangay</option>';
         
-        // Add barangays to dropdown
         mockBarangays.forEach(barangay => {
           const option = document.createElement("option");
           option.value = barangay.id;
@@ -2068,20 +1821,20 @@ if (!isset($_SESSION['user_id'])) {
           barangaySelect.appendChild(option);
         });
         
-        // Enable the select
         barangaySelect.disabled = false;
         
-        // If updating a school, select the current barangay
         if (selectedSchool && selectedSchool.barangay_id) {
           barangaySelect.value = selectedSchool.barangay_id;
         }
       }
 
-      // --- Modal Functions ---
+      // Modal Functions
       function prepareModal(action) {
         const modalTitle = document.getElementById("schoolModalLabel");
         const saveButton = document.getElementById("saveSchoolBtn");
         const schoolIdInput = document.getElementById("schoolId");
+        const locationInfo = document.getElementById("locationInfo");
+        
         if (!modalTitle || !saveButton || !schoolIdInput) return;
         
         modalTitle.textContent = action === "add" ? "Add New School" : "Update School Information";
@@ -2089,107 +1842,427 @@ if (!isset($_SESSION['user_id'])) {
         schoolIdInput.readOnly = action !== "add";
         
         if (action === "add") {
-          // Clear form for new school
           document.getElementById("schoolForm").reset();
           document.getElementById("latitude").value = defaultLat.toFixed(7);
           document.getElementById("longitude").value = defaultLng.toFixed(7);
           
-          // Reset address dropdowns
+          // Reset original coordinates for add mode
+          originalLat = null;
+          originalLng = null;
+          
+          document.getElementById("provinceSelect").disabled = true;
           document.getElementById("citySelect").disabled = true;
           document.getElementById("barangaySelect").disabled = true;
+          locationInfo.style.display = "none";
         } else if (action === "update" && selectedSchool) {
-          // Populate form with selected school data
-          populateFormWithSchoolData();
+          // Show loading state
+          showModalLoading();
+          
+          // Fetch complete school details including address and coordinates
+          fetchCompleteSchoolData(selectedSchool.SchoolID)
+            .then((schoolData) => {
+              populateFormWithCompleteData(schoolData);
+              displayLocationInfo(schoolData);
+              hideModalLoading();
+            })
+            .catch((error) => {
+              console.error("Error fetching school details:", error);
+              // Fallback to existing data
+              populateFormWithSchoolData();
+              displayLocationInfo();
+              hideModalLoading();
+              
+              Swal.fire({
+                icon: "warning",
+                title: "Partial Data Load",
+                text: "Some data could not be loaded. Using available information.",
+                confirmButtonColor: "#4caf50"
+              });
+            });
+        }
+      }
+
+      // Function to fetch complete school data
+      function fetchCompleteSchoolData(schoolId) {
+        return new Promise((resolve, reject) => {
+          fetch(`phpp/school_info/getSchoolDetails.php?school_id=${encodeURIComponent(schoolId)}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then(data => {
+              if (data.error) {
+                throw new Error(data.error);
+              }
+              resolve(data.school);
+            })
+            .catch(error => {
+              reject(error);
+            });
+        });
+      }
+
+      // Function to populate form with complete data including address and coordinates
+      function populateFormWithCompleteData(schoolData) {
+        // Basic school information
+        if (schoolData.basic_info) {
+          document.getElementById("schoolId").value = schoolData.basic_info.SchoolID || "";
+          document.getElementById("schoolName").value = schoolData.basic_info.SchoolName || "";
+          document.getElementById("institutionType").value = schoolData.basic_info.Institution || "";
+          document.getElementById("curricularOffer").value = schoolData.basic_info.CurricularOffer || "";
+          document.getElementById("schoolPopulation").value = schoolData.basic_info.total_enrollees || "";
+          document.getElementById("schoolDistrict").value = schoolData.basic_info.district || "";
+          document.getElementById("schoolPrincipal").value = schoolData.basic_info.principal || "";
+          document.getElementById("contactNumber").value = schoolData.basic_info.contact_no || "";
+          document.getElementById("emailAddress").value = schoolData.basic_info.email || "";
+          document.getElementById("principalAge").value = schoolData.basic_info.principal_age || "";
+        }
+
+        // Address information
+        if (schoolData.address) {
+          // Set landmark
+          document.getElementById("landMark").value = schoolData.address.landmark || "";
+
+          // Load and set region
+          if (schoolData.address.region_id) {
+            loadRegionsAndSetValue(schoolData.address.region_id, () => {
+              // After region is set, load provinces
+              if (schoolData.address.province_id) {
+                loadProvincesAndSetValue(schoolData.address.province_id, () => {
+                  // After province is set, load cities
+                  if (schoolData.address.city_id) {
+                    loadCitiesAndSetValue(schoolData.address.city_id, () => {
+                      // After city is set, load barangays
+                      if (schoolData.address.barangay_code) {
+                        loadBarangaysAndSetValue(schoolData.address.barangay_code);
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+        }
+
+        // Coordinates
+        if (schoolData.coordinates) {
+          const lat = schoolData.coordinates.latitude || defaultLat;
+          const lng = schoolData.coordinates.longitude || defaultLng;
+
+          // Store original coordinates for reset function
+          originalLat = parseFloat(lat);
+          originalLng = parseFloat(lng);
+
+          document.getElementById("latitude").value = parseFloat(lat).toFixed(7);
+          document.getElementById("longitude").value = parseFloat(lng).toFixed(7);
+
+          // Update map if it's initialized
+          if (schoolMap && schoolMarker) {
+            const latLng = L.latLng(lat, lng);
+            schoolMarker.setLatLng(latLng);
+            schoolMap.panTo(latLng);
+          }
+        }
+      }
+
+      // Helper functions for loading and setting dropdown values
+      function loadRegionsAndSetValue(regionId, callback) {
+        const regionSelect = document.getElementById("regionSelect");
+
+        // Clear existing options except the first one
+        while (regionSelect.options.length > 1) {
+          regionSelect.remove(1);
+        }
+
+        regionSelect.disabled = true;
+
+        fetch("phpp/school_info/getRegions.php")
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch regions");
+            }
+            return response.json();
+          })
+          .then(data => {
+            regions = data;
+
+            regions.forEach(region => {
+              const option = document.createElement("option");
+              option.value = region.id;
+              option.textContent = region.name;
+              regionSelect.appendChild(option);
+            });
+
+            regionSelect.disabled = false;
+            regionSelect.value = regionId;
+
+            if (callback) callback();
+          })
+          .catch(error => {
+            console.error("Error loading regions:", error);
+            regionSelect.disabled = false;
+            if (callback) callback();
+          });
+      }
+
+      function loadProvincesAndSetValue(provinceId, callback) {
+        const regionSelect = document.getElementById("regionSelect");
+        const provinceSelect = document.getElementById("provinceSelect");
+
+        const selectedRegionId = regionSelect.value;
+        if (!selectedRegionId) {
+          if (callback) callback();
+          return;
+        }
+
+        provinceSelect.innerHTML = '<option value="" selected disabled>Loading provinces...</option>';
+        provinceSelect.disabled = true;
+
+        fetch(`phpp/school_info/getProvinces.php?region_id=${selectedRegionId}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch provinces");
+            }
+            return response.json();
+          })
+          .then(data => {
+            provinces[selectedRegionId] = data;
+
+            provinceSelect.innerHTML = '<option value="" selected disabled>Select Province</option>';
+
+            provinces[selectedRegionId].forEach(province => {
+              const option = document.createElement("option");
+              option.value = province.id;
+              option.textContent = province.name;
+              provinceSelect.appendChild(option);
+            });
+
+            provinceSelect.disabled = false;
+            provinceSelect.value = provinceId;
+
+            if (callback) callback();
+          })
+          .catch(error => {
+            console.error("Error loading provinces:", error);
+            provinceSelect.disabled = false;
+            if (callback) callback();
+          });
+      }
+
+      function loadCitiesAndSetValue(cityId, callback) {
+        const provinceSelect = document.getElementById("provinceSelect");
+        const citySelect = document.getElementById("citySelect");
+
+        const selectedProvinceId = provinceSelect.value;
+        if (!selectedProvinceId) {
+          if (callback) callback();
+          return;
+        }
+
+        citySelect.innerHTML = '<option value="" selected disabled>Loading cities...</option>';
+        citySelect.disabled = true;
+
+        fetch(`phpp/school_info/getCities.php?province_id=${selectedProvinceId}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch cities");
+            }
+            return response.json();
+          })
+          .then(data => {
+            cities[selectedProvinceId] = data;
+
+            citySelect.innerHTML = '<option value="" selected disabled>Select City/Municipality</option>';
+
+            cities[selectedProvinceId].forEach(city => {
+              const option = document.createElement("option");
+              option.value = city.id;
+              option.textContent = city.name;
+              citySelect.appendChild(option);
+            });
+
+            citySelect.disabled = false;
+            citySelect.value = cityId;
+
+            if (callback) callback();
+          })
+          .catch(error => {
+            console.error("Error loading cities:", error);
+            citySelect.disabled = false;
+            if (callback) callback();
+          });
+      }
+
+      function loadBarangaysAndSetValue(barangayCode) {
+        const citySelect = document.getElementById("citySelect");
+        const barangaySelect = document.getElementById("barangaySelect");
+
+        const selectedCityId = citySelect.value;
+        if (!selectedCityId) return;
+
+        barangaySelect.innerHTML = '<option value="" selected disabled>Loading barangays...</option>';
+        barangaySelect.disabled = true;
+
+        fetch(`phpp/school_info/getBarangays.php?city_id=${selectedCityId}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch barangays");
+            }
+            return response.json();
+          })
+          .then(data => {
+            barangays[selectedCityId] = data;
+
+            barangaySelect.innerHTML = '<option value="" selected disabled>Select Barangay</option>';
+
+            barangays[selectedCityId].forEach(barangay => {
+              const option = document.createElement("option");
+              option.value = barangay.id;
+              option.textContent = barangay.name;
+              barangaySelect.appendChild(option);
+            });
+
+            barangaySelect.disabled = false;
+            barangaySelect.value = barangayCode;
+          })
+          .catch(error => {
+            console.error("Error loading barangays:", error);
+            barangaySelect.disabled = false;
+          });
+      }
+
+      // Loading state functions
+      function showModalLoading() {
+        const modalBody = document.querySelector("#schoolModal .modal-body");
+        if (modalBody) {
+          const loadingOverlay = document.createElement("div");
+          loadingOverlay.id = "modalLoadingOverlay";
+          loadingOverlay.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+          `;
+
+          loadingOverlay.innerHTML = `
+            <div class="text-center">
+              <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <p class="mt-2 mb-0">Loading school details...</p>
+            </div>
+          `;
+
+          modalBody.appendChild(loadingOverlay);
+        }
+      }
+
+      function hideModalLoading() {
+        const loadingOverlay = document.getElementById("modalLoadingOverlay");
+        if (loadingOverlay) {
+          loadingOverlay.remove();
         }
       }
 
       function populateFormWithSchoolData() {
         if (!selectedSchool) return;
 
-        // Populate form fields
         document.getElementById("schoolId").value = selectedSchool.SchoolID || "";
         document.getElementById("schoolName").value = selectedSchool.Schoolname || "";
-        document.getElementById("schoolType").value = selectedSchool.Institution || "";
+        document.getElementById("institutionType").value = selectedSchool.Institution || "";
+        document.getElementById("curricularOffer").value = selectedSchool.curricularOffer || "";
         document.getElementById("schoolPopulation").value = selectedSchool.total_enrollees || "";
         document.getElementById("schoolDistrict").value = selectedSchool.district || "";
         document.getElementById("schoolPrincipal").value = selectedSchool.principal || "";
         document.getElementById("contactNumber").value = selectedSchool.contact_no || "";
         document.getElementById("emailAddress").value = selectedSchool.email || "";
         document.getElementById("principalAge").value = selectedSchool.principal_age || "";
-        document.getElementById("landMark").value = selectedSchool.land_mark || "";
+        document.getElementById("landMark").value = selectedSchool.landmark || "";
 
-        // Set coordinates if available, otherwise use defaults
-        document.getElementById("latitude").value = selectedSchool.latitude || defaultLat.toFixed(7);
-        document.getElementById("longitude").value = selectedSchool.longitude || defaultLng.toFixed(7);
+        // Store and set original coordinates
+        originalLat = parseFloat(selectedSchool.latitude) || defaultLat;
+        originalLng = parseFloat(selectedSchool.longitude) || defaultLng;
+
+        document.getElementById("latitude").value = originalLat.toFixed(7);
+        document.getElementById("longitude").value = originalLng.toFixed(7);
         
-        // Set address fields if available
         if (selectedSchool.region_id) {
           document.getElementById("regionSelect").value = selectedSchool.region_id;
-          loadCities();
+          loadProvinces();
         }
       }
 
+      function displayLocationInfo(schoolData = null) {
+        const locationInfo = document.getElementById("locationInfo");
+        const data = schoolData || selectedSchool;
+        
+        if (!data) return;
+        
+        document.getElementById("currentRegion").textContent = data.address?.region_name || data.region_name || "N/A";
+        document.getElementById("currentProvince").textContent = data.address?.province_name || data.province_name || "N/A";
+        document.getElementById("currentCity").textContent = data.address?.city_name || data.city_name || "N/A";
+        document.getElementById("currentBarangay").textContent = data.address?.barangay_name || data.barangay_name || "N/A";
+        document.getElementById("currentLandmark").textContent = data.address?.landmark || data.landmark || "N/A";
+        
+        const coordinates = (data.coordinates?.latitude && data.coordinates?.longitude) 
+          ? `${data.coordinates.latitude}, ${data.coordinates.longitude}` 
+          : (data.latitude && data.longitude)
+          ? `${data.latitude}, ${data.longitude}`
+          : "N/A";
+        document.getElementById("currentCoordinates").textContent = coordinates;
+        
+        locationInfo.style.display = "block";
+      }
+
       function addSchool() {
-        // Validate form
         const form = document.getElementById("schoolForm");
         if (!form.checkValidity()) {
           form.reportValidity();
           return;
         }
 
-        // Show loading state
         const saveBtn = document.getElementById("saveSchoolBtn");
         const originalText = saveBtn.innerHTML;
         saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Saving...';
         saveBtn.disabled = true;
 
-        // Get form data including coordinates and address
-        const formData = {
-          schoolId: document.getElementById("schoolId").value,
-          schoolName: document.getElementById("schoolName").value,
-          schoolType: document.getElementById("schoolType").value,
-          schoolPopulation: document.getElementById("schoolPopulation").value,
-          schoolDistrict: document.getElementById("schoolDistrict").value,
-          schoolPrincipal: document.getElementById("schoolPrincipal").value,
-          contactNumber: document.getElementById("contactNumber").value,
-          emailAddress: document.getElementById("emailAddress").value,
-          principalAge: document.getElementById("principalAge").value,
-          latitude: document.getElementById("latitude").value,
-          longitude: document.getElementById("longitude").value,
-          regionId: document.getElementById("regionSelect").value,
-          cityId: document.getElementById("citySelect").value,
-          barangayId: document.getElementById("barangaySelect").value,
-          landMark: document.getElementById("landMark").value
-        };
+        const formData = new FormData();
+        formData.append('schoolId', document.getElementById("schoolId").value);
+        formData.append('schoolName', document.getElementById("schoolName").value);
+        formData.append('institutionType', document.getElementById("institutionType").value);
+        formData.append('curricularOffer', document.getElementById("curricularOffer").value);
+        formData.append('schoolPopulation', document.getElementById("schoolPopulation").value);
+        formData.append('schoolDistrict', document.getElementById("schoolDistrict").value);
+        formData.append('schoolPrincipal', document.getElementById("schoolPrincipal").value);
+        formData.append('contactNumber', document.getElementById("contactNumber").value);
+        formData.append('emailAddress', document.getElementById("emailAddress").value);
+        formData.append('principalAge', document.getElementById("principalAge").value);
+        formData.append('latitude', document.getElementById("latitude").value);
+        formData.append('longitude', document.getElementById("longitude").value);
+        formData.append('regionId', document.getElementById("regionSelect").value);
+        formData.append('provinceId', document.getElementById("provinceSelect").value);
+        formData.append('cityId', document.getElementById("citySelect").value);
+        formData.append('barangayId', document.getElementById("barangaySelect").value);
+        formData.append('landMark', document.getElementById("landMark").value);
 
-        // Get region, city, and barangay names for display
-        const regionName = document.getElementById("regionSelect").options[document.getElementById("regionSelect").selectedIndex].text;
-        const cityName = document.getElementById("citySelect").options[document.getElementById("citySelect").selectedIndex].text;
-        const barangayName = document.getElementById("barangaySelect").options[document.getElementById("barangaySelect").selectedIndex].text;
-        
-        formData.regionName = regionName;
-        formData.cityName = cityName;
-        formData.barangayName = barangayName;
-
-        // Prepare data for API call
-        const apiData = new FormData();
-        for (const key in formData) {
-          apiData.append(key, formData[key]);
-        }
-
-        // Make API call to add school
-        fetch("phpp/dashboard/addSchool.php", {
+        fetch("phpp/school_info/addSchool.php", {
           method: "POST",
-          body: apiData
+          body: formData
         })
           .then(response => response.json())
           .then(data => {
-            // Reset button state
             saveBtn.innerHTML = originalText;
             saveBtn.disabled = false;
 
             if (data.success) {
-              // Show success message
               Swal.fire({
                 icon: "success",
                 title: "School Added",
@@ -2198,10 +2271,8 @@ if (!isset($_SESSION['user_id'])) {
               });
 
               closeModal();
-              // Refresh data after adding
               fetchData();
             } else {
-              // Show error message
               Swal.fire({
                 icon: "error",
                 title: "Error",
@@ -2213,111 +2284,59 @@ if (!isset($_SESSION['user_id'])) {
           .catch(error => {
             console.error("Error adding school:", error);
             
-            // Reset button state
             saveBtn.innerHTML = originalText;
             saveBtn.disabled = false;
 
-            // For demo purposes, simulate success
-            // In production, this should show an error message
             Swal.fire({
-              icon: "success",
-              title: "School Added (Demo)",
-              text: "This is a demo. In production, this would add to the database.",
-              confirmButtonColor: "#2e7d32",
+              icon: "error",
+              title: "Connection Error",
+              text: "Failed to connect to the server. Please try again.",
+              confirmButtonColor: "#dc3545",
             });
-
-            // Add to local data for demo
-            const newSchool = {
-              SchoolID: formData.schoolId,
-              Schoolname: formData.schoolName,
-              Institution: formData.schoolType,
-              total_enrollees: formData.schoolPopulation,
-              district: formData.schoolDistrict,
-              principal: formData.schoolPrincipal,
-              contact_no: formData.contactNumber,
-              email: formData.emailAddress,
-              principal_age: formData.principalAge,
-              latitude: formData.latitude,
-              longitude: formData.longitude,
-              region_id: formData.regionId,
-              city_id: formData.cityId,
-              barangay_id: formData.barangayId,
-              land_mark: formData.landMark,
-              region_name: formData.regionName,
-              city_name: formData.cityName,
-              barangay_name: formData.barangayName
-            };
-            
-            schoolsData.unshift(newSchool);
-            closeModal();
-            populateTable(schoolsData);
-            populateMobileCards(schoolsData);
-            initializePagination();
-            initializeEnrollmentLinks();
           });
       }
 
       function updateSchool() {
-        // Validate form
         const form = document.getElementById("schoolForm");
         if (!form.checkValidity()) {
           form.reportValidity();
           return;
         }
 
-        // Show loading state
         const saveBtn = document.getElementById("saveSchoolBtn");
         const originalText = saveBtn.innerHTML;
-        saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Saving...';
+        saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Updating...';
         saveBtn.disabled = true;
 
-        // Get form data including coordinates and address
-        const formData = {
-          schoolId: document.getElementById("schoolId").value,
-          schoolName: document.getElementById("schoolName").value,
-          schoolType: document.getElementById("schoolType").value,
-          schoolPopulation: document.getElementById("schoolPopulation").value,
-          schoolDistrict: document.getElementById("schoolDistrict").value,
-          schoolPrincipal: document.getElementById("schoolPrincipal").value,
-          contactNumber: document.getElementById("contactNumber").value,
-          emailAddress: document.getElementById("emailAddress").value,
-          principalAge: document.getElementById("principalAge").value,
-          latitude: document.getElementById("latitude").value,
-          longitude: document.getElementById("longitude").value,
-          regionId: document.getElementById("regionSelect").value,
-          cityId: document.getElementById("citySelect").value,
-          barangayId: document.getElementById("barangaySelect").value,
-          landMark: document.getElementById("landMark").value
-        };
+        const formData = new FormData();
+        formData.append('schoolId', document.getElementById("schoolId").value);
+        formData.append('schoolName', document.getElementById("schoolName").value);
+        formData.append('institutionType', document.getElementById("institutionType").value);
+        formData.append('curricularOffer', document.getElementById("curricularOffer").value);
+        formData.append('schoolPopulation', document.getElementById("schoolPopulation").value);
+        formData.append('schoolDistrict', document.getElementById("schoolDistrict").value);
+        formData.append('schoolPrincipal', document.getElementById("schoolPrincipal").value);
+        formData.append('contactNumber', document.getElementById("contactNumber").value);
+        formData.append('emailAddress', document.getElementById("emailAddress").value);
+        formData.append('principalAge', document.getElementById("principalAge").value);
+        formData.append('latitude', document.getElementById("latitude").value);
+        formData.append('longitude', document.getElementById("longitude").value);
+        formData.append('regionId', document.getElementById("regionSelect").value);
+        formData.append('provinceId', document.getElementById("provinceSelect").value);
+        formData.append('cityId', document.getElementById("citySelect").value);
+        formData.append('barangayId', document.getElementById("barangaySelect").value);
+        formData.append('landMark', document.getElementById("landMark").value);
 
-        // Get region, city, and barangay names for display
-        const regionName = document.getElementById("regionSelect").options[document.getElementById("regionSelect").selectedIndex].text;
-        const cityName = document.getElementById("citySelect").options[document.getElementById("citySelect").selectedIndex].text;
-        const barangayName = document.getElementById("barangaySelect").options[document.getElementById("barangaySelect").selectedIndex].text;
-        
-        formData.regionName = regionName;
-        formData.cityName = cityName;
-        formData.barangayName = barangayName;
-
-        // Prepare data for API call
-        const apiData = new FormData();
-        for (const key in formData) {
-          apiData.append(key, formData[key]);
-        }
-
-        // Make API call to update school
-        fetch("phpp/dashboard/updateSchool.php", {
+        fetch("phpp/school_info/updateSchool.php", {
           method: "POST",
-          body: apiData
+          body: formData
         })
           .then(response => response.json())
           .then(data => {
-            // Reset button state
             saveBtn.innerHTML = originalText;
             saveBtn.disabled = false;
 
             if (data.success) {
-              // Show success message
               Swal.fire({
                 icon: "success",
                 title: "School Updated",
@@ -2326,10 +2345,8 @@ if (!isset($_SESSION['user_id'])) {
               });
 
               closeModal();
-              // Refresh data after updating
               fetchData();
             } else {
-              // Show error message
               Swal.fire({
                 icon: "error",
                 title: "Error",
@@ -2341,49 +2358,15 @@ if (!isset($_SESSION['user_id'])) {
           .catch(error => {
             console.error("Error updating school:", error);
             
-            // Reset button state
             saveBtn.innerHTML = originalText;
             saveBtn.disabled = false;
 
-            // For demo purposes, simulate success
-            // In production, this should show an error message
             Swal.fire({
-              icon: "success",
-              title: "School Updated (Demo)",
-              text: "This is a demo. In production, this would update the database.",
-              confirmButtonColor: "#2e7d32",
+              icon: "error",
+              title: "Connection Error",
+              text: "Failed to connect to the server. Please try again.",
+              confirmButtonColor: "#dc3545",
             });
-
-            // Update local data for demo
-            if (selectedSchoolIndex >= 0 && selectedSchoolIndex < schoolsData.length) {
-              schoolsData[selectedSchoolIndex] = {
-                ...schoolsData[selectedSchoolIndex],
-                SchoolID: formData.schoolId,
-                Schoolname: formData.schoolName,
-                Institution: formData.schoolType,
-                total_enrollees: formData.schoolPopulation,
-                district: formData.schoolDistrict,
-                principal: formData.schoolPrincipal,
-                contact_no: formData.contactNumber,
-                email: formData.emailAddress,
-                principal_age: formData.principalAge,
-                latitude: formData.latitude,
-                longitude: formData.longitude,
-                region_id: formData.regionId,
-                city_id: formData.cityId,
-                barangay_id: formData.barangayId,
-                land_mark: formData.landMark,
-                region_name: formData.regionName,
-                city_name: formData.cityName,
-                barangay_name: formData.barangayName
-              };
-            }
-            
-            closeModal();
-            populateTable(schoolsData);
-            populateMobileCards(schoolsData);
-            initializePagination();
-            initializeEnrollmentLinks();
           });
       }
 
@@ -2393,15 +2376,10 @@ if (!isset($_SESSION['user_id'])) {
             document.getElementById("schoolModal")
           );
           if (modal) modal.hide();
-        } else {
-          console.error(
-            "Bootstrap is not defined. Make sure it's included in your HTML."
-          );
-          alert("Closing modal failed. Bootstrap is required.");
         }
       }
 
-      // --- Search and Filter Functions ---
+      // Search and Filter Functions
       function initializeFilters() {
         const filterButton = document.getElementById("filterButton");
         const filterPanel = document.getElementById("filterPanel");
@@ -2422,7 +2400,6 @@ if (!isset($_SESSION['user_id'])) {
           }
         });
 
-        // Add event listeners to filter checkboxes
         const filterCheckboxes = document.querySelectorAll(
           ".filter-panel input[type='checkbox']"
         );
@@ -2433,12 +2410,11 @@ if (!isset($_SESSION['user_id'])) {
           });
         });
         
-        // Add event listener to search input
         const searchInput = document.getElementById("searchInput");
         if (searchInput) {
           searchInput.addEventListener("input", () => {
             filterTable();
-            resetPagination(); // Reset to first page after filtering
+            resetPagination();
           });
         }
       }
@@ -2451,20 +2427,9 @@ if (!isset($_SESSION['user_id'])) {
         );
 
         const selectedColumns = Array.from(checkboxes).map((checkbox) =>
-          Number.parseInt(checkbox.value)
+          parseInt(checkbox.value)
         );
 
-        // Filter desktop table
-        filterDesktopTable(input, selectedColumns);
-
-        // Filter mobile cards
-        filterMobileCards(input, selectedColumns);
-
-        // Update pagination after filtering
-        updatePagination();
-      }
-
-      function filterDesktopTable(input, selectedColumns) {
         const tbody = document.getElementById("schoolTableBody");
         if (!tbody) return;
 
@@ -2475,73 +2440,28 @@ if (!isset($_SESSION['user_id'])) {
           const cells = row.querySelectorAll("td");
 
           if (selectedColumns.length === 0) {
-            // If no filters are checked, search in all columns
             showRow = Array.from(cells).some((cell) =>
               cell.textContent.toLowerCase().includes(input)
             );
           } else {
-            // Search only in checked columns
             selectedColumns.forEach((columnIndex) => {
-              const cell = cells[columnIndex]; // Ensure the index is valid
+              const cell = cells[columnIndex];
               if (cell && cell.textContent.toLowerCase().includes(input)) {
                 showRow = true;
               }
             });
           }
 
-          // Set visibility
           row.setAttribute("data-visible", showRow ? "true" : "false");
           row.style.display = showRow ? "table-row" : "none";
         });
+
+        updatePagination();
       }
 
-      function filterMobileCards(input, selectedColumns) {
-        const container = document.getElementById("mobileCardsContainer");
-        if (!container) return;
-
-        const cards = container.querySelectorAll(".school-card");
-
-        cards.forEach((card) => {
-          let showCard = false;
-
-          // Map column indices to card elements
-          const cardElements = {
-            0: card.querySelector(".school-card-header span:first-child"), // SID
-            1: card.querySelectorAll(".school-card-row")[0], // School Name
-            2: card.querySelector(".school-card-header .badge"), // Type
-            3: card.querySelectorAll(".school-card-row")[2], // Enrollment
-            4: card.querySelectorAll(".school-card-row")[3], // District
-            5: card.querySelectorAll(".school-card-row")[1], // Principal
-            6: card.querySelector(".hidden-info .school-card-row:nth-child(1)"), // Contact No.
-            7: card.querySelector(".hidden-info .school-card-row:nth-child(2)"), // Email
-            8: card.querySelector(".hidden-info .school-card-row:nth-child(3)"), // Age
-          };
-
-          if (selectedColumns.length === 0) {
-            // If no filters are checked, search in all text content
-            showCard = card.textContent.toLowerCase().includes(input);
-          } else {
-            // Search only in checked columns
-            selectedColumns.forEach((columnIndex) => {
-              const element = cardElements[columnIndex];
-              if (
-                element &&
-                element.textContent.toLowerCase().includes(input)
-              ) {
-                showCard = true;
-              }
-            });
-          }
-
-          // Set visibility
-          card.style.display = showCard ? "block" : "none";
-          card.setAttribute("data-visible", showCard ? "true" : "false");
-        });
-      }
-
-      // --- Pagination Functions ---
+      // Pagination Functions
       let currentPage = 1;
-      const rowsPerPage = 15; // Change this value to set rows per page
+      const rowsPerPage = 15;
 
       function initializePagination() {
         const prevBtn = document.getElementById("prevPage");
@@ -2564,7 +2484,6 @@ if (!isset($_SESSION['user_id'])) {
           }
         });
 
-        // Initial pagination setup
         updatePagination();
       }
 
@@ -2574,163 +2493,75 @@ if (!isset($_SESSION['user_id'])) {
       }
 
       function updatePagination() {
-        const isMobile = window.innerWidth <= 768;
         const prevBtn = document.getElementById("prevPage");
         const nextBtn = document.getElementById("nextPage");
         const pageInfo = document.getElementById("pageInfo");
 
         if (!prevBtn || !nextBtn || !pageInfo) return;
 
-        if (isMobile) {
-          // Mobile pagination
-          const container = document.getElementById("mobileCardsContainer");
-          if (!container) return;
+        const rows = document.querySelectorAll("#schoolTableBody tr");
+        const visibleRows = Array.from(rows).filter(
+          (row) =>
+            row.getAttribute("data-visible") !== "false" &&
+            !row.querySelector("td[colspan]")
+        );
 
-          const cards = container.querySelectorAll(".school-card");
+        const totalPages = Math.max(
+          1,
+          Math.ceil(visibleRows.length / rowsPerPage)
+        );
 
-          // Store all cards in an array for pagination
-          const allCards = Array.from(cards);
-
-          // Get visible cards (for filtered results)
-          const visibleCards = allCards.filter(
-            (card) => card.getAttribute("data-visible") !== "false"
-          );
-
-          // Use all cards if no filtering is applied, otherwise use visible cards
-          const cardsToUse = visibleCards.length > 0 ? visibleCards : allCards;
-
-          const totalPages = Math.max(
-            1,
-            Math.ceil(cardsToUse.length / rowsPerPage)
-          );
-
-          // Adjust current page if needed
-          if (currentPage > totalPages) {
-            currentPage = totalPages;
-          }
-
-          // Hide all cards first
-          allCards.forEach((card) => {
-            card.style.display = "none";
-          });
-
-          // Show only cards for current page
-          const start = (currentPage - 1) * rowsPerPage;
-          const end = Math.min(start + rowsPerPage, cardsToUse.length);
-
-          for (let i = start; i < end; i++) {
-            if (cardsToUse[i]) {
-              cardsToUse[i].style.display = "block";
-            }
-          }
-
-          // Update page info
-          pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-
-          // Enable/disable buttons
-          prevBtn.disabled = currentPage === 1;
-          nextBtn.disabled = currentPage === totalPages || totalPages === 0;
-        } else {
-          // Desktop pagination
-          const rows = document.querySelectorAll("#schoolTableBody tr");
-          const visibleRows = Array.from(rows).filter(
-            (row) =>
-              row.getAttribute("data-visible") !== "false" &&
-              !row.querySelector("td[colspan]")
-          );
-
-          const totalPages = Math.max(
-            1,
-            Math.ceil(visibleRows.length / rowsPerPage)
-          );
-
-          // Adjust current page if it's beyond the total pages
-          if (currentPage > totalPages) {
-            currentPage = totalPages;
-          }
-
-          // Hide all rows first
-          rows.forEach((row) => {
-            if (!row.querySelector("td[colspan]")) {
-              row.style.display = "none";
-            }
-          });
-
-          // Calculate which visible rows to show
-          const start = (currentPage - 1) * rowsPerPage;
-          const end = Math.min(start + rowsPerPage, visibleRows.length);
-
-          // Show only the visible rows for the current page
-          for (let i = 0; i < visibleRows.length; i++) {
-            if (i >= start && i < end) {
-              visibleRows[i].style.display = "table-row";
-            }
-          }
-
-          // Update page info
-          pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-
-          // Enable/Disable buttons
-          prevBtn.disabled = currentPage === 1;
-          nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+        if (currentPage > totalPages) {
+          currentPage = totalPages;
         }
+
+        rows.forEach((row) => {
+          if (!row.querySelector("td[colspan]")) {
+            row.style.display = "none";
+          }
+        });
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = Math.min(start + rowsPerPage, visibleRows.length);
+
+        for (let i = 0; i < visibleRows.length; i++) {
+          if (i >= start && i < end) {
+            visibleRows[i].style.display = "table-row";
+          }
+        }
+
+        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage === totalPages || totalPages === 0;
       }
 
       function getTotalPages() {
-        const isMobile = window.innerWidth <= 768;
-
-        if (isMobile) {
-          const container = document.getElementById("mobileCardsContainer");
-          if (!container) return 1;
-
-          const cards = container.querySelectorAll(".school-card");
-          const allCards = Array.from(cards);
-
-          // Get visible cards (for filtered results)
-          const visibleCards = allCards.filter(
-            (card) => card.getAttribute("data-visible") !== "false"
-          );
-
-          // Use all cards if no filtering is applied, otherwise use visible cards
-          const cardsToUse = visibleCards.length > 0 ? visibleCards : allCards;
-
-          return Math.max(1, Math.ceil(cardsToUse.length / rowsPerPage));
-        } else {
-          const rows = document.querySelectorAll("#schoolTableBody tr");
-          const visibleRows = Array.from(rows).filter(
-            (row) =>
-              row.getAttribute("data-visible") !== "false" &&
-              !row.querySelector("td[colspan]")
-          );
-          return Math.max(1, Math.ceil(visibleRows.length / rowsPerPage));
-        }
+        const rows = document.querySelectorAll("#schoolTableBody tr");
+        const visibleRows = Array.from(rows).filter(
+          (row) =>
+            row.getAttribute("data-visible") !== "false" &&
+            !row.querySelector("td[colspan]")
+        );
+        return Math.max(1, Math.ceil(visibleRows.length / rowsPerPage));
       }
 
-      // Listen for window resize to handle view changes
-      window.addEventListener("resize", function () {
-        updatePagination();
-      });
-
-      // --- Export Functions ---
+      // Export Functions
       function exportToExcel() {
-        // Define all available columns
         const columns = [
           { id: "SchoolID", name: "School ID (SID)" },
           { id: "Schoolname", name: "School Name" },
-          { id: "Institution", name: "Type" },
+          { id: "Institution", name: "Institution Type" },
+          { id: "curricularOffer", name: "Curricular Offer" },
           { id: "total_enrollees", name: "Enrollment" },
           { id: "district", name: "District" },
           { id: "principal", name: "Principal" },
           { id: "contact_no", name: "Contact Number" },
           { id: "email", name: "Email" },
           { id: "principal_age", name: "Age" },
-          { id: "region_name", name: "Region" },
-          { id: "city_name", name: "City/Municipality" },
-          { id: "barangay_name", name: "Barangay" },
-          { id: "land_mark", name: "Landmark" }
+          { id: "landmark", name: "Landmark" }
         ];
 
-        // Create HTML for column selection
         let columnSelectionHtml = '<div class="text-start">';
         columns.forEach((column) => {
           columnSelectionHtml += `
@@ -2744,7 +2575,6 @@ if (!isset($_SESSION['user_id'])) {
         });
         columnSelectionHtml += "</div>";
 
-        // Show SweetAlert with column selection
         Swal.fire({
           title: "Export Data",
           html: `
@@ -2760,7 +2590,6 @@ if (!isset($_SESSION['user_id'])) {
           confirmButtonColor: "#4caf50",
           width: "500px",
           didOpen: () => {
-            // Add event listeners for select/deselect all buttons
             document.getElementById("selectAllBtn").addEventListener("click", () => {
               document.querySelectorAll(".form-check-input").forEach((checkbox) => {
                 checkbox.checked = true;
@@ -2775,7 +2604,6 @@ if (!isset($_SESSION['user_id'])) {
           },
         }).then((result) => {
           if (result.isConfirmed) {
-            // Get selected columns
             const selectedColumns = [];
             columns.forEach((column) => {
               if (document.getElementById(`check_${column.id}`).checked) {
@@ -2793,7 +2621,6 @@ if (!isset($_SESSION['user_id'])) {
               return;
             }
 
-            // Show loading indicator
             Swal.fire({
               title: "Exporting data...",
               text: "Please wait while we prepare your export",
@@ -2803,10 +2630,8 @@ if (!isset($_SESSION['user_id'])) {
               },
             });
 
-            // Generate and download CSV with only selected columns
             generateCSV(schoolsData, selectedColumns);
 
-            // Show success message
             Swal.fire({
               title: "Export Successful",
               text: `Exported ${schoolsData.length} records to CSV`,
@@ -2824,17 +2649,13 @@ if (!isset($_SESSION['user_id'])) {
           return;
         }
 
-        // Create CSV content with only selected headers
         let csvContent = selectedColumns.join(",") + "\n";
 
-        // Add data rows with only selected columns
         data.forEach((item) => {
           const row = selectedColumns.map((header) => {
-            // Handle values that might contain commas or quotes
             let value = item[header] || "";
-            value = String(value).replace(/"/g, '""'); // Escape double quotes
+            value = String(value).replace(/"/g, '""');
 
-            // Wrap in quotes if the value contains commas, quotes, or newlines
             if (value.includes(",") || value.includes('"') || value.includes("\n")) {
               value = `"${value}"`;
             }
@@ -2844,16 +2665,13 @@ if (!isset($_SESSION['user_id'])) {
           csvContent += row.join(",") + "\n";
         });
 
-        // Create a Blob with the CSV content
         const blob = new Blob([csvContent], {
           type: "text/csv;charset=utf-8;",
         });
 
-        // Create a download link and trigger the download
         const link = document.createElement("a");
         const url = URL.createObjectURL(blob);
 
-        // Set file name with current date
         const date = new Date();
         const fileName = `school_data_${date.getFullYear()}-${(date.getMonth() + 1)
           .toString()
@@ -2866,7 +2684,6 @@ if (!isset($_SESSION['user_id'])) {
         document.body.appendChild(link);
         link.click();
 
-        // Clean up
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
       }
@@ -2882,20 +2699,16 @@ if (!isset($_SESSION['user_id'])) {
           cancelButtonText: 'Cancel',
         }).then((result) => {
           if (result.isConfirmed) {
-            // Create a file input element
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
             fileInput.accept = '.csv';
             
-            // Trigger click on the file input
             fileInput.click();
             
-            // Handle file selection
             fileInput.addEventListener('change', function() {
               if (this.files && this.files[0]) {
                 const file = this.files[0];
                 
-                // Show loading indicator
                 Swal.fire({
                   title: 'Processing File',
                   text: 'Please wait while we process your file...',
@@ -2905,8 +2718,6 @@ if (!isset($_SESSION['user_id'])) {
                   }
                 });
                 
-                // In a real implementation, you would send the file to the server
-                // For demo purposes, we'll just show a success message after a delay
                 setTimeout(() => {
                   Swal.fire({
                     title: 'Import Successful',
@@ -2921,22 +2732,16 @@ if (!isset($_SESSION['user_id'])) {
         });
       }
 
-      // --- Enrollment Functions ---
+      // Enrollment Functions
       function initializeEnrollmentLinks() {
-        // Make enrollment cells clickable in desktop view
         const enrollmentCells = document.querySelectorAll('.enrollment-link');
         enrollmentCells.forEach(cell => {
           cell.addEventListener("click", function(e) {
-            e.stopPropagation(); // Prevent row selection when clicking enrollment
+            e.stopPropagation();
             
-            // Get the school data
             let schoolIndex;
             if (this.closest("tr")) {
-              // Desktop view
               schoolIndex = this.closest("tr").getAttribute("data-row-id");
-            } else if (this.closest(".school-card")) {
-              // Mobile view
-              schoolIndex = this.closest(".school-card").getAttribute("data-row-id");
             }
             
             if (schoolIndex !== undefined) {
@@ -2949,16 +2754,13 @@ if (!isset($_SESSION['user_id'])) {
         });
       }
 
-      // Show the enrollment popup with data for the selected school
       function showEnrollmentPopup(school) {
         const popup = document.getElementById("enrollmentPopup");
         const popupBody = document.getElementById("enrollmentPopupBody");
         const popupTitle = document.querySelector(".enrollment-popup-title");
 
-        // Set the title
         popupTitle.textContent = `Enrollment Details - ${school.Schoolname}`;
         
-        // Show loading indicator
         popupBody.innerHTML = `
           <div class="text-center py-4">
             <div class="spinner-border text-success" role="status">
@@ -2968,34 +2770,23 @@ if (!isset($_SESSION['user_id'])) {
           </div>
         `;
         
-        // Show the popup
         popup.style.display = "flex";
-        
-        // Prevent scrolling of the background
         document.body.style.overflow = "hidden";
         
-        // Fetch real enrollment data from PHP script
         fetchEnrollmentData(school.SchoolID)
           .then(enrollmentData => {
-            // Update popup with real data
             updateEnrollmentPopupContent(school, enrollmentData);
           })
           .catch(error => {
             console.error("Error fetching enrollment data:", error);
-            // Fallback to mock data if fetch fails
             const mockEnrollmentData = generateEnrollmentData(parseInt(school.total_enrollees) || 0);
             updateEnrollmentPopupContent(school, mockEnrollmentData);
           });
       }
       
-      // Fetch enrollment data from PHP script
       function fetchEnrollmentData(schoolId) {
         return new Promise((resolve, reject) => {
-          // Create URL with school_id parameter
-          const url = `phpp/dashboard/fetchSchoolInfo.php?school_id=${encodeURIComponent(schoolId)}`;
-          
-          // Fetch data from PHP script
-          fetch(url)
+          fetch(`phpp/school_info/fetchEnrollmentData.php?school_id=${encodeURIComponent(schoolId)}`)
             .then(response => {
               if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -3007,113 +2798,105 @@ if (!isset($_SESSION['user_id'])) {
                 throw new Error(data.error);
               }
               
-              // Process the enrollment data from PHP
               const processedData = processEnrollmentData(data);
               resolve(processedData);
             })
             .catch(error => {
-              console.error('Error fetching enrollment data:', error);
               reject(error);
             });
         });
       }
       
-      // Process the enrollment data from PHP to match our format
       function processEnrollmentData(data) {
-        // This function transforms the PHP data into the format our UI expects
         const enrollmentData = [];
-        
-        // Check if we have a valid data object
+
         if (!data || Object.keys(data).length === 0) {
           console.warn('No enrollment data found or invalid format');
           return enrollmentData;
         }
-        
-        // Process elementary grades
+
         if (data.K_M !== undefined || data.K_F !== undefined) {
-          enrollmentData.push({
-            level: 'Kindergarten',
-            male: parseInt(data.K_M) || 0,
-            female: parseInt(data.K_F) || 0,
-            total: (parseInt(data.K_M) || 0) + (parseInt(data.K_F) || 0)
-          });
-        }
-        
-        // Process grades 1-10
-        for (let i = 1; i <= 10; i++) {
-          const maleKey = `G${i}_M`;
-          const femaleKey = `G${i}_F`;
-          
-          if (data[maleKey] !== undefined || data[femaleKey] !== undefined) {
-            const male = parseInt(data[maleKey]) || 0;
-            const female = parseInt(data[femaleKey]) || 0;
-            
+          const male = parseInt(data.K_M) || 0;
+          const female = parseInt(data.K_F) || 0;
+          if (male + female > 0) {
             enrollmentData.push({
-              level: `Grade ${i}`,
-              male: male,
-              female: female,
+              level: 'Kindergarten',
+              male,
+              female,
               total: male + female
             });
           }
         }
-        
-        // Process senior high school grades (11-12)
-        // For Grade 11
+
+        for (let i = 1; i <= 10; i++) {
+          const male = parseInt(data[`G${i}_M`]) || 0;
+          const female = parseInt(data[`G${i}_F`]) || 0;
+          if (male + female > 0) {
+            enrollmentData.push({
+              level: `Grade ${i}`,
+              male,
+              female,
+              total: male + female
+            });
+          }
+        }
+
+        const elemMale = parseInt(data.ELEM_NG_M) || 0;
+        const elemFemale = parseInt(data.ELEM_NG_F) || 0;
+        if (elemMale + elemFemale > 0) {
+          enrollmentData.push({
+            level: 'Elementary Non-Graded',
+            male: elemMale,
+            female: elemFemale,
+            total: elemMale + elemFemale
+          });
+        }
+
+        const jhsMale = parseInt(data.JHS_NG_M) || 0;
+        const jhsFemale = parseInt(data.JHS_NG_F) || 0;
+        if (jhsMale + jhsFemale > 0) {
+          enrollmentData.push({
+            level: 'Junior High School Non-Graded',
+            male: jhsMale,
+            female: jhsFemale,
+            total: jhsMale + jhsFemale
+          });
+        }
+
         const g11Tracks = ['ACAD', 'TVL', 'SPORT', 'ART', 'UNQ'];
-        let g11MaleTotal = 0;
-        let g11FemaleTotal = 0;
-        
         g11Tracks.forEach(track => {
-          const fsMaleKey = `FS_G11_${track}_M`;
-          const fsFemaleKey = `FS_G11_${track}_F`;
-          const ssMaleKey = `SS_G11_${track}_M`;
-          const ssFemaleKey = `SS_G11_${track}_F`;
-          
-          g11MaleTotal += (parseInt(data[fsMaleKey]) || 0) + (parseInt(data[ssMaleKey]) || 0);
-          g11FemaleTotal += (parseInt(data[fsFemaleKey]) || 0) + (parseInt(data[ssFemaleKey]) || 0);
+          const male = (parseInt(data[`FS_G11_${track}_M`]) || 0) + (parseInt(data[`SS_G11_${track}_M`]) || 0);
+          const female = (parseInt(data[`FS_G11_${track}_F`]) || 0) + (parseInt(data[`SS_G11_${track}_F`]) || 0);
+          if (male + female > 0) {
+            enrollmentData.push({
+              level: `Grade 11 - ${track}`,
+              male,
+              female,
+              total: male + female
+            });
+          }
         });
-        
-        if (g11MaleTotal > 0 || g11FemaleTotal > 0) {
-          enrollmentData.push({
-            level: 'Grade 11',
-            male: g11MaleTotal,
-            female: g11FemaleTotal,
-            total: g11MaleTotal + g11FemaleTotal
-          });
-        }
-        
-        // For Grade 12
+
         const g12Tracks = ['ACAD', 'TVL', 'SPORT', 'ART', 'UNQ'];
-        let g12MaleTotal = 0;
-        let g12FemaleTotal = 0;
-        
         g12Tracks.forEach(track => {
-          const fsMaleKey = `FS_G12_${track}_M`;
-          const fsFemaleKey = `FS_G12_${track}_F`;
-          const ssMaleKey = `SS_G12_${track}_M`;
-          const ssFemaleKey = `SS_G12_${track}_F`;
-          
-          g12MaleTotal += (parseInt(data[fsMaleKey]) || 0) + (parseInt(data[ssMaleKey]) || 0);
-          g12FemaleTotal += (parseInt(data[fsFemaleKey]) || 0) + (parseInt(data[ssFemaleKey]) || 0);
+          const male = (parseInt(data[`FS_G12_${track}_M`]) || 0) + (parseInt(data[`SS_G12_${track}_M`]) || 0);
+          const female = (parseInt(data[`FS_G12_${track}_F`]) || 0) + (parseInt(data[`SS_G12_${track}_F`]) || 0);
+          if (male + female > 0) {
+            enrollmentData.push({
+              level: `Grade 12 - ${track}`,
+              male,
+              female,
+              total: male + female
+            });
+          }
         });
-        
-        if (g12MaleTotal > 0 || g12FemaleTotal > 0) {
-          enrollmentData.push({
-            level: 'Grade 12',
-            male: g12MaleTotal,
-            female: g12FemaleTotal,
-            total: g12MaleTotal + g12FemaleTotal
-          });
-        }
-        
+
         return enrollmentData;
       }
-      
-      // Update the enrollment popup with data
+
       function updateEnrollmentPopupContent(school, enrollmentData) {
         const popupBody = document.getElementById("enrollmentPopupBody");
         
-        // Calculate totals
         let totalMale = 0;
         let totalFemale = 0;
         let total_enrollees = 0;
@@ -3127,13 +2910,12 @@ if (!isset($_SESSION['user_id'])) {
         const malePercentage = total_enrollees > 0 ? Math.round((totalMale / total_enrollees) * 100) : 0;
         const femalePercentage = total_enrollees > 0 ? Math.round((totalFemale / total_enrollees) * 100) : 0;
 
-        // Create the content with the requested layout changes
         let content = `
         <div class="enrollment-summary">
           <h5><i class="bi bi-info-circle-fill me-2"></i>School Enrollment Summary</h5>
           <div class="row">
             <div class="col-md-6">
-              <p><strong>School Type:</strong> ${school.Institution || "N/A"}</p>
+              <p><strong>Institution Type:</strong> ${school.Institution || "N/A"}</p>
             </div>
             <div class="col-md-6">
               <p><strong>Total Enrollment:</strong> <span class="fs-4 text-success">${total_enrollees.toLocaleString()}</span> students</p>
@@ -3141,8 +2923,13 @@ if (!isset($_SESSION['user_id'])) {
           </div>
           <div class="row">
             <div class="col-md-6">
+              <p><strong>Curricular Offer:</strong> ${school.curricularOffer || "N/A"}</p>
+            </div>
+            <div class="col-md-6">
               <p><strong>District:</strong> ${school.district || "N/A"}</p>
             </div>
+          </div>
+          <div class="row">
             <div class="col-md-6">
               <p><strong>Principal:</strong> ${school.principal || "N/A"}</p>
             </div>
@@ -3186,7 +2973,6 @@ if (!isset($_SESSION['user_id'])) {
             <tbody>
         `;
 
-        // Add rows for each grade level
         enrollmentData.forEach((grade) => {
           const percentage = total_enrollees > 0 ? ((grade.total / total_enrollees) * 100).toFixed(1) : "0.0";
           content += `
@@ -3200,7 +2986,6 @@ if (!isset($_SESSION['user_id'])) {
         `;
         });
 
-        // Add total row
         content += `
           <tr class="total-row">
             <td>Total</td>
@@ -3217,36 +3002,27 @@ if (!isset($_SESSION['user_id'])) {
         </div>
         `;
 
-        // Set the content
         popupBody.innerHTML = content;
       }
 
-      // Close the enrollment popup
       function closeEnrollmentPopup() {
         const popup = document.getElementById("enrollmentPopup");
         popup.style.display = "none";
-
-        // Re-enable scrolling
         document.body.style.overflow = "";
       }
 
-      // Generate mock enrollment data based on total population
       function generateEnrollmentData(totalPopulation) {
-        // For schools with different grade levels
         let gradeLevels = [];
 
         if (totalPopulation <= 0) {
           return gradeLevels;
         }
 
-        // Determine if elementary, high school, or K-12 based on population
         const isElementary = totalPopulation < 1000;
         const isHighSchool = totalPopulation >= 1000 && totalPopulation < 2000;
         const isK12 = totalPopulation >= 2000;
 
-        // Create grade levels based on school type
         if (isElementary) {
-          // Elementary school (K to 6)
           gradeLevels = [
             { level: "Kindergarten" },
             { level: "Grade 1" },
@@ -3257,7 +3033,6 @@ if (!isset($_SESSION['user_id'])) {
             { level: "Grade 6" },
           ];
         } else if (isHighSchool) {
-          // High school (7 to 12)
           gradeLevels = [
             { level: "Grade 7" },
             { level: "Grade 8" },
@@ -3267,7 +3042,6 @@ if (!isset($_SESSION['user_id'])) {
             { level: "Grade 12" },
           ];
         } else if (isK12) {
-          // K-12 school
           gradeLevels = [
             { level: "Kindergarten" },
             { level: "Grade 1" },
@@ -3285,29 +3059,23 @@ if (!isset($_SESSION['user_id'])) {
           ];
         }
 
-        // Distribute population across grade levels
         const totalLevels = gradeLevels.length;
         let remainingPopulation = totalPopulation;
 
         gradeLevels.forEach((grade, index) => {
-          // Distribute population with some randomness
-          // Last grade gets all remaining students to ensure total matches
           let gradeTotal;
           if (index === totalLevels - 1) {
             gradeTotal = remainingPopulation;
           } else {
-            // Random percentage between 10% and 20% of remaining population
             const percentage = 0.1 + Math.random() * 0.1;
             gradeTotal = Math.floor(remainingPopulation * percentage);
             remainingPopulation -= gradeTotal;
           }
 
-          // Split between male and female (roughly 50/50 with slight variation)
-          const malePercentage = 0.45 + Math.random() * 0.1; // 45% to 55%
+          const malePercentage = 0.45 + Math.random() * 0.1;
           const male = Math.floor(gradeTotal * malePercentage);
           const female = gradeTotal - male;
 
-          // Add to grade level data
           grade.male = male;
           grade.female = female;
           grade.total = gradeTotal;
@@ -3316,7 +3084,6 @@ if (!isset($_SESSION['user_id'])) {
         return gradeLevels;
       }
 
-      // Close popup when clicking outside the content
       document
         .getElementById("enrollmentPopup")
         .addEventListener("click", function (e) {
@@ -3325,7 +3092,6 @@ if (!isset($_SESSION['user_id'])) {
           }
         });
 
-      // Close popup when pressing Escape key
       document.addEventListener("keydown", function (e) {
         if (
           e.key === "Escape" &&
@@ -3335,37 +3101,49 @@ if (!isset($_SESSION['user_id'])) {
         }
       });
 
-      // Clear selection when clicking outside of rows/cards
       document.addEventListener("click", function (event) {
         const isTableRow = event.target.closest("#schoolTableBody tr");
-        const isCard = event.target.closest(".school-card");
         const isUpdateButton = event.target.closest("#updateButton");
         const isModal = event.target.closest(".modal");
         const isFilterPanel = event.target.closest(".filter-panel");
         const isFilterButton = event.target.closest("#filterButton");
 
-        if (!isTableRow && !isCard && !isUpdateButton && !isModal && !isFilterPanel && !isFilterButton) {
-          // Clear selection from all rows
+        if (!isTableRow && !isUpdateButton && !isModal && !isFilterPanel && !isFilterButton) {
           document.querySelectorAll("#schoolTableBody tr").forEach((r) => {
             r.classList.remove("table-primary");
           });
 
-          // Clear selection from all cards
-          document.querySelectorAll(".school-card").forEach((c) => {
-            c.classList.remove("border-primary");
-            c.style.boxShadow = "";
-          });
-
-          // Disable update button
           const updateButton = document.getElementById("updateButton");
           if (updateButton) {
             updateButton.classList.add("btn-update-disabled");
             updateButton.disabled = true;
           }
 
-          // Clear selected school
           selectedSchoolIndex = -1;
           selectedSchool = null;
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (event.target.id === "logoutLink") {
+          event.preventDefault();
+          if (typeof Swal !== "undefined") {
+            Swal.fire({ 
+              title: "Are you sure?", 
+              text: "You are about to logout!", 
+              icon: "warning", 
+              showCancelButton: true, 
+              confirmButtonColor: "#3085d6", 
+              cancelButtonColor: "#d33", 
+              confirmButtonText: "Yes, logout!" 
+            }).then((result) => { 
+              if (result.isConfirmed) window.location.href = "index.php"; 
+            });
+          } else {
+            if (confirm("Are you sure you want to logout?")) {
+              window.location.href = "index.php";
+            }
+          }
         }
       });
     </script>
