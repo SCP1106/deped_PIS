@@ -34,7 +34,7 @@ if ($rateLimiter->isRateLimited()) {
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <link rel="stylesheet" href="/auth/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .main-content {
@@ -140,7 +140,7 @@ if ($rateLimiter->isRateLimited()) {
             margin-bottom: 0.5rem;
         }
     </style>
-        <link rel="stylesheet" href="/css/side-topbar.css" />
+        <link rel="stylesheet" href="../css/side-topbar.css" />
 </head>
 
 <body>
@@ -257,7 +257,7 @@ if ($rateLimiter->isRateLimited()) {
 </body>
 
 
-<script src="/js/side-topbar.js"></script>
+<script src="../../js/side-topbar.js"></script>
 </html>
 <?php
 // Clear old form data after displaying the form
