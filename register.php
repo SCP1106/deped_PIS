@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-$csrf_token = $_SESSION['csrf_token'];
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,23 +37,7 @@ $csrf_token = $_SESSION['csrf_token'];
       max-width: 500px;
       max-height: 280px;
       width: 100%;
-      transition: transform 0.3s ease;
       position: relative;
-      will-change: transform;
-    }
-
-    /* Movement directions */
-    .move-up {
-      transform: translateY(-500px);
-    }
-    .move-down {
-      transform: translateY(500px);
-    }
-    .move-left {
-      transform: translateX(-500px);
-    }
-    .move-right {
-      transform: translateX(500px);
     }
 
     .registration-card h2 {
@@ -68,18 +45,6 @@ $csrf_token = $_SESSION['csrf_token'];
       margin-bottom: 1.5rem;
       text-align: center;
       font-size: 2rem;
-    }
-
-    .form-control, .form-select {
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      border: 1px solid #e0e0e0;
-      transition: all 0.3s ease;
-    }
-
-    .form-control:focus, .form-select:focus {
-      border-color: #2e8b57;
-      box-shadow: 0 0 0 0.2rem rgba(46, 139, 87, 0.25);
     }
 
     .btn-primary {
@@ -96,13 +61,9 @@ $csrf_token = $_SESSION['csrf_token'];
       border-color: #246c46;
     }
 
-    .form-label {
-      font-weight: 500;
-      color: #333;
-    }
-
-    .invalid-feedback {
-      font-size: 0.875rem;
+    .btn-register {
+      font-size: 1.1rem;
+      padding: 1rem 2rem;
     }
 
     .skeleton-nav-item, .skeleton-logo, .skeleton-text {
@@ -125,6 +86,16 @@ $csrf_token = $_SESSION['csrf_token'];
       height: 2rem;
       width: 80%;
       margin-bottom: 0.5rem;
+    }
+
+    .registration-content {
+      text-align: center;
+    }
+
+    .registration-description {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1rem;
     }
   </style>
 </head>
@@ -153,38 +124,21 @@ $csrf_token = $_SESSION['csrf_token'];
 
   <div class="main-content p-4">
     <div class="registration-card">
-      <h2>Create an Account</h2>
-      <div id="message-container"></div>
-      <form id="registrationForm" action="auth/process/process-register.php" method="post" class="needs-validation" novalidate>
-        <div class="form-floating mb-4">
-          <input type="email" class="form-control" id="email" name="email" placeholder="Email address" required />
-          <label for="email">Email address</label>
-          <div class="invalid-feedback">Please provide a valid email address.</div>
-        </div>
-        <input type="hidden" name="csrf_token" id="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>" />
-        <button type="submit" class="btn btn-primary w-100">Register</button>
-      </form>
+      <div class="registration-content">
+        <h2>Create an Account</h2>
+        <p class="registration-description">
+          Join the DepEd system to access educational resources and manage your account.
+        </p>
+        <div id="message-container"></div>
+        <button type="button" class="btn btn-primary btn-register w-100" onclick="window.location.href='auth/pages/register.php'">
+          <i class="bi bi-person-plus me-2"></i>
+          Start Registration
+        </button>
+      </div>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/side-topbar.js"></script>
-  <script>  
-    // Form validation
-    document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById('registrationForm');
-      if (form) {
-        form.addEventListener('submit', function(event) {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        });
-      }
-
-      
-    });
-  </script>
 </body>
 </html>

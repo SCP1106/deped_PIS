@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->close();
 
         // Send activation email
-        require_once '../assets/vendor/autoload.php';
+        require_once __DIR__ . '/../../vendor/autoload.php';
         $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
         // Server settings

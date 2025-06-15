@@ -51,12 +51,6 @@ if ($rateLimiter->isRateLimited()) {
             background-position: center;
         }
 
-        #sidebar-container .sidebar {
-            height: 100vh;
-            overflow-y: auto;
-            /* Allows vertical scrolling */
-        }
-
         .registration-card {
             background-color: #ffffff;
             border-radius: 15px;
@@ -65,6 +59,7 @@ if ($rateLimiter->isRateLimited()) {
             max-width: 500px;
             width: 100%;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .registration-card:hover {
@@ -106,6 +101,20 @@ if ($rateLimiter->isRateLimited()) {
             border-color: #246c46;
         }
 
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
         .form-label {
             font-weight: 500;
             color: #333;
@@ -115,43 +124,15 @@ if ($rateLimiter->isRateLimited()) {
             font-size: 0.875rem;
         }
 
-        .skeleton-nav-item,
-        .skeleton-logo,
-        .skeleton-text {
-            background-color: #e0e0e0;
-            border-radius: 4px;
-        }
-
-        /* Optional: Customize skeleton loading animation */
-        .skeleton-text {
-            height: 1.5rem;
-            width: 80%;
-        }
-
-        .skeleton-logo {
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
-        }
-
-        .skeleton-nav-item {
-            height: 2rem;
-            width: 80%;
-            margin-bottom: 0.5rem;
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
         }
     </style>
-        <link rel="stylesheet" href="../css/side-topbar.css" />
 </head>
 
 <body>
-
-<div id="sidebar-container">
-
-    </div>
-    <div id="topbar-container">
-
-    </div>
-
     <div class="main-content p-4">
         <div class="registration-card">
             <h2>Create an Account</h2>
@@ -179,62 +160,52 @@ if ($rateLimiter->isRateLimited()) {
                         <?php unset($_SESSION['email_error']); ?>
                     </div>
                 <?php endif; ?>
-                <!-- <?php if (isset($_SESSION['debug_activation_link'])): ?>
-                    <div class="alert alert-info">
-                        <p><strong>Activation Link:</strong></p>
-                        <a href="<?php echo htmlspecialchars($_SESSION['debug_activation_link']); ?>" class="link-primary">
-                            <?php echo htmlspecialchars($_SESSION['debug_activation_link']); ?>
-                        </a>
-                        <?php unset($_SESSION['debug_activation_link']); ?>
-                    </div> -->
             <?php endif; ?>
-        <?php endif; ?>
 
-        <?php if ($is_rate_limited): ?>
-            <div class="alert alert-warning">
-                Too many registration attempts. Please try again in <?= ceil($time_until_unlocked / 60) ?> minutes.
-            </div>
-        <?php else: ?>
-            <form id="registrationForm" action="../process/process-register.php" method="post" class="needs-validation" novalidate>
-                <div class="form-floating mb-4">
-                    <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        name="email"
-                        placeholder="Email address"
-                        required
-                        value="<?php echo isset($_SESSION['old']['email']) ? htmlspecialchars($_SESSION['old']['email']) : ''; ?>" />
-                    <label for="email">Email address</label>
-                    <div class="invalid-feedback">
-                        Please provide a valid email address.
-                    </div>
+            <?php if ($is_rate_limited): ?>
+                <div class="alert alert-warning">
+                    Too many registration attempts. Please try again in <?= ceil($time_until_unlocked / 60) ?> minutes.
                 </div>
-
-                <div class="form-floating mb-4">
-                    <select class="form-select" id="role" name="role" required>
-                        <option value="" disabled selected>Select role</option>
-                        <option value="Admin" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
-                        <option value="OSDS" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'OSDS') ? 'selected' : ''; ?>>OSDS</option>
-                        <option value="CID" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'CID') ? 'selected' : ''; ?>>CID</option>
-                        <option value="User" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'User') ? 'selected' : ''; ?>>User</option>
-                    </select>
-                    <label for="role">Role</label>
-                    <div class="invalid-feedback">
-                        Please select a role.
+            <?php else: ?>
+                <form id="registrationForm" action="../process/process-register.php" method="post" class="needs-validation" novalidate>
+                    <div class="form-floating mb-4">
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            placeholder="Email address"
+                            required
+                            value="<?php echo isset($_SESSION['old']['email']) ? htmlspecialchars($_SESSION['old']['email']) : ''; ?>" />
+                        <label for="email">Email address</label>
+                        <div class="invalid-feedback">
+                            Please provide a valid email address.
+                        </div>
                     </div>
-                </div>
 
-                <!-- CSRF Protection -->
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                    <div class="form-floating mb-4">
+                        <select class="form-select" id="role" name="role" required>
+                            <option value="" disabled selected>Select role</option>
+                            <option value="Admin" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
+                            <option value="OSDS" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'OSDS') ? 'selected' : ''; ?>>OSDS</option>
+                            <option value="CID" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'CID') ? 'selected' : ''; ?>>CID</option>
+                            <option value="User" <?php echo (isset($_SESSION['old']['role']) && $_SESSION['old']['role'] == 'User') ? 'selected' : ''; ?>>User</option>
+                        </select>
+                        <label for="role">Role</label>
+                        <div class="invalid-feedback">
+                            Please select a role.
+                        </div>
+                    </div>
 
-                <button type="submit" class="btn btn-primary w-100" <?= $is_rate_limited ? 'disabled' : '' ?>>Register</button>
+                    <!-- CSRF Protection -->
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
-
-            </form>
-
-
-        <?php endif; ?>
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary w-100" <?= $is_rate_limited ? 'disabled' : '' ?>>Register</button>
+                        <button type="button" class="btn btn-secondary w-100" onclick="cancelRegistration()">Cancel</button>
+                    </div>
+                </form>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -253,11 +224,14 @@ if ($rateLimiter->isRateLimited()) {
                 });
             }
         });
+
+        // Cancel button functionality
+        function cancelRegistration() {
+            window.location.href = '../../register.php';
+        }
     </script>
 </body>
 
-
-<script src="../../js/side-topbar.js"></script>
 </html>
 <?php
 // Clear old form data after displaying the form
