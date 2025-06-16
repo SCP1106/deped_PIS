@@ -614,6 +614,149 @@ if (!isset($_SESSION['user_id'])) {
         color: var(--dark-color);
       }
 
+      /* Import Modal Styles */
+      .import-options {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        border: 1px solid var(--border-color);
+      }
+
+      .import-options h6 {
+        color: var(--success-color);
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .radio-option {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border: 2px solid #e1e5e9;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-color: white;
+      }
+
+      .radio-option:hover {
+        background-color: #f0f0f0;
+        border-color: #c0c0c0;
+      }
+
+      .radio-option input[type="radio"] {
+        margin-right: 15px;
+        width: auto;
+        transform: scale(1.2);
+      }
+
+      .radio-option.selected {
+        border-color: var(--primary-color);
+        background-color: rgba(76, 175, 80, 0.1);
+      }
+
+      .radio-option-content {
+        flex: 1;
+      }
+
+      .radio-option-title {
+        font-weight: 600;
+        color: var(--dark-color);
+        margin-bottom: 5px;
+      }
+
+      .radio-option-description {
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin: 0;
+      }
+
+      .school-id-group {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .school-id-group.show {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .file-upload {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+      }
+
+      .file-upload input[type="file"] {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .file-upload-label {
+        display: block;
+        padding: 30px;
+        border: 2px dashed var(--primary-color);
+        border-radius: 8px;
+        text-align: center;
+        background: rgba(76, 175, 80, 0.05);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .file-upload-label:hover {
+        background: rgba(76, 175, 80, 0.1);
+        border-color: var(--hover-green);
+      }
+
+      .file-upload-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+      }
+
+      .file-upload-text {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--dark-color);
+        margin-bottom: 5px;
+      }
+
+      .file-upload-subtext {
+        font-size: 0.9rem;
+        color: #6c757d;
+      }
+
+      .progress-bar-container {
+        width: 100%;
+        height: 8px;
+        background-color: #e1e5e9;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 15px;
+        display: none;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary-color), var(--hover-green));
+        width: 0%;
+        transition: width 0.3s ease;
+      }
+
       @media (max-width: 768px) {
         .search-bar input {
           width: 100%;
@@ -652,6 +795,14 @@ if (!isset($_SESSION['user_id'])) {
 
         .enrollment-summary p {
           font-size: 1rem;
+        }
+
+        .radio-option {
+          padding: 12px;
+        }
+
+        .radio-option input[type="radio"] {
+          margin-right: 10px;
         }
       }
     </style>
@@ -755,7 +906,8 @@ if (!isset($_SESSION['user_id'])) {
               Action
             </button>
             <ul class="dropdown-menu" aria-labelledby="actionButton">
-              <li><button class="dropdown-item" onclick="importData()"><i class="bi bi-upload"></i> Import</button></li>
+              <li><button class="dropdown-item" onclick="importData()"><i class="bi bi-upload"></i> Import School Data</button></li>
+              <li><button class="dropdown-item" onclick="importEnrollmentData()"><i class="bi bi-file-earmark-spreadsheet"></i> Import Enrollment Data</button></li>
               <li><button class="dropdown-item" onclick="exportToExcel()"><i class="bi bi-file-earmark-excel"></i> Export</button></li>
             </ul>
           </div>
@@ -1108,6 +1260,103 @@ if (!isset($_SESSION['user_id'])) {
       </div>
     </div>
 
+    <!-- Enrollment Import Modal -->
+    <div class="modal fade" id="enrollmentImportModal" tabindex="-1" aria-labelledby="enrollmentImportModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="enrollmentImportModalLabel">
+              <i class="bi bi-file-earmark-spreadsheet me-2"></i>Import Enrollment Data
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="enrollmentImportAlert" class="alert" style="display: none;"></div>
+            
+            <form id="enrollmentImportForm" enctype="multipart/form-data">
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="schoolYear" name="schoolYear" placeholder="e.g., 2023-2024" required>
+                    <label for="schoolYear">School Year *</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <select class="form-select" id="schoolType" name="schoolType" required>
+                      <option value="">Select School Type</option>
+                      <option value="Public">Public</option>
+                      <option value="Private">Private</option>
+                    </select>
+                    <label for="schoolType">School Type *</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="import-options">
+                <h6><i class="bi bi-gear-fill me-2"></i>Import Options</h6>
+                <div class="radio-group">
+                  <div class="radio-option" onclick="selectImportOption('whole')">
+                    <input type="radio" id="wholeTable" name="importType" value="whole" checked>
+                    <div class="radio-option-content">
+                      <div class="radio-option-title">Update Whole Table</div>
+                      <p class="radio-option-description">Replace all enrollment data for the selected school year across all schools</p>
+                    </div>
+                  </div>
+                  <div class="radio-option" onclick="selectImportOption('specific')">
+                    <input type="radio" id="specificSchool" name="importType" value="specific">
+                    <div class="radio-option-content">
+                      <div class="radio-option-title">Update Specific School</div>
+                      <p class="radio-option-description">Update enrollment data for a specific school only</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-floating mb-4 school-id-group" id="schoolIdGroup">
+                <input type="text" class="form-control" id="specificSchoolID" name="schoolID" placeholder="Enter School ID">
+                <label for="specificSchoolID">School ID *</label>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold">Upload CSV File *</label>
+                <div class="file-upload">
+                  <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+                  <label for="csvFile" class="file-upload-label">
+                    <div class="file-upload-icon">📁</div>
+                    <div class="file-upload-text">Click to select CSV file or drag and drop</div>
+                    <div class="file-upload-subtext">Supported format: CSV with enrollment data</div>
+                  </label>
+                </div>
+                <div class="progress-bar-container" id="progressBarContainer">
+                  <div class="progress-bar-fill" id="progressBarFill"></div>
+                </div>
+              </div>
+
+              <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                <strong>CSV Format Requirements:</strong>
+                <ul class="mb-0 mt-2">
+                  <li>File must contain all 79 enrollment data columns</li>
+                  <li>First column should be enrollment_data_ID</li>
+                  <li>Second column should be schoolID</li>
+                  <li>Remaining columns should follow the enrollment data structure</li>
+                </ul>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <i class="bi bi-x-circle me-1"></i>Cancel
+            </button>
+            <button type="button" class="btn btn-success" id="importEnrollmentBtn">
+              <i class="bi bi-upload me-1"></i>Import Data
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Enrollment Popup -->
     <div class="enrollment-popup" id="enrollmentPopup">
       <div class="enrollment-popup-content">
@@ -1167,6 +1416,9 @@ if (!isset($_SESSION['user_id'])) {
         
         // Load regions when modal is shown
         document.getElementById("schoolModal").addEventListener("shown.bs.modal", loadRegions);
+        
+        // Initialize enrollment import functionality
+        initializeEnrollmentImport();
       });
 
       // Component Loader
@@ -1267,6 +1519,156 @@ if (!isset($_SESSION['user_id'])) {
         }, 200);
       }
 
+      // Enrollment Import Functions
+      function initializeEnrollmentImport() {
+        // File upload handling
+        document.getElementById('csvFile').addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          const label = document.querySelector('.file-upload-label');
+          
+          if (file) {
+            label.innerHTML = `
+              <div class="file-upload-icon">✅</div>
+              <div class="file-upload-text"><strong>${file.name}</strong></div>
+              <div class="file-upload-subtext">File selected successfully</div>
+            `;
+            label.style.borderColor = '#28a745';
+            label.style.backgroundColor = 'rgba(40, 167, 69, 0.1)';
+          }
+        });
+
+        // Import button event listener
+        document.getElementById('importEnrollmentBtn').addEventListener('click', function() {
+          processEnrollmentImport();
+        });
+
+        // Initialize with default selection
+        selectImportOption('whole');
+      }
+
+      function importEnrollmentData() {
+        const modal = new bootstrap.Modal(document.getElementById('enrollmentImportModal'));
+        modal.show();
+      }
+
+      function selectImportOption(type) {
+        // Remove selected class from all options
+        document.querySelectorAll('.radio-option').forEach(option => {
+          option.classList.remove('selected');
+        });
+        
+        // Add selected class to clicked option
+        const selectedOption = document.querySelector(`input[value="${type}"]`).closest('.radio-option');
+        selectedOption.classList.add('selected');
+        
+        // Check the radio button
+        document.getElementById(type === 'whole' ? 'wholeTable' : 'specificSchool').checked = true;
+        
+        // Show/hide school ID input
+        const schoolIdGroup = document.getElementById('schoolIdGroup');
+        const schoolIdInput = document.getElementById('specificSchoolID');
+        
+        if (type === 'specific') {
+          schoolIdGroup.classList.add('show');
+          schoolIdInput.required = true;
+        } else {
+          schoolIdGroup.classList.remove('show');
+          schoolIdInput.required = false;
+          schoolIdInput.value = '';
+        }
+      }
+
+      function processEnrollmentImport() {
+        const form = document.getElementById('enrollmentImportForm');
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const formData = new FormData(form);
+        const importBtn = document.getElementById('importEnrollmentBtn');
+        const progressContainer = document.getElementById('progressBarContainer');
+        const progressFill = document.getElementById('progressBarFill');
+        const alert = document.getElementById('enrollmentImportAlert');
+        
+        // Show progress bar
+        progressContainer.style.display = 'block';
+        importBtn.disabled = true;
+        importBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>Processing...';
+        
+        // Simulate progress
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+          progress += Math.random() * 30;
+          if (progress > 90) progress = 90;
+          progressFill.style.width = progress + '%';
+        }, 200);
+        
+        // Submit form
+        fetch('phpp/school_info/process_enrollment_import.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          clearInterval(progressInterval);
+          progressFill.style.width = '100%';
+          
+          setTimeout(() => {
+            progressContainer.style.display = 'none';
+            progressFill.style.width = '0%';
+            importBtn.disabled = false;
+            importBtn.innerHTML = '<i class="bi bi-upload me-1"></i>Import Data';
+            
+            // Show result
+            alert.className = `alert ${data.success ? 'alert-success' : 'alert-danger'}`;
+            alert.innerHTML = `
+              <i class="bi bi-${data.success ? 'check-circle' : 'exclamation-triangle'} me-2"></i>
+              ${data.message}
+            `;
+            alert.style.display = 'block';
+            
+            if (data.success) {
+              form.reset();
+              selectImportOption('whole'); // Reset to default option
+              
+              // Reset file upload label
+              const label = document.querySelector('.file-upload-label');
+              label.innerHTML = `
+                <div class="file-upload-icon">📁</div>
+                <div class="file-upload-text">Click to select CSV file or drag and drop</div>
+                <div class="file-upload-subtext">Supported format: CSV with enrollment data</div>
+              `;
+              label.style.borderColor = 'var(--primary-color)';
+              label.style.backgroundColor = 'rgba(76, 175, 80, 0.05)';
+              
+              // Refresh school data to show updated enrollment numbers
+              fetchData();
+            }
+            
+            // Hide alert after 5 seconds
+            setTimeout(() => {
+              alert.style.display = 'none';
+            }, 5000);
+          }, 1000);
+        })
+        .catch(error => {
+          clearInterval(progressInterval);
+          progressContainer.style.display = 'none';
+          importBtn.disabled = false;
+          importBtn.innerHTML = '<i class="bi bi-upload me-1"></i>Import Data';
+          
+          alert.className = 'alert alert-danger';
+          alert.innerHTML = `
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            An error occurred while processing the file. Please try again.
+          `;
+          alert.style.display = 'block';
+          
+          console.error('Import error:', error);
+        });
+      }
+
       function fetchData() {
         fetch("phpp/school_info/fetchSchoolInfo.php", { method: "GET" })
           .then((response) => {
@@ -1359,6 +1761,9 @@ if (!isset($_SESSION['user_id'])) {
         `;
 
           row.addEventListener("click", function (e) {
+            if (e.target.classList.contains("enrollment-link
+
+function (e) {
             if (e.target.classList.contains("enrollment-link") || e.target.closest(".enrollment-link")) {
               return;
             }
@@ -2690,7 +3095,7 @@ if (!isset($_SESSION['user_id'])) {
 
       function importData() {
         Swal.fire({
-          title: 'Import Data',
+          title: 'Import School Data',
           text: 'This feature will allow you to import school data from a CSV file.',
           icon: 'info',
           showCancelButton: true,

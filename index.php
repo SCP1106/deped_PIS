@@ -1111,34 +1111,35 @@
   <script>
     // Initialize the map
     const map = L.map("map", {
-      zoomControl: false,
-    }).setView([15.648753870285125, 121.01049859359448], 10);
+  zoomControl: false,
+}).setView([15.648753870285125, 121.01049859359448], 10);
 
-    // Base tile layers
-    const defaulty = L.tileLayer(
-      "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-      {
-        maxZoom: 19,
-        attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }
-    ).addTo(map);
+// Base tile layers
+const defaulty = L.tileLayer(
+  "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+  {
+    maxZoom: 19,
+    attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  }
+).addTo(map);
 
-    const googleSat = L.tileLayer(
-      "http://{s}.google.com/vt/lyrs=s&x={y}&z={z}",
-      {
-        maxZoom: 16,
-        subdomains: ["mt0", "mt1", "mt2", "mt3"],
-      }
-    );
+const googleSat = L.tileLayer(
+  "https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+  {
+    maxZoom: 20,
+    subdomains: ["mt0", "mt1", "mt2", "mt3"],
+  }
+);
 
-    const baseMaps = {
-      Default: defaulty,
-      Satellite: googleSat,
-    };
+const baseMaps = {
+  "Default": defaulty,
+  "Satellite": googleSat,
+};
 
-    // Add layer controls and zoom control
-    L.control.layers(baseMaps, {}, { position: "bottomleft" }).addTo(map);
-    L.control.zoom({ position: "bottomleft" }).addTo(map);
+// Add layer controls and zoom control
+L.control.layers(baseMaps, {}, { position: "bottomleft" }).addTo(map);
+L.control.zoom({ position: "bottomleft" }).addTo(map);
+
 
     // Layer groups
     const geoJSONLayerGroup = L.layerGroup().addTo(map);
