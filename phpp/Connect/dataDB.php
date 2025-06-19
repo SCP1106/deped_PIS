@@ -1,6 +1,6 @@
 <?php
 
-$conn = mysqli_connect("rimsdone.com", "rimsdone_SCP1106", "_#vtR5e4]Rj9q%Sz", "rimsdone_depedPIS");
+$conn = mysqli_connect("rimsdone.com", "rimsdone_SCP1106", "j8UApeT(-2*Qih+#", "rimsdone_depedPIS");
 //$conn = mysqli_connect("localhost", "root", "", "jsonmapdata");
 
 $conn->set_charset("utf8mb4");
