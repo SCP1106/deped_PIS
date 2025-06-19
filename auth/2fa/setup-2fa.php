@@ -4,7 +4,7 @@ session_start();
 
 // Check if user is setting up 2FA
 if (!isset($_SESSION['setup_2fa']) || !isset($_SESSION['user_email'])) {
-    header("Location: /deped_PIS/auth/pages/login.php");
+    header("Location: /auth/pages/login.php");
     exit;
 }
 
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             unset($_SESSION['setup_2fa']);
             unset($_SESSION['user_email']);
             unset($_SESSION['pending_login_email']);
-            header("Location: /deped_PIS/auth/pages/login.php");
+            header("Location: /auth/pages/login.php");
             exit;
         } else {
             $verification_error = "Invalid verification code. Please try again.";
