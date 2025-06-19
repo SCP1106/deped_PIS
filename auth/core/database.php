@@ -10,7 +10,7 @@
 $host = "rimsdone.com";
 $dbname = "rimsdone_depedPIS";
 $username = "rimsdone_SCP1106";
-$password = "j8UApeT(-2*Qih+#";
+$password = "eQ0lO%p#SE8COnQu";
 
 try {
     $mysqli = new mysqli(
