@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $base_url = $protocol . $host;
         
         // Ensure activation link includes the correct project folder
-        $activation_link = $base_url . '/pis.rimsdone.com/auth/pages/activate-account.php?token=' . urlencode($token);
+        $activation_link = $base_url . '/auth/pages/activate-account.php?token=' . urlencode($token);
 
         $mail->isHtml(true);
         $mail->Subject = "DepEd System: Activate Your Account";
