@@ -26,7 +26,12 @@ if ($schoolID) {
         ELEM_NG_F, JHS_NG_F
     FROM enrollment_data
     WHERE SchoolID = ?
-    AND SchoolYear = 2024";
+    AND SchoolYear = 2024
+    -- CASE 
+    --     WHEN MONTH(CURDATE()) >= 6 
+    --     THEN CONCAT(YEAR(CURDATE()), '-', YEAR(CURDATE()) + 1)
+    --     ELSE CONCAT(YEAR(CURDATE()) - 1, '-', YEAR(CURDATE()))
+    -- END";
 
     $stmt = $conn->prepare($sql);
 
