@@ -2,14 +2,11 @@ function loadComponent(component, containerId, callback) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  // Optional: Show loading text while fetching
   container.innerHTML = "Loading...";
 
   fetch(`${component}.php`)
     .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
       return response.text();
     })
     .then((html) => {
@@ -22,7 +19,6 @@ function loadComponent(component, containerId, callback) {
     });
 }
 
-// Load sidebar and topbar
 loadComponent("sidebar", "sidebar-container", initializeSidebar);
 loadComponent("topbar", "topbar-container", initializeTopbar);
 
@@ -30,11 +26,12 @@ function initializeSidebar() {
   const currentPage = window.location.pathname.split("/").pop();
   const navLinks = document.querySelectorAll(".nav-link");
 
-  // Set active link based on current page
+  // Highlight the active link
   navLinks.forEach((link) => {
     if (link.getAttribute("href") === currentPage) {
       link.classList.add("active");
 
+      // Handle submenu
       if (link.classList.contains("submenu-link")) {
         const submenu = link.closest(".submenu");
         if (submenu) {
@@ -44,15 +41,15 @@ function initializeSidebar() {
           );
           if (parentLink) {
             parentLink.classList.add("active");
-            const submenuToggle = parentLink.querySelector(".submenu-toggle");
-            if (submenuToggle) submenuToggle.classList.add("rotate");
+            const toggleIcon = parentLink.querySelector(".submenu-toggle");
+            if (toggleIcon) toggleIcon.classList.add("rotate");
           }
         }
       }
     }
   });
 
-  // Handle School Info submenu toggle
+  // Handle submenu toggle
   const schoolInfoLink = document.getElementById("schoolInfoLink");
   const schoolInfoSubmenu = document.getElementById("schoolInfoSubmenu");
 
@@ -62,11 +59,11 @@ function initializeSidebar() {
       schoolInfoSubmenu.classList.toggle("show");
       this.querySelector(".submenu-toggle")?.classList.toggle("rotate");
 
+      // Toggle active state
       if (schoolInfoSubmenu.classList.contains("show")) {
         this.classList.add("active");
       } else {
-        const activeSubmenuItems =
-          schoolInfoSubmenu.querySelectorAll(".nav-link.active");
+        const activeSubmenuItems = schoolInfoSubmenu.querySelectorAll(".nav-link.active");
         if (activeSubmenuItems.length === 0) {
           this.classList.remove("active");
         }
@@ -74,25 +71,22 @@ function initializeSidebar() {
     });
   }
 
-  // Handle main nav link clicks
+  // Handle regular nav link clicks
   document.querySelectorAll(".sidebar nav a").forEach((link) => {
-    if (
-      !link.classList.contains("submenu-link") &&
-      link.id !== "schoolInfoLink"
-    ) {
+    if (!link.classList.contains("submenu-link") && link.id !== "schoolInfoLink") {
       link.addEventListener("click", function () {
-        document.querySelectorAll(".sidebar nav a").forEach((el) => {
-          el.classList.remove("active");
-        });
-
+        document.querySelectorAll(".sidebar nav a").forEach((el) => el.classList.remove("active"));
         this.classList.add("active");
 
+        // Collapse submenu if open
         if (schoolInfoSubmenu) {
           schoolInfoSubmenu.classList.remove("show");
-          schoolInfoLink
-            .querySelector(".submenu-toggle")
-            ?.classList.remove("rotate");
+          schoolInfoLink.querySelector(".submenu-toggle")?.classList.remove("rotate");
         }
+
+        // Mobile: close sidebar after clicking a link
+        document.querySelector(".sidebar")?.classList.remove("show");
+        document.body.classList.remove("sidebar-open");
       });
     }
   });
@@ -100,21 +94,21 @@ function initializeSidebar() {
   // Handle submenu link clicks
   document.querySelectorAll(".submenu-link").forEach((link) => {
     link.addEventListener("click", function () {
-      document.querySelectorAll(".sidebar nav a").forEach((el) => {
-        el.classList.remove("active");
-      });
-
+      document.querySelectorAll(".sidebar nav a").forEach((el) => el.classList.remove("active"));
       this.classList.add("active");
+
       const parentLink = document.querySelector(
         `[href="${this.closest(".submenu").id.replace("Submenu", ".php")}"]`
       );
-      if (parentLink) {
-        parentLink.classList.add("active");
-      }
+      if (parentLink) parentLink.classList.add("active");
+
+      // Mobile: close sidebar
+      document.querySelector(".sidebar")?.classList.remove("show");
+      document.body.classList.remove("sidebar-open");
     });
   });
 
-  // Logout functionality
+  // Logout
   const logoutLink = document.getElementById("logoutLink");
   if (logoutLink) {
     logoutLink.addEventListener("click", (event) => {
@@ -143,28 +137,36 @@ function initializeTopbar() {
   if (sidebarToggle && sidebar) {
     sidebarToggle.addEventListener("click", () => {
       sidebar.classList.toggle("show");
+      document.body.classList.toggle("sidebar-open");
     });
 
+    // Click outside to close (mobile only)
     document.addEventListener("click", (e) => {
-      if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+      const isClickInsideSidebar = sidebar.contains(e.target);
+      const isClickToggle = sidebarToggle.contains(e.target);
+      const isMobile = window.innerWidth <= 768;
+
+      if (!isClickInsideSidebar && !isClickToggle && isMobile) {
         sidebar.classList.remove("show");
+        document.body.classList.remove("sidebar-open");
       }
     });
   }
 }
 
-// Redirect helper functions
-function redirectToProfile() {
-  window.location.href = "profile.php";
-}
-
-function redirectDashboard() {
-  window.location.href = "dashboard.php";
-}
-
-// Safely handle .has-submenu clicks, even after dynamic loading
+// Submenu toggle handler (optional if using .has-submenu separately)
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("has-submenu")) {
     e.target.classList.toggle("active");
   }
 });
+
+// Optional: Prevent body scroll when sidebar is open on mobile
+if (window.innerWidth <= 768) {
+  const observer = new MutationObserver(() => {
+    const sidebarOpen = document.querySelector(".sidebar")?.classList.contains("show");
+    document.body.style.overflowY = sidebarOpen ? "hidden" : "auto";
+  });
+
+  observer.observe(document.querySelector(".sidebar"), { attributes: true });
+}
