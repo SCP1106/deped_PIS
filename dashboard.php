@@ -1,7 +1,6 @@
 <?php
 // Prevent browser caching of authenticated pages
 
-
 // THIS IS FOR THE ANTI-BYPASS 
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -28,15 +27,19 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/dashboard.css" />
   </head>
   <body>
-    <div id="sidebar-container">
-
-    </div>
-    <div id="topbar-container">
-
-    </div>
+    <div id="sidebar-container"></div>
+    <div id="topbar-container"></div>
 
     <!-- Main Content -->
     <div class="main-content p-4" id="dashboardContent">
+      <!-- School Year Selector -->
+      <div class="mb-4 d-flex align-items-center justify-content-between">
+        <h5 class="fw-bold mb-0">School Year:</h5>
+        <select id="schoolYearSelect" class="form-select form-select-sm w-auto">
+          <!-- Options will be inserted dynamically -->
+        </select>
+      </div>
+
       <!-- Metrics Row -->
       <div class="row g-4 mb-4">
         <!-- Total Teachers Card -->
@@ -78,7 +81,7 @@ if (!isset($_SESSION['user_id'])) {
 
       <!-- Charts Row -->
       <div class="row g-4">
-        <!-- Enxrollment Trends Chart -->
+        <!-- Enrollment Trends Chart -->
         <div class="col-12 col-lg-8">
           <div class="chart-container">
             <div class="d-flex justify-content-between align-items-center mb-4">

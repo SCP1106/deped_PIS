@@ -272,3 +272,27 @@ function updateTable(param) {
   // TODO: Implement table update logic here
   console.log("updateTable called with:", param);
 }
+
+
+// Populate school year options from 2015 to current year + 1
+const schoolYearSelect = document.getElementById('schoolYearSelect');
+const now = new Date();
+const currentYear = now.getMonth() >= 6 ? now.getFullYear() : now.getFullYear() - 1;
+const startYear = 2015;
+
+for (let y = currentYear + 1; y >= startYear; y--) {
+  const option = document.createElement("option");
+  option.value = `${y - 1}-${y}`;
+  option.textContent = `${y - 1}-${y}`;
+  schoolYearSelect.appendChild(option);
+}
+
+// Set default selected to current school year
+schoolYearSelect.value = `${currentYear}-${currentYear + 1}`;
+
+// Example: Hook into change event
+schoolYearSelect.addEventListener('change', function () {
+  const selectedSY = this.value;
+  console.log("Selected School Year:", selectedSY);
+  // TODO: Trigger filtering in dashboard.js or db-fetchers.js
+});
