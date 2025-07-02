@@ -225,6 +225,16 @@ if ($rateLimiter->isRateLimited()) {
             }
         });
 
+        document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
+  const button = document.getElementById("submitBtn");
+
+  form.addEventListener("submit", function () {
+    button.disabled = true;
+    button.textContent = "Processing...";
+  });
+}); 
+
         // Cancel button functionality
         function cancelRegistration() {
             window.location.href = '../../register.php';
